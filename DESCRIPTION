@@ -1,0 +1,19 @@
+Package: moobench
+Title: Multi Objective Optimization Benchmark Functions
+Description: Includes the testsuites: None
+Authors@R: c(person("Daniel", "Horn", email = "daniel.horn@tu-dortmund.de", role =
+    c("aut", "cre")), person("Jonas", "Muench", email =
+    "jonas.muench@tu-dortmund.de", role = "aut"))
+URL: https://github.com/danielhorn/moobench
+BugReports: https://github.com/danielhorn/moobench/issues
+License: BSD_3_clause + file LICENSE
+Encoding: UTF-8
+Roxygen: list(wrap = FALSE)
+Imports:
+    checkmate,
+    BBmisc
+Suggests:
+    testthat
+LazyData: yes
+ByteCompile: yes
+Version: 0.1
