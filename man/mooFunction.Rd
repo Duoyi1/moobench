@@ -38,7 +38,7 @@ Function, that returns the true pareto front.}
 Function, that returns the true pareto set.}
 }
 \value{
-A \code{moo_function} object.
+A \code{mooFunction} object.
 }
 \description{
 Define a new \code{mooFunction} object.

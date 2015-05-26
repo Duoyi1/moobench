@@ -22,7 +22,7 @@
 #'   Function, that returns the true pareto set.
 #' @param pareto.front [\code{function} | NULL] \cr
 #'   Function, that returns the true pareto front.
-#' @return A \code{moo_function} object.
+#' @return A \code{mooFunction} object.
 #'
 #' @export
 
