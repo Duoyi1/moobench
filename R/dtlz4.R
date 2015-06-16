@@ -1,4 +1,37 @@
-dtlz4_wir = function(x, in.dim, out.dim) {
+#' DTLZ4 test function generator.
+#' 
+#' @param in.dim [\code{integer(1)}] \cr
+#'   Size of parameter space.
+#' @param out.dim [\code{integer(1)}] \cr
+#'   Size of target space.
+#' @return A \code{mooFunction}.
+#' 
+#' @references DTLZ Reference Einfuegen
+#' 
+#' @export
+#' 
+generateDTLZ4 = function(in.dim = 30, out.dim = 2) {
+  in.dim = asCount(in.dim)
+  out.dim = asCount(out.dim)
+  
+  lower.bounds = rep(0, in.dim)
+  upper.bounds = rep(1, in.dim)
+  
+  mooFunction(
+    name = "dtlz4",
+    id = sprintf("dtlz4-%id-$id", in.dim, out.dim),
+    fun = function(x)
+      evalMooFunction(dtlz4, x, in.dim, out.dim, lower.bounds, upper.bounds),
+    in.dim = in.dim,
+    out.dim = out.dim,
+    lower.bounds = lower.bounds,
+    upper.bounds = upper.bounds,
+    pareto.set = NULL,
+    pareto.front = NULL)
+}
+
+
+dtlz4 = function(x, out.dim) {
   x.head = x[seq_len(out.dim - 1)]^100 * 0.5 * pi
   x.tail = x[out.dim:length(x)] - 0.5
   

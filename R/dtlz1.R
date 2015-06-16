@@ -10,7 +10,7 @@
 #' 
 #' @export
 #' 
-generateDTLZ11 = function(in.dim = 30, out.dim = 2) {
+generateDTLZ1 = function(in.dim = 30, out.dim = 2) {
   in.dim = asCount(in.dim)
   out.dim = asCount(out.dim)
   

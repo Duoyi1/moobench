@@ -33,7 +33,7 @@ generateZDT1 = function(in.dim = 30, out.dim = 2) {
 }
 
 
-zdt1 = function(x) {
+zdt1 = function(x, out.dim) {
   f1 = x[1]
   g = 1 + 9 * mean(x[-1])
   f2 = g * (1 - sqrt(f1 / g))
