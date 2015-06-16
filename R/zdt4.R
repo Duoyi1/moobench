@@ -23,7 +23,7 @@ generateZDT4 = function(in.dim = 10, out.dim = 2) {
     name = "zdt4",
     id = sprintf("zdt4-%id-$id", in.dim, out.dim),
     fun = function(x)
-      evalMooFunction(zdt4, x, in.dim, lower.bounds, upper.bounds),
+      evalMooFunction(zdt4, x, in.dim, out.dim, lower.bounds, upper.bounds),
     in.dim = in.dim,
     out.dim = out.dim,
     lower.bounds = lower.bounds,
@@ -33,7 +33,7 @@ generateZDT4 = function(in.dim = 10, out.dim = 2) {
 }
 
 
-zdt4 = function(x) {
+zdt4 = function(x, out.dim) {
   f1 = x[1]
   m = length(x)
   g = 1 + 10 * (m - 1) + sum(x[-1]^2 - 10 * cos(4 * pi * x[-1]))

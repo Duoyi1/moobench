@@ -23,7 +23,7 @@ generateZDT1 = function(in.dim = 30, out.dim = 2) {
     name = "zdt1",
     id = sprintf("zdt1-%id-$id", in.dim, out.dim),
     fun = function(x)
-      evalMooFunction(zdt1, x, in.dim, lower.bounds, upper.bounds),
+      evalMooFunction(zdt1, x, in.dim, out.dim, lower.bounds, upper.bounds),
     in.dim = in.dim,
     out.dim = out.dim,
     lower.bounds = lower.bounds,

@@ -23,7 +23,7 @@ generateZDT6 = function(in.dim = 10, out.dim = 2) {
     name = "zdt6",
     id = sprintf("zdt6-%id-$id", in.dim, out.dim),
     fun = function(x)
-      evalMooFunction(zdt6, x, in.dim, lower.bounds, upper.bounds),
+      evalMooFunction(zdt6, x, in.dim, out.dim, lower.bounds, upper.bounds),
     in.dim = in.dim,
     out.dim = out.dim,
     lower.bounds = lower.bounds,
@@ -33,7 +33,7 @@ generateZDT6 = function(in.dim = 10, out.dim = 2) {
 }
 
 
-zdt6 = function(x) {
+zdt6 = function(x, out.dim) {
   f1 = 1 - exp(-4 * x[1]) * sin(6 * pi * x[1])^6
   g = 1 + 9 * mean(x[-1])^0.25
   f2 = g * (1 - (f1 / g)^2)
