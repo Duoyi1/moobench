@@ -1,0 +1,23 @@
+- CEC Functionen hinzufuegen - nur 1:10
+
+
+- WFG Paper lesen
+- WFG Code von Elkemann anschauen
+- WFG implementieren
+
+- Allgemeiner Generator, der den Funktionsnamen als Eingabe hat
+
+- Nur noch 1 Generator je Funktionsset, mit Nummer der Funktion als Eingabe
+
+- GOMOP Functions - Kombinationen von soobench-Funktionen
+
+- ParamHelper statt upper und lower lim benutzen
+- Eine Funktion mit constraints ausprobieren
+
+- Dokus zusammenfassen, nur noch 1 Seite pro Set
+- Referenzen zu den Dokus hinzufuegen
+
+- S3 Print Funktion
+- Fronts und Sets zu den S3 Objekten hinzufuegen
+- getFront, getSet Funktionen - minmax LHS Idee
+- plot Funktionen fuer Front und Test

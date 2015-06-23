@@ -1,5 +1,7 @@
 #' LZ1 test function generator.
 #' 
+#' @aliases generateLZ1 generateLZ2 generateLZ3
+#' 
 #' @param in.dim [\code{integer(1)}] \cr
 #'   Size of parameter space.
 #' @param out.dim [\code{integer(1)}] \cr
@@ -35,8 +37,8 @@ generateLZ1 = function(in.dim = 30, out.dim = 2) {
 
 lz1 = function(x, out.dim) {
   j = 2:length(x)
-  j1 = j[j %% 2 == TRUE]
-  j2 = j[j %% 2 == FALSE]
+  j1 = j[j %% 2 == 0]
+  j2 = j[j %% 2 == 1]
   
   f1 = x[1] + 2 / length(j1) * 
     sum((x[j1] - x[1]^(0.5 * (1 + (3 * (j1 - 2)) / (length(x) - 2))))^2)

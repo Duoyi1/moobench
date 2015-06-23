@@ -35,9 +35,9 @@ generateLZ6 = function(in.dim = 30, out.dim = 3) {
 
 lz6 = function(x, out.dim) {
   j = 3:length(x)
-  j1 = j[(j - 2) %% 3 == TRUE]
-  j2 = j[(j - 1) %% 3 == TRUE]
-  j3 = j[j %% 3 == TRUE]
+  j1 = j[j %% 3 == 0]
+  j2 = j[j %% 3 == 2]
+  j3 = j[j %% 3 == 1]
   
   f1 = cos(0.5 * x[1] * pi) * cos(0.5 * x[2] * pi) + 2 / length(j1) * 
     sum((x[j1] - 2 * x[2] * sin(2 * pi * x[1] + (j1 * pi) / length(x)))^2)
