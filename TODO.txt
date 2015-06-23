@@ -21,3 +21,5 @@
 - Fronts und Sets zu den S3 Objekten hinzufuegen
 - getFront, getSet Funktionen - minmax LHS Idee
 - plot Funktionen fuer Front und Test
+
+- TestFunktionen schreiben!!!!
