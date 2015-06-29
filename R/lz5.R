@@ -35,14 +35,14 @@ generateLZ5 = function(in.dim = 30, out.dim = 2) {
 
 lz5 = function(x, out.dim) {
   j = 2:length(x)
-  j1 = j[j %% 2 == 0]
-  j2 = j[j %% 2 == 1]
+  j1 = j[j %% 2 == 1]
+  j2 = j[j %% 2 == 0]
   
   f1 = x[1] + 2 / length(j1) * 
-    sum((x[j1] - (0.3 * x[1]^2 * cos(24 * pi * x[1] + (4 * j1 * pi) / length(x) + 0.6 * x[1])) * 
+    sum((x[j1] - (0.3 * x[1]^2 * cos(24 * pi * x[1] + (4 * j1 * pi) / length(x)) + 0.6 * x[1]) * 
         cos(6 * pi * x[1] + (j1 * pi) / length(x) ))^2)
   f2 = 1 - sqrt(x[1]) + 2 / length(j2) * 
-    sum((x[j1] - (0.3 * x[1]^2 * cos(24 * pi * x[1] + (4 * j1 * pi) / length(x) + 0.6 * x[1])) * 
-        sin(6 * pi * x[1] + (j1 * pi) / length(x) ))^2)
+    sum((x[j2] - (0.3 * x[1]^2 * cos(24 * pi * x[1] + (4 * j2 * pi) / length(x)) + 0.6 * x[1]) * 
+        sin(6 * pi * x[1] + (j2 * pi) / length(x) ))^2)
   return(c(f1, f2))
 }

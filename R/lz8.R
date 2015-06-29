@@ -35,8 +35,8 @@ generateLZ8 = function(in.dim = 30, out.dim = 2) {
 
 lz8 = function(x, out.dim) {
   j = 2:length(x)
-  j1 = j[j %% 2 == 0]
-  j2 = j[j %% 2 == 1]
+  j1 = j[j %% 2 == 1]
+  j2 = j[j %% 2 == 0]
   
   y = function(j) {
     x[j] - x[1]^(0.5 * (1 + (3 * (j - length(x))) / (length(x) - 2)))

@@ -34,9 +34,9 @@ generateUF9 = function(in.dim = 30, out.dim = 3) {
 
 uf9 = function(x, out.dim) {
   j = 3:length(x)
-  j1 = j[j %% 3 == 0]
+  j1 = j[j %% 3 == 1]
   j2 = j[j %% 3 == 2]
-  j3 = j[j %% 3 == 1]
+  j3 = j[j %% 3 == 0]
   
   f1 = 0.5 * (max(0, 1.1 * (1 - 4 * (2 * x[1] - 1)^2)) + 2 * x[1]) * x[2] + 
     2 / length(j1) * sum((x[j1] - 2 * x[2] * sin(2 * pi * x[1] + (j1 * pi) / length(x)))^2)

@@ -34,9 +34,9 @@ generateUF10 = function(in.dim = 30, out.dim = 3) {
 
 uf10 = function(x, out.dim) {
   j = 3:length(x)
-  j1 = j[j %% 3 == 0]
+  j1 = j[j %% 3 == 1]
   j2 = j[j %% 3 == 2]
-  j3 = j[j %% 3 == 1]
+  j3 = j[j %% 3 == 0]
   
   y = function(j) {
     x[j] - 2 * x[2] * sin(2 * pi * x[1] + (j * pi) / length(x))
