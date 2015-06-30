@@ -38,13 +38,13 @@ uf9 = function(x, out.dim) {
   j2 = j[j %% 3 == 2]
   j3 = j[j %% 3 == 0]
   
-  f1 = 0.5 * (max(0, 1.1 * (1 - 4 * (2 * x[1] - 1)^2)) + 2 * x[1]) * x[2] + 
+  f1 = 0.5 * (max(0, 1.1 * (1 - 4 * (2 * x[1L] - 1)^2)) + 2 * x[1L]) * x[2L] + 
     2 / length(j1) * sum((x[j1] - 2 * x[2] * sin(2 * pi * x[1] + (j1 * pi) / length(x)))^2)
-  f2 = 0.5 * (max(0, 1.1 * (1 - 4 * (2 * x[1] - 1)^2)) - 2 * x[1] + 2) * x[2] +
+  f2 = 0.5 * (max(0, 1.1 * (1 - 4 * (2 * x[1L] - 1)^2)) - 2 * x[1L] + 2) * x[2L] +
     2 / length(j2) * 
-    sum((x[j2] - 2 * x[2] * sin(2 * pi * x[1] + (j2 * pi) / length(x)))^2)
+    sum((x[j2] - 2 * x[2L] * sin(2 * pi * x[1L] + (j2 * pi) / length(x)))^2)
   f3 = 1 - x[2] + 2 / length(j3) * 
-    sum((x[j3] - 2 * x[2] * sin(2 * pi * x[1] + (j3 * pi) / length(x)))^2)
+    sum((x[j3] - 2 * x[2L] * sin(2 * pi * x[1L] + (j3 * pi) / length(x)))^2)
   
   return(c(f1, f2, f3))
 }

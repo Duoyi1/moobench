@@ -10,7 +10,7 @@
 #' 
 #' @export
 #' 
-generateDTLZ5 = function(in.dim = 30, out.dim = 2) {
+generateDTLZ5 = function(in.dim = 30L, out.dim = 2L) {
   in.dim = asCount(in.dim)
   out.dim = asCount(out.dim)
   
@@ -31,22 +31,18 @@ generateDTLZ5 = function(in.dim = 30, out.dim = 2) {
 }
 
 dtlz5 = function(x, out.dim) {
-  x.head = x[seq_len(out.dim - 1)]
+  x.head = x[seq_len(out.dim - 1L)]
   x.tail = x[out.dim:length(x)] - 0.5
   
   g = sum(x.tail)^0.1
   
-  theta = numeric(out.dim - 1)
-  if (out.dim > 1) {
+  theta = numeric(out.dim - 1L)
+  if (out.dim > 1L) 
     theta[1] = x.head[1] * 0.5 * pi
-    if (out.dim == 3) {
-      theta[2] = (pi / (4 * (1 + g))) * (1 + 2 * g * x.head[2]) * 0.5 * pi
-    } else { 
-      if (out.dim > 3){
-        theta[2:(out.dim - 1)] = (pi / (4 * (1 + g))) * (1 + 2 * g * x.head[2:(out.dim - 1)]) * 0.5 * pi
-      }
-    }
-  }
+  if (out.dim == 3L) 
+    theta[2] = (pi / (4 * (1 + g))) * (1 + 2 * g * x.head[2]) * 0.5 * pi
+  if (out.dim > 3L)
+    theta[2:(out.dim - 1L)] = (pi / (4 * (1 + g))) * (1 + 2 * g * x.head[2:(out.dim - 1L)]) * 0.5 * pi
   
   rev((1 + g) * c(sin(theta), 1) * c(1, cumprod(cos(theta))))
 }

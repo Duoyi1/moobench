@@ -30,7 +30,7 @@ mooFunction = function(name, id, fun, in.dim, out.dim,
   lower.bounds, upper.bounds, pareto.front, pareto.set) {
   
   assertCharacter(x = name, len = 1L, all.missing = FALSE)
-  # FIXME: loog at grepl patterns
+  # FIXME: look at grepl patterns
   assertCharacter(x = id, len = 1L, all.missing = FALSE)#,
     #pattern = "^[:alpha:]+[[:alnum:]_-]*$")
   assertFunction(fun, args = "x")
