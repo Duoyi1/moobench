@@ -10,7 +10,7 @@
 #' 
 #' @export
 #' 
-generateZDT2 = function(in.dim = 30, out.dim = 2) {
+generateZDT2 = function(in.dim = 30L, out.dim = 2L) {
   in.dim = asCount(in.dim)
   out.dim = asCount(out.dim)
   if (out.dim != 2L)
@@ -34,8 +34,8 @@ generateZDT2 = function(in.dim = 30, out.dim = 2) {
 
 
 zdt2 = function(x, out.dim) {
-  f1 = x[1]
-  g = 1 + 9 * mean(x[-1])
+  f1 = x[1L]
+  g = 1 + 9 * mean(x[-1L])
   f2 = g * (1 - (f1 / g)^2)
   return(c(f1, f2))
 }

@@ -10,7 +10,7 @@
 #' 
 #' @export
 #' 
-generateDTLZ6 = function(in.dim = 30, out.dim = 2) {
+generateDTLZ6 = function(in.dim = 30L, out.dim = 2L) {
   in.dim = asCount(in.dim)
   out.dim = asCount(out.dim)
   
@@ -32,7 +32,7 @@ generateDTLZ6 = function(in.dim = 30, out.dim = 2) {
 
 
 dtlz6 = function(x, out.dim) {
-  x.head = x[seq_len(out.dim - 1)]
+  x.head = x[seq_len(out.dim - 1L)]
   x.tail = x[out.dim:length(x)]
   
   g = 1 + (9 / length(x.tail)) * sum(x.tail)

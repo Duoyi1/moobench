@@ -10,7 +10,7 @@
 #' 
 #' @export
 #' 
-generateZDT4 = function(in.dim = 10, out.dim = 2) {
+generateZDT4 = function(in.dim = 10L, out.dim = 2L) {
   in.dim = asCount(in.dim)
   out.dim = asCount(out.dim)
   if (out.dim != 2L)
@@ -34,9 +34,9 @@ generateZDT4 = function(in.dim = 10, out.dim = 2) {
 
 
 zdt4 = function(x, out.dim) {
-  f1 = x[1]
+  f1 = x[1L]
   m = length(x)
-  g = 1 + 10 * (m - 1) + sum(x[-1]^2 - 10 * cos(4 * pi * x[-1]))
+  g = 1 + 10 * (m - 1) + sum(x[-1L]^2 - 10 * cos(4 * pi * x[-1L]))
   f2 = g * (1 - sqrt(f1 / g))
   return(c(f1, f2))
 }

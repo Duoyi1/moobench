@@ -10,7 +10,7 @@
 #' 
 #' @export
 #' 
-generateLZ3 = function(in.dim = 30, out.dim = 2) {
+generateLZ3 = function(in.dim = 30L, out.dim = 2L) {
   in.dim = asCount(in.dim)
   out.dim = asCount(out.dim)
   if (out.dim != 2L)
@@ -35,12 +35,12 @@ generateLZ3 = function(in.dim = 30, out.dim = 2) {
 
 lz3 = function(x, out.dim) {
   j = 2:length(x)
-  j1 = j[j %% 2 == 1]
-  j2 = j[j %% 2 == 0]
+  j1 = j[j %% 2 == 1L]
+  j2 = j[j %% 2 == 0L]
   
-  f1 = x[1] + 2 / length(j1) * 
-    sum((x[j1] - 0.8 * x[1] * cos(6 * pi * x[1] + (j1 * pi) / length(x)))^2)
-  f2 = 1 - sqrt(x[1]) + 2 / length(j2) * 
-    sum((x[j2] - 0.8 * x[1] * sin(6 * pi * x[1] + (j2 * pi) / length(x)))^2)
+  f1 = x[1L] + 2 / length(j1) * 
+    sum((x[j1] - 0.8 * x[1L] * cos(6 * pi * x[1L] + (j1 * pi) / length(x)))^2)
+  f2 = 1 - sqrt(x[1L]) + 2 / length(j2) * 
+    sum((x[j2] - 0.8 * x[1L] * sin(6 * pi * x[1L] + (j2 * pi) / length(x)))^2)
   return(c(f1, f2))
 }

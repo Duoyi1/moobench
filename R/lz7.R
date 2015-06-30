@@ -10,7 +10,7 @@
 #' 
 #' @export
 #' 
-generateLZ7 = function(in.dim = 30, out.dim = 2) {
+generateLZ7 = function(in.dim = 30L, out.dim = 2L) {
   in.dim = asCount(in.dim)
   out.dim = asCount(out.dim)
   if (out.dim != 2L)
@@ -35,16 +35,16 @@ generateLZ7 = function(in.dim = 30, out.dim = 2) {
 
 lz7 = function(x, out.dim) {
   j = 2:length(x)
-  j1 = j[j %% 2 == 1]
-  j2 = j[j %% 2 == 0]
+  j1 = j[j %% 2 == 1L]
+  j2 = j[j %% 2 == 0L]
   
   y = function(j) {
-    x[j] - x[1]^(0.5 * (1 + (3 * (j - length(x))) / (length(x) - 2)))
+    x[j] - x[1L]^(0.5 * (1 + (3 * (j - length(x))) / (length(x) - 2)))
   }
   
-  f1 = x[1] + 2 / length(j1) * 
+  f1 = x[1L] + 2 / length(j1) * 
     sum(y(j1)^2 - cos(8 * y(j1) * pi) + 1)
-  f2 = 1 - sqrt(x[1]) + 2 / length(j2) * 
+  f2 = 1 - sqrt(x[1L]) + 2 / length(j2) * 
     sum(4 * y(j2)^2 - cos(8 * y(j2) * pi) + 1)
   return(c(f1, f2))
 }

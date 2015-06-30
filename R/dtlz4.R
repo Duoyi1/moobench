@@ -10,7 +10,7 @@
 #' 
 #' @export
 #' 
-generateDTLZ4 = function(in.dim = 30, out.dim = 2) {
+generateDTLZ4 = function(in.dim = 30L, out.dim = 2L) {
   in.dim = asCount(in.dim)
   out.dim = asCount(out.dim)
   
@@ -32,7 +32,7 @@ generateDTLZ4 = function(in.dim = 30, out.dim = 2) {
 
 
 dtlz4 = function(x, out.dim) {
-  x.head = x[seq_len(out.dim - 1)]^100 * 0.5 * pi
+  x.head = x[seq_len(out.dim - 1L)]^100 * 0.5 * pi
   x.tail = x[out.dim:length(x)] - 0.5
   
   rev((1 + sum(x.tail^2)) * c(sin(x.head), 1) * c(1, cumprod(cos(x.head))))

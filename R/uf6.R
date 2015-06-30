@@ -10,7 +10,7 @@
 #' 
 #' @export
 #' 
-generateUF6 = function(in.dim = 30, out.dim = 2) {
+generateUF6 = function(in.dim = 30L, out.dim = 2L) {
   in.dim = asCount(in.dim)
   out.dim = asCount(out.dim)
   if (out.dim != 2L)
@@ -35,16 +35,16 @@ generateUF6 = function(in.dim = 30, out.dim = 2) {
 
 uf6 = function(x, out.dim) {
   j = 2:length(x)
-  j1 = j[j %% 2 == 1]
-  j2 = j[j %% 2 == 0]
+  j1 = j[j %% 2 == 1L]
+  j2 = j[j %% 2 == 0L]
   
   y = function(j) {
-    x[j] - sin(6 * pi * x[1] + (j * pi) / length(x))
+    x[j] - sin(6 * pi * x[1L] + (j * pi) / length(x))
   }
   
-  f1 = x[1] + max(0, 0.7 * sin(4 * pi * x[1])) + 2 / length(j1) * 
+  f1 = x[1L] + max(0, 0.7 * sin(4 * pi * x[1L])) + 2 / length(j1) * 
     (4 * sum(y(j1)^2) - 2 * prod(cos((20 * y(j1) * pi) / sqrt(j1))) + 2)
-  f2 = 1 - x[1] + max(0, 0.7 * sin(4 * pi * x[1])) + 2 / length(j2) * 
+  f2 = 1 - x[1L] + max(0, 0.7 * sin(4 * pi * x[1L])) + 2 / length(j2) * 
     (4 * sum(y(j2)^2) - 2 * prod(cos((20 * y(j2) * pi) / sqrt(j2))) + 2)
   return(c(f1, f2))
 }

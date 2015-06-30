@@ -10,7 +10,7 @@
 #' 
 #' @export
 #' 
-generateUF2 = function(in.dim = 30, out.dim = 2) {
+generateUF2 = function(in.dim = 30L, out.dim = 2L) {
   in.dim = asCount(in.dim)
   out.dim = asCount(out.dim)
   if (out.dim != 2L)

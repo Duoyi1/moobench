@@ -38,9 +38,9 @@ dtlz5 = function(x, out.dim) {
   
   theta = numeric(out.dim - 1L)
   if (out.dim > 1L) 
-    theta[1] = x.head[1] * 0.5 * pi
+    theta[1L] = x.head[1L] * 0.5 * pi
   if (out.dim == 3L) 
-    theta[2] = (pi / (4 * (1 + g))) * (1 + 2 * g * x.head[2]) * 0.5 * pi
+    theta[2L] = (pi / (4 * (1 + g))) * (1 + 2 * g * x.head[2L]) * 0.5 * pi
   if (out.dim > 3L)
     theta[2:(out.dim - 1L)] = (pi / (4 * (1 + g))) * (1 + 2 * g * x.head[2:(out.dim - 1L)]) * 0.5 * pi
   

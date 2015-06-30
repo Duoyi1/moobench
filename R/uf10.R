@@ -10,7 +10,7 @@
 #' 
 #' @export
 #' 
-generateUF10 = function(in.dim = 30, out.dim = 3) {
+generateUF10 = function(in.dim = 30L, out.dim = 3L) {
   in.dim = asCount(in.dim)
   out.dim = asCount(out.dim)
   if (out.dim != 3L)
@@ -34,19 +34,19 @@ generateUF10 = function(in.dim = 30, out.dim = 3) {
 
 uf10 = function(x, out.dim) {
   j = 3:length(x)
-  j1 = j[j %% 3 == 1]
-  j2 = j[j %% 3 == 2]
-  j3 = j[j %% 3 == 0]
+  j1 = j[j %% 3 == 1L]
+  j2 = j[j %% 3 == 2L]
+  j3 = j[j %% 3 == 0L]
   
   y = function(j) {
-    x[j] - 2 * x[2] * sin(2 * pi * x[1] + (j * pi) / length(x))
+    x[j] - 2 * x[2L] * sin(2 * pi * x[1L] + (j * pi) / length(x))
   }
   
-  f1 = cos(0.5 * x[1] * pi) * cos(0.5 * x[2] * pi) + 
+  f1 = cos(0.5 * x[1L] * pi) * cos(0.5 * x[2L] * pi) + 
     2 / length(j1) * sum(4 * y(j1)^2 - cos(8 * pi * y(j1)) + 1)
-  f2 = cos(0.5 * x[1] * pi) * sin(0.5 * x[2] * pi) + 
+  f2 = cos(0.5 * x[1L] * pi) * sin(0.5 * x[2L] * pi) + 
     2 / length(j2) * sum(4 * y(j2)^2 - cos(8 * pi * y(j2)) + 1)
-  f3 = sin(0.5 * x[1] * pi) + 
+  f3 = sin(0.5 * x[1L] * pi) + 
     2 / length(j3) * sum(4 * y(j3)^2 - cos(8 * pi * y(j3)) + 1)
   
   return(c(f1, f2, f3))

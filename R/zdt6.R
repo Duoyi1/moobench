@@ -10,7 +10,7 @@
 #' 
 #' @export
 #' 
-generateZDT6 = function(in.dim = 10, out.dim = 2) {
+generateZDT6 = function(in.dim = 10L, out.dim = 2L) {
   in.dim = asCount(in.dim)
   out.dim = asCount(out.dim)
   if (out.dim != 2L)
@@ -34,8 +34,8 @@ generateZDT6 = function(in.dim = 10, out.dim = 2) {
 
 
 zdt6 = function(x, out.dim) {
-  f1 = 1 - exp(-4 * x[1]) * sin(6 * pi * x[1])^6
-  g = 1 + 9 * mean(x[-1])^0.25
+  f1 = 1 - exp(-4 * x[1L]) * sin(6 * pi * x[1L])^6
+  g = 1 + 9 * mean(x[-1L])^0.25
   f2 = g * (1 - (f1 / g)^2)
   return(c(f1, f2))
 }
