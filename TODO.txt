@@ -15,3 +15,6 @@
 - Fronts und Sets zu den S3 Objekten hinzufuegen
 - getFront, getSet Funktionen - minmax LHS Idee
 - plot Funktionen fuer Front und Test
+
+- zdf4 parma.set und in.dim anpassen
+- switch bei uf?
