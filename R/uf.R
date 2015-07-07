@@ -52,8 +52,7 @@ generateUF = function(id, in.dim = 30L, out.dim = 2L) {
     fun = function(x) fun(x, out.dim = out.dim),
     in.dim = in.dim,
     out.dim = out.dim,
-    lower.bounds = lower.bounds,
-    upper.bounds = upper.bounds,
+    param.set = param.set,
     pareto.set = NULL,
     pareto.front = NULL)
 }
