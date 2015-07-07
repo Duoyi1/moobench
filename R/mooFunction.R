@@ -14,10 +14,8 @@
 #'   Size of paramter space.
 #' @param out.dim [\code{integer(1)}] \cr
 #'   Dimnesion of the targer space.
-#' @param lower.bounds [\code{numeric(in.dim)}] \cr
-#'   Lower bounds of the parameter space.
-#' @param upper.bounds [\code{numeric(out.dim)}] \cr
-#'   Upper bounds of the parameter space.
+#' @param param.set [\code{\link[ParamHelpers]{ParamSet}}]\cr
+#'   Parameter set to describe (box) constraints for the function.
 #' @param pareto.set [\code{function} | NULL] \cr
 #'   Function, that returns the true pareto set.
 #' @param pareto.front [\code{function} | NULL] \cr
@@ -27,43 +25,39 @@
 #' @export
 
 mooFunction = function(name, id, fun, in.dim, out.dim,
-  lower.bounds, upper.bounds, pareto.front, pareto.set) {
+  param.set, pareto.front, pareto.set) {
   
   assertCharacter(x = name, len = 1L, all.missing = FALSE)
   # FIXME: look at grepl patterns
   assertCharacter(x = id, len = 1L, all.missing = FALSE)#,
     #pattern = "^[:alpha:]+[[:alnum:]_-]*$")
-  assertFunction(fun, args = "x")
+  assertFunction(fun, args = getParamIds(param.set))
   in.dim = asCount(in.dim)
   out.dim = asCount(out.dim)
-  assertNumeric(lower.bounds, finite = TRUE, any.missing = FALSE, len = in.dim)
-  assertNumeric(upper.bounds, finite = TRUE, any.missing = FALSE, len = in.dim)
-  if (any(upper.bounds - lower.bounds <= 0))
-    stop("Some upper bound is less or equal to its lower bound.")
+  assertClass(param.set, "ParamSet")
+  
   if (!is.null(pareto.set))
     assertFunction(pareto.set)
   if (!is.null(pareto.front))
     assertFunction(pareto.front)
   
   # check that fun fullfills in.dim and out.dim
-  valid.point = (upper.bounds + lower.bounds) / 2
-  value = fun(valid.point)
+  valid.point = sampleValue(param.set)
+  value = do.call(fun, valid.point)
   if (length(value) != out.dim)
     stopf("Function has wrong out.dim, expect %d but got %d.", out.dim, length(value))
   
   # FIXME: check for pareto.set and pareto.front have correct dim
   
-  
-  
   structure(
-    fun,
+    function(...)
+      evalMooFunction(fun, param.set, ...),
     name = name,
     id = id,
     in.dim = in.dim,
     out.dim = out.dim,
     class = c("mooFunction", class(fun)),
-    lower.bounds = lower.bounds,
-    upper.bounds = upper.bounds,
+    param.set = param.set,
     pareto.front = pareto.front,
     pareto.set = pareto.set
     )

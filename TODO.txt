@@ -6,12 +6,9 @@
 
 - Nur noch 1 Generator je Funktionsset, mit Nummer der Funktion als Eingabe
 
-- GOMOP Functions - Kombinationen von soobench-Funktionen
-
 - ParamHelper statt upper und lower lim benutzen
 - Eine Funktion mit constraints ausprobieren
 
-- Dokus zusammenfassen, nur noch 1 Seite pro Set
 - Referenzen zu den Dokus hinzufuegen
 
 - S3 Print Funktion

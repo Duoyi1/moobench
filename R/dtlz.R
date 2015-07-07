@@ -16,8 +16,16 @@ generateDTLZ = function(id, in.dim = 30L, out.dim = 2L) {
   in.dim = asCount(in.dim)
   out.dim = asCount(out.dim)
   
-  lower.bounds = rep(0, in.dim)
-  upper.bounds = rep(1, in.dim)
+  if (out.dim < 2L)
+    stopf("You set your out.dim to %i. This is not multicrit! Set it at least to 2.", out.dim)
+  
+  if (in.dim < out.dim)
+    stopf("YOu set out.dim = %i and in.dim = %i, but in.dim must be greatar than out.dim!.",
+      out.dim, in.dim)
+  
+  assertChoice(id, 1:6)
+  
+  param.set = makeNumericParamSet(id = "x", len = in.dim, lower = 0, upper = 1)
   
   fun = switch(id,
     dtlz1, 
@@ -31,12 +39,11 @@ generateDTLZ = function(id, in.dim = 30L, out.dim = 2L) {
   mooFunction(
     name = sprintf("dtlz%i", id),
     id = sprintf("dtlz%i-%id-$id", id, in.dim, out.dim),
-    fun = function(x)
-      evalMooFunction(fun, x, in.dim, out.dim, lower.bounds, upper.bounds),
+    # Note: fun.args is a list here
+    fun = function(x) fun(x, out.dim = out.dim),
     in.dim = in.dim,
     out.dim = out.dim,
-    lower.bounds = lower.bounds,
-    upper.bounds = upper.bounds,
+    param.set = param.set,
     pareto.set = NULL,
     pareto.front = NULL)
 }
