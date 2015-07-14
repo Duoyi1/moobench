@@ -2,11 +2,8 @@
 - WFG Code von Elkemann anschauen
 - WFG implementieren
 
-- Allgemeiner Generator, der den Funktionsnamen als Eingabe hat
-
-- Nur noch 1 Generator je Funktionsset, mit Nummer der Funktion als Eingabe
-
 - ParamHelper statt upper und lower lim benutzen
+
 - Eine Funktion mit constraints ausprobieren
 
 - Referenzen zu den Dokus hinzufuegen
@@ -17,4 +14,3 @@
 - plot Funktionen fuer Front und Test
 
 - zdf4 parma.set und in.dim anpassen
-- switch bei uf?
