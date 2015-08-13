@@ -1,0 +1,29 @@
+- "Klasse" WFG Shape Trafo
+  - makeWFGShapeTrafo
+    - Liste von out.dim Funktionen
+    - Input:
+       - Liste von Listen. Jede Innere Liste hat als 1. Element einen Character
+         und als 2. Element eine Liste mit Parametern für diese Shape-Trafo.
+         Die 2. Liste darf fehlen, in diesem Fall ist sie NULL und es gibt keine
+         Parameter
+    - Ouput: Liste von Funktionen (out.dim-1 -> 1) der Länge M, mit der Klasse
+      Shape Trafo
+      
+Beispiele:
+
+makeShapeTrafo(replicate(2, list(name = "linear"), simplify = FALSE))
+makeShapeTrafo(list(list(name = "concave"), list(name = "concave"), list(name = "mixed", params = list(alpha = 1, A = 2L)))
+      
+- Klasse WFG Trafo
+  - makeWFGTrafo
+    - Genauso wie oben, nur hier hat jede innere Liste 3 Elemente,
+      das 2. Element gibt an, auf welche Indizes des Eingabevektor die Trafo
+      angewendet werden soll
+      
+makeWFGTrafo(list(
+  list(name = "identity"", ids = 1:5),
+  list(name = "b_poly", ids = 6:10, alpha = 0.001)
+))
+    
+    
+Benutzerfreundliche "zusammengefaltete" Eingaben erlauben - im 2. Schritt
