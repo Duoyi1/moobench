@@ -21,7 +21,7 @@ makeShapeTrafo(list(list(name = "concave"), list(name = "concave"), list(name = 
       angewendet werden soll
       
 makeWFGTrafo(list(
-  list(name = "identity"", ids = 1:5),
+  list(name = "identity", ids = 1:5),
   list(name = "b_poly", ids = 6:10, alpha = 0.001)
 ))
     
