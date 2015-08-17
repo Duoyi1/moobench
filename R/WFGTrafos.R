@@ -1,49 +1,158 @@
-ident = function(y) {
-  y
+#' WFG Transformations
+#'
+#' wfgTrafoBPoly is the polynomial bias transformation.\cr
+#' wfgTrafoBFlat creates a region in search space in which all points have the same objective values.\cr
+#' wfgTrafoBParam is the parameter-dependent transformation.\cr
+#' wfgTrafoSLinear creates a linear shift of the true optimum.\cr
+#' wfgTrafoBSDecept creates regions in the search space that have a sub-optimal value but larger area.\cr
+#' wfgTrafoSMulti creates many local optima.\cr
+#' wfgTrafoRSum creates a dependence between different search-space entries.\cr
+#' wfgTrafoRNonsep creates a dependence between objectives.\cr
+#'
+#' @param alpha [\code{numeric(1)}] \cr
+#'   wfgTrafoBPoly: alpha > 1 biases toward 0, alpha < 1 biases toward 1.
+#' @param A [\code{numeric(1)}] \cr
+#'  For parameter requirements see WFG Paper. Need at: \cr
+#'  wfgTrafoBFlat, wfgTrafoBParam, wfgtrafoSLinear, wfgTrafoSDecept, wfgTrafoSMulti, wfgTrafoRNonsep
+#' @param B [\code{numeric(1)}] \cr
+#'  For parameter requirements see WFG Paper. Need at: \cr
+#'  wfgTrafoBFlat, wfgTrafoBParam, wfgTrafoSDecept, wfgTrafoSMulti
+#' @param C [\code{numeric(1)}] \cr
+#'  For parameter requirements see WFG Paper. Need at: \cr
+#'  wfgTrafoBFlat, wfgTrafoBParam, wfgTrafoSDecept, wfgTrafoSMulti
+#' @param y.prime [\code{numeric}] \cr
+#'  At wfgTrafoBParamt 
+#' @param w [\code{numeric}] \cr
+#'  At wfgTrafoRSum
+#'  
+#' @return A \code{wfgTrafoFunction}.
+
+#' @rdname WFGTrafos
+wfgTrafoBPoly = function(alpha) {
+  assertNumber(alpha, lower = 0)
+  if (alpha == 1L)
+    stop("alpha must be odd 1.")
+  
+  trafo.function = function(y) y^alpha
+  
+  trafo.function = addClasses(trafo.function, "wfgTrafoFunction")
+  return(trafo.function)
 }
 
-bPoly = function(y, alpha) {
-  y^alpha
+#' @rdname WFGTrafos
+wfgTrafoBFlat = function(A, B, C) {
+  assertNumber(A, lower = 0, upper = 1)
+  assertNumber(B, lower = 0, upper = 1)
+  assertNumber(C, lower = 0, upper = 1)
+  if (B > C)
+    stop("C must be greater than B")
+  if (B == 0L && (A != 0 || C == 1))
+    stop("Parameters not satiesfied.")
+  if (C == 1L && (A != 1 || B == 0))
+    stop("Parameters not satiesfied.")
+  
+  trafo.function = function(y) {
+    tmp1 = pmin(0, floor(y - B)) * A * (B - y) / B
+    tmp2 = pmin(0, floor(C - y)) * (1 - A) * (y - C) / (1 - C)
+    A + tmp1 - tmp2
+  }
+  
+  trafo.function = addClasses(trafo.function, "wfgTrafoFunction")
+  return(trafo.function)
 }
 
-
-bFlat = function(y, A, B, C) {
-  tmp1 = pmin(0, floor(y - B)) * A * (B - y) / B
-  tmp2 = pmin(0, floor(C - y)) * (1 - A) * (y - C) / (1 - C)
-  A + tmp1 - tmp2
+#' @rdname WFGTrafos
+wfgTrafoBParam = function(y.prime, A, B, C) {
+  assertNumeric(y.prime)
+  assertNumber(A, lower = 0, upper = 1)
+  assertNumber(B, lower = A, upper = C)
+  assertNumber(C, lower = B)
+  
+  trafo.function = function(y) {
+    tmp = A - (1 - 2 * y.prime) * abs(floor(0.5 - y.prime) + A)
+    y^(B + (C - B) * tmp)   
+  }
+ 
+  trafo.function = addClasses(trafo.function, "wfgTrafoFunction")
+  return(trafo.function)
 }
 
-bParam = function(y, u, A, B, C) {
-  v = A - (1 - 2 * u) * abs(floor(0.5 - u) + A)
-  y^(B + (C - B) * v)
+#' @rdname WFGTrafos
+wfgtrafoSLinear = function(A) {
+  assertNumber(A, lower = 0, upper = 1)
+  
+  trafo.function = function(y) {
+    abs(y - A) / abs(floor(A - y) + A)  
+  }
+  
+  trafo.function = addClasses(trafo.function, "wfgTrafoFunction")
+  return(trafo.function)
 }
 
-sLinear = function(y, A) {
-  abs(y - A) / abs(floor(A - y) + A)
+#' @rdname WFGTrafos
+wfgTrafoSDecept = function(A, B, C) {
+  assertNumber(A, lower = 0, upper = 1)
+  assertNumber(B, lower = 0, upper = 1)
+  assertNumber(C, lower = 0, upper = 1)
+  if (A > B)
+    stop("A must be smaller than B.")
+  if ((A + B) >= 1L)
+    stop("A + B must be smaller than 1.")
+  
+  trafo.function = function(y) {  
+    tmp1 = floor(y - A + B) * (1 - C + (A - B) / B) / (A - B) 
+    tmp2 = floor(A + B - y) * (1 - C + (1 - A - B) / B) / (1 - A - B)
+    1 + (abs(y - A) - B) * (tmp1 + tmp2 + 1 / B)
+  }
+     
+  trafo.function = addClasses(trafo.function, "wfgTrafoFunction")
+  return(trafo.function)
 }
 
-sDecept = function(y, A, B, C) {
-  tmp1 = floor(y - A + B) * (1 - C + (A - B) / B) / (A - B) 
-  tmp2 = floor(A + B - y) * (1 - C + (1 - A - B) / B) / (1 - A - B)
-  1 + (abs(y - A) - B) * (tmp1 + tmp2 + 1 / B)
+#' @rdname WFGTrafos
+wfgTrafoSMulti = function(A, B, C) {
+  A = asCount(A)
+  # Fix me
+  assertNumber(B, lower = 0)
+  assertNumber(C, lower = 0, upper = 1)
+  if (((4*A + 2) * pi) < (4 * B))
+    stop("Parameters not satiesfied.")
+  
+  trafo.function = function(y) {    
+    tmp1 = abs(y - C) / (2 * (floor(C - y) + C))
+    tmp2 = (4 * A + 2) * pi * (0.5 - tmp1)
+    (1 + cos(tmp2) + 4 * B * (tmp1)^2) / (B + 2)
+  }
+  
+  trafo.function = addClasses(trafo.function, "wfgTrafoFunction")
+  return(trafo.function)
 }
 
-sMulti = function(y, A, B, C) {
-  tmp1 = abs(y - C) / (2 * (floor(C - y) + C))
-  tmp2 = (4 * A + 2) * pi * (0.5 - tmp1)
-  (1 + cos(tmp2) + 4 * B * (tmp1)^2) / (B + 2)
+#' @rdname WFGTrafos
+wfgTrafoRSum = function(w) {
+  assertNumeric(w, lower = 0)
+  
+  trafo.function = function(y) {  
+    sum(w * y) / sum(w)
+  }
+    
+  trafo.function = addClasses(trafo.function, "wfgTrafoFunction")
+  return(trafo.function)
 }
 
-## For these 2 functions y is a vector, not a single value
-rSum = function(y, w) {
-  sum(w * y) / sum(w)
-}
-
-rNonsep = function(y, A) {
-  n = length(y)
-  if (A == 1L) return(rSum(y, rep(1, n)))
-  mat = array(dim = c(n, A - 1))
-  for (i in 1:(A - 1))
-    mat[, i] = y[1 + (i:(i + n - 1) %% n)]
-  (sum(y) + sum(abs(y - mat))) / (n / A * ceiling(A / 2) * (1 + 2 * A - 2 * ceiling(A / 2)))
+#' @rdname WFGTrafos
+wfgTrafoRNonsep = function(A) {
+  A = asCount(A)
+  
+  trafo.function = function(y) {  
+    n = length(y)
+    if (A == 1L) return(wfgTrafoRSum(y, rep(1, n)))
+    mat = array(dim = c(n, A - 1))
+    for (i in 1:(A - 1))
+      mat[, i] = y[1 + (i:(i + n - 1) %% n)]
+    (sum(y) + sum(abs(y - mat))) / (n / A * ceiling(A / 2) * (1 + 2 * A - 2 * ceiling(A / 2)))
+  }
+  
+  trafo.function = addClasses(trafo.function, "wfgTrafoFunction")
+  return(trafo.function)
 }

@@ -20,7 +20,7 @@ generateDTLZ = function(id, in.dim = 30L, out.dim = 2L) {
     stopf("You set your out.dim to %i. This is not multicrit! Set it at least to 2.", out.dim)
   
   if (in.dim < out.dim)
-    stopf("YOu set out.dim = %i and in.dim = %i, but in.dim must be greatar than out.dim!.",
+    stopf("You set out.dim = %i and in.dim = %i, but in.dim must be greatar than out.dim!.",
       out.dim, in.dim)
   
   assertChoice(id, 1:6)

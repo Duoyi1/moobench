@@ -27,3 +27,17 @@ makeWFGTrafo(list(
     
     
 Benutzerfreundliche "zusammengefaltete" Eingaben erlauben - im 2. Schritt
+
+
+GenerateCustomWFG:
+Input
+- zmax vektor
+-Liste mit Ergebnissen der Make WFG trafo 
+ --parameter checks am ende
+- A_M vektor
+-S Vektor
+-WFG shape trafo ergebnis
+-D skalar
+
+GenrateWFG
+-WFG1 machen

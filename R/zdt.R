@@ -24,12 +24,16 @@ generateZDT = function(id, in.dim = 30L, out.dim = 2L) {
     stopf("You set your out.dim to %i. This is not multicrit! Set it at least to 2.", out.dim)
   
   if (in.dim < out.dim)
-    stopf("YOu set out.dim = %i and in.dim = %i, but in.dim must be greatar than out.dim!.",
+    stopf("YOu set out.dim = %i and in.dim = %i, but in.dim must be greater than out.dim!.",
       out.dim, in.dim)
   
   assertChoice(id, 1:6)
   
-  param.set = makeNumericParamSet(id = "x", len = in.dim, lower = 0, upper = 1)
+  if (id == 4L)
+    param.set = makeNumericParamSet(id = "x", len = in.dim, lower = c(0, rep(-5, in.dim - 1)), 
+      upper = c(1, rep(5, in.dim - 1)))
+  else
+    param.set = makeNumericParamSet(id = "x", len = in.dim, lower = 0, upper = 1)
   
   fun = switch(id,
     zdt1, 

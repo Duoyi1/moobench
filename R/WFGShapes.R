@@ -1,47 +1,118 @@
-linear = function(x, alpha, beta, A) {
-  len = length(x)
+#' WFG Shapes
+#'
+#' wfgShapeLinear is the linear pareto front. \cr
+#' wfgShapeConvex is the convex pareto front. \cr
+#' wfgShapeConcave is the concave pareto front. \cr
+#' wfgShapeMixed is a shape of the pareto front that has some convex and concave parts. \cr
+#' wfgShapeDisconnected is a shape of the pareto front that is not continuous.\cr
+#'
+#' @param dim [\code{integer(1)}] \cr 
+#'   Most shape function differ in the first (dim = 1), the last (dim = out.dim)
+#'   and the remainingout dimension. Indicates for which function the shape
+#'   function shall be returned.
+#' @param out.dim [\code{integer(1)}] \cr
+#'   Size of target space.
+#' @param A [\code{integer(1)}] \cr 
+#'   Number of parts of the pareto front. 
+#' @param alpha [\code{numeric(1)}] \cr
+#'   Must be > 0.
+#'   The overall form of the pareto front, if alpha > 1 then it is more convex, 
+#'   if alpha < 1 then more concave. When alpha = 1 the overall shape is linear.
+#' @param beta [\code{numeric(1)}] \cr
+#'   Must be > 0.
+#'   Where the discontinuities are. A larger value moves it to larger values of the first objective.
+#'   
+#' @return A \code{wfgShapeFunction}.
+
+#' @rdname WFGShapes
+wfgShapeLinear = function(dim, out.dim) {
+  dim = asCount(dim, positive = TRUE)
+  out.dim = asCount(out.dim, positive = TRUE)
+  if (dim > out.dim)
+    stopf("You set out.dim = %i and dim = %i, but out.dim must be greater than dim!.",
+      out.dim, dim)
   
-  f1 = prod(x)
-  fm = 1 - x[1L]
+  if (dim == 1L)
+    shape.function = function(x) prod(x)
+  else if (dim == out.dim)
+    shape.function = function(x) 1 - x[1L]
+  else
+    shape.function = function(x) prod(x[1:(out.dim - dim)]) * (1 - x[out.dim - dim + 1])
   
-  if (len > 2L) {
-    f = rev(cumprod(x[-len]) * (1 - x[-1L]))
-    return(c(f1, f, fm))
-  }
-  return(c(f1, fm))
+  shape.function = addClasses(shape.function, "wfgShapeFunction")
+  return(shape.function)
 }
 
-convex = function(x, alpha, beta, A) {
-  len = length(x)
+#' @rdname WFGShapes
+wfgShapeConvex = function(dim, out.dim) {
+  dim = asCount(dim, positive = TRUE)
+  out.dim = asCount(out.dim, positive = TRUE)
+  if (dim > out.dim)
+    stopf("You set out.dim = %i and dim = %i, but out.dim must be greater than dim!.",
+      out.dim, dim)
   
-  f1 = prod(1 - cos(x * pi / 2))
-  fm = 1 - sin(x[1L] * pi / 2)
-  
-  if (len > 2L) {
-    f = rev(cumprod(1 - cos(x[-len] * pi / 2)) * (1 - sin(x[-1L] * pi / 2)))
-    return(c(f1, f, fm))
-  }
-  return(c(f1, fm))
+  if (dim == 1L)
+    shape.function = function(x) prod(1 - cos(x * pi / 2))
+  else if (dim == out.dim)
+    shape.function = function(x) 1 - sin(x[1L] * pi / 2)
+  else
+    shape.function = function(x) prod(1 - cos(x[1:(out.dim - dim)] * pi / 2)) * 
+        (1 - sim(x[out.dim - dim + 1] * pi / 2))
+
+  shape.function = addClasses(shape.function, "wfgShapeFunction")
+  return(shape.function)  
 }
 
-concave = function(x, alpha, beta, A) {
-  len = length(x)
+#' @rdname WFGShapes
+wfgShapeConcave = function(dim, out.dim) {
+  dim = asCount(dim, positive = TRUE)
+  out.dim = asCount(out.dim, positive = TRUE)
+  if (dim > out.dim)
+    stopf("You set out.dim = %i and dim = %i, but out.dim must be greater than dim!.",
+      out.dim, dim)
   
-  f1 = prod(sin(x * pi / 2))
-  fm = cos(x[1L] * pi / 2)
+  if (dim == 1L)
+    shape.function = function(x) prod(sin(x * pi / 2))
+  else if (dim == out.dim)
+    shape.function = function(x) cos(x[1L] * pi / 2)
+  else
+    shape.function = function(x) prod(sin(x[1:(out.dim - dim)] * pi / 2)) * 
+        (cos(x[out.dim - dim + 1] * pi / 2))
   
-  if (len > 2L) {
-    f = rev(cumprod(sin(x[-len] * pi / 2)) * (cos(x[-1L] * pi / 2)))
-    return(c(f1, f, fm))
-  }
-  return(c(f1, fm))
+  shape.function = addClasses(shape.function, "wfgShapeFunction")
+  return(shape.function)
 }
 
-mixed = function(x, alpha, beta, A) {
+#' @rdname WFGShapes
+wfgShapeMixed = function(dim, out.dim, alpha, A) {
+  dim = asCount(dim, positive = TRUE)
+  out.dim = asCount(out.dim, positive = TRUE)
+  if (dim > out.dim)
+    stopf("You set out.dim = %i and dim = %i, but out.dim must be greater than dim!.",
+      out.dim, dim)
+  assertNumber(alpha, lower = 0)
+  A = asCount(A, positive = TRUE)
+  
   tmp = 2 * A * pi
-  return(c((1 - x[1L] - cos(tmp * x[1L] + pi / 2) / tmp)^alpha))
+  shape.function = function(x) c((1 - x[1L] - cos(tmp * x[1L] + pi / 2) / tmp)^alpha)
+  
+  shape.function = addClasses(shape.function, "wfgShapeFunction")
+  return(shape.function)
 }
 
-disconnected = function(x, alpha, beta, A) {
-  return(c(1 - x[1L]^alpha * cos(A * x[1L]^beta * pi)^2))
+#' @rdname WFGShapes
+wfgShapeDisconnected = function(dim, out.dim, alpha, beta, A) {
+  dim = asCount(dim, positive = TRUE)
+  out.dim = asCount(out.dim, positive = TRUE)
+  if (dim > out.dim)
+    stopf("You set out.dim = %i and dim = %i, but out.dim must be greater than dim!.",
+      out.dim, dim)
+  assertNumber(alpha, lower = 0)
+  assertNumber(beta, lower = 0)
+  A = asCount(A, positive = TRUE)
+  
+  shape.function = function(x) c(1 - x[1L]^alpha * cos(A * x[1L]^beta * pi)^2)
+  
+  shape.function = addClasses(shape.function, "wfgShapeFunction")
+  return(shape.function)
 }
