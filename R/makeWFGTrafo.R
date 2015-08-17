@@ -1,3 +1,15 @@
+#' Make WFG Transformations
+#'
+#' @param arg [\code{list}] \cr
+#'   List with \code{list(names, ids, params)}.
+#' @param names [\code{character(1)}] \cr
+#'   WFG trafo names.
+#' @param ids [\code{vector}] \cr
+#'   Vector ...
+#' @param params [\code{list}] \cr
+#'   List of parameters to this trafos.
+#' @return A [\code{list}] of WFG trafos.
+#' @export
 makeWFGTrafo = function(...) {
 
   funs = extractSubList(arg, "name")

@@ -1,3 +1,15 @@
+#' Make WFG Shapes
+#'
+#' @param out.dim [\code{integer(1)}] \cr
+#'   Size of target space.
+#' @param arg [\code{list}] \cr
+#'   List with \code{list(names, params)}.
+#' @param names [\code{character(1)}] \cr
+#'   WFG shape names.
+#' @param params [\code{list}] \cr
+#'   List of parameters to this shape.
+#' @return A [\code{list}] of WFG shapes.
+#' @export
 makeWFGShapeTrafo = function(...){
   
   out.dim = out.dim
