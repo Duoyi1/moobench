@@ -25,21 +25,21 @@ makeWFGShapeTrafo = function(...){
   
   for (i in 1:length(arg)) {
     if (funs[i] %in% c("linear", "concave", "convex")) {
-      if (params[[i]] != is.null)
+      if (!is.null(params[[i]]))
         stopf("%i shapes did not need parameters!", funs[i])
     }
     if (funs[i] == "mixed") {
-      if (params[[i]]$alpha == is.null)
+      if (is.null(params[[i]]$alpha))
         stop("Mixed shapes need a alpha parameter!")
-      if (params[[i]]$A == is.null)
+      if (is.null(params[[i]]$A))
         stop("Mixed shapes need a A parameter!")
     }
     if (funs[i] == "disconnected") {
-      if (params[[i]]$alpha == is.null)
+      if (is.null(params[[i]]$alpha))
         stop("Disconnected shapes need a alpha parameter!")
-      if (params[[i]]$beta == is.null)
+      if (is.null(params[[i]]$beta))
         stop("Disconnected shapes need a beta parameter!")
-      if (params[[i]]$A == is.null)
+      if (is.null(params[[i]]$A))
         stop("Disconnected shapes need a A parameter!")
     }
   }
@@ -53,10 +53,10 @@ makeWFGShapeTrafo = function(...){
     disconnected = wfgShapeDisconnected))
   
   lapply(seq_along(arg), function(i)
-    do.call(funs[[i]], c(dim = i, out.dim = out.dim, params[i])))
+    do.call(funs[[i]], insert(unlist(params[i]), list(dim = i, out.dim = out.dim))))
   
 }
 
 
-# arg = list(list(name = "concave"), list(name = "concave"), 
-#   list(name = "mixed", params = list(alpha = 1, A = 2L)))
+arg = list(list(name = "concave"), list(name = "concave"), 
+   list(name = "mixed", params = list(alpha = 1, A = 2L)))

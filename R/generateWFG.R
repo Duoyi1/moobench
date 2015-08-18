@@ -10,7 +10,7 @@
 #' 
 #' @export
 
-generateWFG = function(id, in.dim, out.dim) {
+generateWFG = function(id, in.dim, out.dim, k) {
   in.dim = asCount(in.dim)
   out.dim = asCount(out.dim)
   
@@ -59,12 +59,18 @@ wfg1 = function(x, out.dim, k) {
   
   shapeTrafos = makeWFGShapeTrafo(c(replicate(out.dim - 1, list(name = "convex"), simplify = FALSE), 
     list(list(name = "mixed", params = list(alpha = 1, A = 5L)))), out.dim = out.dim)
+  trafo1 = makwWFGTrafos(list(
+    list(name = "identity", ids = 1:k),
+    list(name = "b_linear", ids = (k + 1):n, params = list(A = 0.35))
+    ))
   
   trafos = makeWFGTrafos(list(
-    list(name = "identity", ids = 1:k), list(name = "b_linear", ids = (k + 1):n, params = list(A = 0.35)),
+    ,
     list(name = "identity", ids = 1:k), list(name = "b_flat", ids = (k + 1):n, params = list(A = 0.8, B = 0.75, C = 0.85)),
     list(name = "b_poly", ids = 1:n, params = list(alpha = 0.02)),
     list(name = "r_sum", ids = 1:(out.dim - 1), params = list(w = ))))  
+  
+  trafos = list(trafo1, trafo2, trafo3, trafo4)
   
   generateCustomWFG(z.max, S, D, A, trafos, shapeTrafos)
 }
