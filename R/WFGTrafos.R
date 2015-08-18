@@ -78,7 +78,7 @@ wfgTrafoBParam = function(y.prime, A, B, C) {
 }
 
 #' @rdname WFGTrafos
-wfgtrafoSLinear = function(A) {
+wfgTrafoSLinear = function(A) {
   assertNumber(A, lower = 0, upper = 1)
   
   trafo.function = function(y) {
@@ -153,6 +153,13 @@ wfgTrafoRNonsep = function(A) {
     (sum(y) + sum(abs(y - mat))) / (n / A * ceiling(A / 2) * (1 + 2 * A - 2 * ceiling(A / 2)))
   }
   
+  trafo.function = addClasses(trafo.function, "wfgTrafoFunction")
+  return(trafo.function)
+}
+
+#' @rdname WFGTrafos
+wfgTrafoIdentity = function(platzhalter) {
+  trafo.function = function(y) {y}
   trafo.function = addClasses(trafo.function, "wfgTrafoFunction")
   return(trafo.function)
 }
