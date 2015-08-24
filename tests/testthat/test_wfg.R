@@ -1,6 +1,6 @@
 context("wfg")
 
-source("wfg_cmp_impl.R")
+source("tests/testthat/wfg_cmp_impl.R")
 
 test_that("wfg1", {
   x = runif(5)
