@@ -110,11 +110,11 @@ makeWfg2 = function(in.dim, out.dim, k) {
   trafo2 = makeWFGTrafo(c(list(
     list(name = "identity", ids = 1:k)),
     lapply(1:(l / 2), function(i) {
-      list(name = "r_nonseq", ids = rIds1[[i]], params = list(A = 2))
+      list(name = "r_nonsep", ids = rIds1[[i]], params = list(A = 2))
     })
   ))
   
-  rIds2  = split(1:k, rep(1:(k / (out.dim - 1)), each = out.dim - 1))
+  rIds2  = split(1:k, rep(1:(out.dim - 1), each = k / (out.dim - 1)))
     #lapply(1:(out.dim - 1), function(i) ((i - 1) * k / (out.dim -1) + 1):(i * k / (out.dim - 1)))
   trafo3 = makeWFGTrafo(c(lapply(1:(out.dim - 1), function(i) {
     list(name = "r_sum", ids = rIds2[[i]], params = list(w = rep(1, length(rIds2[[i]]))))
@@ -149,11 +149,11 @@ makeWfg3 = function(in.dim, out.dim, k) {
   trafo2 = makeWFGTrafo(c(list(
     list(name = "identity", ids = 1:k)),
     lapply(1:(l/2), function(i) {
-      list(name = "r_nonseq", ids = rIds1[[i]], params = list(A = 2))
+      list(name = "r_nonsep", ids = rIds1[[i]], params = list(A = 2))
     })
   ))
   
-  rIds2  = split(1:k, rep(1:(k / (out.dim - 1)), each = out.dim - 1))
+  rIds2  = split(1:k, rep(1:(out.dim - 1), each = k / (out.dim - 1)))
     #lapply(1:(out.dim - 1), function(i) ((i - 1) * k / (out.dim -1) + 1):(i * k / (out.dim - 1)))
   trafo3 = makeWFGTrafo(c(lapply(1:(out.dim - 1), function(i) {
     list(name = "r_sum", ids = rIds2[[i]], params = list(w = rep(1, length(rIds2[[i]]))))
@@ -180,7 +180,7 @@ makeWfg4 = function(in.dim, out.dim, k) {
     list(name = "s_multi", ids = 1:n, params = list(A = 30, B = 10, C = 0.35))
   ))
 
-  rIds = split(1:k, rep(1:(k / (out.dim - 1)), each = out.dim - 1))
+  rIds = split(1:k, rep(1:(out.dim - 1), each = k / (out.dim - 1)))
     #lapply(1:(out.dim - 1), function(i) ((i - 1) * k / (out.dim -1) + 1):(i * k / (out.dim - 1)))
   trafo2 = makeWFGTrafo(c(lapply(1:(out.dim - 1), function(i) {
     list(name = "r_sum", ids = rIds[[i]], params = list(w = rep(1, length(rIds[[i]]))))
@@ -207,7 +207,7 @@ makeWfg5 = function(in.dim, out.dim, k) {
     list(name = "s_decept", ids = 1:n, params = list(A = 0.35, B = 0.001, C = 0.05))
   ))
 
-  rIds = split(1:k, rep(1:(k / (out.dim - 1)), each = out.dim - 1))
+  rIds = split(1:k, rep(1:(out.dim - 1), each = k / (out.dim - 1)))
     #lapply(1:(out.dim - 1), function(i) ((i - 1) * k / (out.dim -1) + 1):(i * k / (out.dim - 1)))
   trafo2 = makeWFGTrafo(c(lapply(1:(out.dim - 1), function(i) {
     list(name = "r_sum", ids = rIds[[i]], params = list(w = rep(1, length(rIds[[i]]))))
@@ -235,7 +235,7 @@ makeWfg6 = function(in.dim, out.dim, k) {
     list(name = "s_linear", ids = (k + 1):n, params = list(A = 0.35))
   ))
   
-  rIds = split(1:k, rep(1:(k / (out.dim - 1)), each = out.dim - 1))
+  rIds = split(1:k, rep(1:(out.dim - 1), each = k / (out.dim - 1)))
     #lapply(1:(out.dim - 1), function(i) ((i - 1) * k / (out.dim -1) + 1):(i * k / (out.dim - 1)))
   trafo2 = makeWFGTrafo(c(lapply(1:(out.dim - 1), function(i) {
     list(name = "r_nonsep", ids = rIds[[i]], params = list(A = k / (out.dim - 1)))
@@ -269,7 +269,7 @@ makeWfg7 = function(in.dim, out.dim, k) {
     list(name = "s_linear", ids = (k + 1):n, params = list(A = 0.35))
   ))
   
-  rIds = split(1:k, rep(1:(k / (out.dim - 1)), each = out.dim - 1))
+  rIds = split(1:k, rep(1:(out.dim - 1), each = k / (out.dim - 1)))
     #lapply(1:(out.dim - 1), function(i) ((i - 1) * k / (out.dim -1) + 1):(i * k / (out.dim - 1)))
   trafo3 = makeWFGTrafo(c(lapply(1:(out.dim - 1), function(i) {
     list(name = "r_sum", ids = rIds[[i]], params = list(w = rep(1, length(rIds[[i]]))))
@@ -302,7 +302,7 @@ makeWfg8 = function(in.dim, out.dim, k) {
     list(name = "s_linear", ids = (k + 1):n, params = list(A = 0.35))
   ))
 
-  rIds = split(1:k, rep(1:(k / (out.dim - 1)), each = out.dim - 1))
+  rIds = split(1:k, rep(1:(out.dim - 1), each = k / (out.dim - 1)))
     #lapply(1:(out.dim - 1), function(i) ((i - 1) * k / (out.dim -1) + 1):(i * k / (out.dim - 1)))
   trafo3 = makeWFGTrafo(c(lapply(1:(out.dim - 1), function(i) {
     list(name = "r_sum", ids = rIds[[i]], params = list(w = rep(1, length(rIds[[i]]))))
@@ -335,10 +335,10 @@ makeWfg9 = function(in.dim, out.dim, k) {
     list(name = "s_multi", ids = (k + 1):n, params = list(A = 30, B = 95, C = 0.35))
   ))
   
-  rIds2 = split(1:k, rep(1:(k / (out.dim - 1)), each = out.dim - 1))
+  rIds = split(1:k, rep(1:(out.dim - 1), each = k / (out.dim - 1)))
     #lapply(1:(out.dim - 1), function(i) ((i - 1) * k / (out.dim -1) + 1):(i * k / (out.dim - 1)))
   trafo3 = makeWFGTrafo(c(lapply(1:(out.dim - 1), function(i) {
-    list(name = "r_nonsep", ids = rIds2[[i]], params = list(A = k / (out.dim - 1)))
+    list(name = "r_nonsep", ids = rIds[[i]], params = list(A = k / (out.dim - 1)))
   }),
     list(list(name = "r_nonsep", ids = (k + 1):n, params = list(A = n - k)))
   ))
