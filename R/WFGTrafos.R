@@ -21,7 +21,7 @@
 #' @param C [\code{numeric(1)}] \cr
 #'  For parameter requirements see WFG Paper. Need at: \cr
 #'  wfgTrafoBFlat, wfgTrafoBParam, wfgTrafoSDecept, wfgTrafoSMulti
-#' @param y.prime [\code{numeric}] \cr
+#' @param u [\code{function}] \cr
 #'  At wfgTrafoBParamt 
 #' @param w [\code{numeric}] \cr
 #'  At wfgTrafoRSum
@@ -29,7 +29,8 @@
 #' @return A \code{wfgTrafoFunction}.
 
 #' @rdname WFGTrafos
-wfgTrafoIdentity = function(placeholder) {
+wfgTrafoIdentity = function(A) {
+  # A as placeholder.
   trafo.function = function(y) y
   trafo.function = addClasses(trafo.function, "wfgTrafoFunction")
   return(trafo.function)
@@ -154,7 +155,8 @@ wfgTrafoRNonsep = function(A) {
   
   trafo.function = function(y) {  
     n = length(y)
-    if (A == 1L) return(wfgTrafoRSum(y, rep(1, n)))
+    if (A == 1L) 
+      return(wfgTrafoRSum(rep(1, n))(y))
     mat = array(dim = c(n, A - 1))
     for (i in 1:(A - 1))
       mat[, i] = y[1 + (i:(i + n - 1) %% n)]
