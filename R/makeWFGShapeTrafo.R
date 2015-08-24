@@ -3,7 +3,9 @@
 #' @param arg [\code{list}] \cr
 #'   List with \code{list(names, params)}. See examples.
 #' @return A [\code{list}] of WFG shapes.
+#' 
 #' @export
+#' 
 makeWFGShapeTrafo = function(arg){
   
   out.dim = length(arg)

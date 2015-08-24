@@ -1,5 +1,6 @@
 #' WFG Transformations
 #'
+#' wfgTrafoIdentity is a transformation that changes nothing.\cr
 #' wfgTrafoBPoly is the polynomial bias transformation.\cr
 #' wfgTrafoBFlat creates a region in search space in which all points have the same objective values.\cr
 #' wfgTrafoBParam is the parameter-dependent transformation.\cr
@@ -26,6 +27,13 @@
 #'  At wfgTrafoRSum
 #'  
 #' @return A \code{wfgTrafoFunction}.
+
+#' @rdname WFGTrafos
+wfgTrafoIdentity = function(placeholder) {
+  trafo.function = function(y) y
+  trafo.function = addClasses(trafo.function, "wfgTrafoFunction")
+  return(trafo.function)
+}
 
 #' @rdname WFGTrafos
 wfgTrafoBPoly = function(alpha) {
@@ -157,9 +165,3 @@ wfgTrafoRNonsep = function(A) {
   return(trafo.function)
 }
 
-#' @rdname WFGTrafos
-wfgTrafoIdentity = function(platzhalter) {
-  trafo.function = function(y) y
-  trafo.function = addClasses(trafo.function, "wfgTrafoFunction")
-  return(trafo.function)
-}

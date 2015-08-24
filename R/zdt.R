@@ -8,11 +8,13 @@
 #'   Size of target space.
 #' @return A \code{mooFunction}.
 #' 
-#' @references ZDT Reference Einfuegen
+#' @references 
+#' Zitzler, Eckart ; Deb, Kalyanmoy ; Thiele, Lothar: Comparison of 
+#' Multiobjective Evolutionary Algorithms: Empirical Results. In: Evolutionary
+#' Computation 8 (2000), pp. 173-195
 #' 
 #' @export
-#'
-#'  
+ 
 generateZDT = function(id, in.dim = 30L, out.dim = 2L) {
   in.dim = asCount(in.dim)
   out.dim = asCount(out.dim)

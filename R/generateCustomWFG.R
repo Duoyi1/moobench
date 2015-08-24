@@ -1,4 +1,26 @@
-
+#' Generate a custom WFG test function with WFG toolkit.
+#' 
+#' @param x.max [\code{numeric}] \cr
+#'   Domains.
+#' @param S [\code{numeric}] \cr
+#'   Scaling constants.
+#' @param D [\code{numeric(1)}] \cr
+#'   Distance scaling constant.
+#' @param A [\code{numeric}] \cr
+#'   Degeneracy constants.
+#' @param trafos [\code{list}] \cr
+#'   List of WFG trafos.
+#' @param shapeTrafos [\code{list}] \cr
+#'   List of WFG shape trafos.
+#' @return A \code{mooFunction}.
+#' 
+#' @references 
+#' Huband, Simon ; Hingston, Phil ; Barone, Luigi ; While, Lyndon:
+#' A Review of Multiobjective Test Problems and a Scalable Test Problem
+#' Toolkit. In: IEEE Trans. on Evolutionary Computation 10 (2006), 
+#' No. 5, pp. 477-506
+#' 
+#' @export
 
 generateCustomWFG = function(x.max, S, D, A, trafos, shapeTrafos) {
   assertNumber(D, lower = 0)

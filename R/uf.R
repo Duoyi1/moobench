@@ -8,7 +8,11 @@
 #'   Size of target space.
 #' @return A \code{mooFunction}.
 #' 
-#' @references Cec 09 Reference Einfuegen
+#' @references
+#' Zhang, Qingfu ; Zhou, Aimin ; Zhaoy, Shizheng ; Suganthany, Ponnuthurai N. ; 
+#' Liu, Wudong ; Tiwari, Santosh: Multiobjective optimization Test Instances 
+#' for the CEC 2009 Special Session and Competition / University of Essex and 
+#' Nanyang Technological University. 2008. - Technical Report CES-487
 #' 
 #' @export
 #' 

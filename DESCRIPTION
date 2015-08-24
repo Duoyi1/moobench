@@ -11,7 +11,9 @@ Encoding: UTF-8
 Roxygen: list(wrap = FALSE)
 Imports:
     checkmate,
-    BBmisc
+    BBmisc,
+    ParamHelpers,
+    soobench
 Suggests:
     testthat
 LazyData: yes

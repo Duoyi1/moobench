@@ -10,6 +10,12 @@
 #'   Number position-related parameters.
 #' @return A \code{mooFunction}.
 #' 
+#' @references 
+#' Huband, Simon ; Hingston, Phil ; Barone, Luigi ; While, Lyndon:
+#' A Review of Multiobjective Test Problems and a Scalable Test Problem
+#' Toolkit. In: IEEE Trans. on Evolutionary Computation 10 (2006), 
+#' No. 5, pp. 477-506
+#' 
 #' @export
 
 generateWFG = function(id, in.dim, out.dim, k) {

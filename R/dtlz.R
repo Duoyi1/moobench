@@ -8,10 +8,14 @@
 #'   Size of target space.
 #' @return A \code{mooFunction}.
 #' 
-#' @references DTLZ Reference Einfuegen
+#' @references
+#' Deb, Kalyanmoy ; Thiele, Lothar ; Laumanns, Marco ; Zitzler, Eckart: 
+#' Scalable multi-objective optimization test problems / 
+#' Computer Engineering and Networks Laboratory (TIK), 
+#' Swiss Federal Institute of Technology (ETH). 2002.
 #' 
 #' @export
-#' 
+
 generateDTLZ = function(id, in.dim = 30L, out.dim = 2L) {
   in.dim = asCount(in.dim)
   out.dim = asCount(out.dim)

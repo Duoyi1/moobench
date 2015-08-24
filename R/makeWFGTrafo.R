@@ -1,15 +1,11 @@
 #' Make WFG Transformations
 #'
 #' @param arg [\code{list}] \cr
-#'   List with \code{list(names, ids, params)}.
-#' @param names [\code{character(1)}] \cr
-#'   WFG trafo names.
-#' @param ids [\code{vector}] \cr
-#'   Vector ...
-#' @param params [\code{list}] \cr
-#'   List of parameters to this trafos.
+#'   List with \code{list(names, ids, params)}. See examples.
 #' @return A [\code{list}] of WFG trafos.
+#' 
 #' @export
+#' 
 makeWFGTrafo = function(arg) {
   
   funs = extractSubList(arg, "name")
@@ -50,7 +46,6 @@ makeWFGTrafo = function(arg) {
   y.prime.ids = extractSubList(arg, "y.prime.ids", simplify = FALSE)
   
   funs = sapply(funs, function(fun) switch(fun,
-    #identity = identity,
     identity = wfgTrafoIdentity,
     b_poly = wfgTrafoBPoly, 
     b_flat = wfgTrafoBFlat, 

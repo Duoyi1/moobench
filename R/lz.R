@@ -8,7 +8,10 @@
 #'   Size of target space.
 #' @return A \code{mooFunction}.
 #' 
-#' @references LZ Reference Einfuegen
+#' @references 
+#' Li, Hui ; Zhang, Qingfu: Multiobjective Optimization Problems With
+#' Complicated Pareto Sets, MOEA/D and NSGA-II. In: IEEE Trans.
+#' Evolutionary Computation 13 (2009), No. 2, pp. 284-302
 #' 
 #' @export
 #'
