@@ -9,7 +9,7 @@
 #'   Size of parameter space. Every soobench-function must have this in.dim
 #' @param out.dim [\code{integer(1)}] \cr
 #'   Size of target space. Is automatically set to length of soobench.funs.
-#' @param soobench.funs[\code{list}] \cr
+#' @param soobench.funs [\code{list}] \cr
 #'   List of \code{\link[soobench]{soo_function}}.
 #' @return A \code{mooFunction}.
 #' 
@@ -30,8 +30,7 @@ generateGOMOP = function(in.dim = 30L, out.dim, soobench.funs = list()) {
         in.dim, number_of_parameters(f))
     )
   
-  lower.bounds = rep(0, in.dim)
-  upper.bounds = rep(1, in.dim)
+  param.set = makeNumericParamSet(id = "x", len = in.dim, lower = 0, upper = 1)
   
   do.gomop.eval = function(x, out.dim)
     sapply(soobench.funs, function(f) f(x * (upper_bounds(f) - lower_bounds(f)) + lower_bounds(f)))
@@ -40,11 +39,10 @@ generateGOMOP = function(in.dim = 30L, out.dim, soobench.funs = list()) {
     name = "GOMOP",
     id = collapse(sapply(soobench.funs, function_id), sep = "_"),
     fun = function(x)
-      evalMooFunction(do.gomop.eval, x, in.dim, out.dim, lower.bounds, upper.bounds),
+      evalMooFunction(do.gomop.eval, x, in.dim, out.dim, param.set),
     in.dim = in.dim,
     out.dim = out.dim,
-    lower.bounds = lower.bounds,
-    upper.bounds = upper.bounds,
+    param.set = param.set,
     pareto.set = NULL,
     pareto.front = NULL)
 }
