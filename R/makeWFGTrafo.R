@@ -40,10 +40,6 @@ makeWFGTrafo = function(arg) {
       if (is.null(params[[i]]$A))
         stopf("%i trafo need a A parameter!", funs[i])
     }
-    if (funs[i] == "s_decept") {
-      if (is.null(params[[i]]$y.prime))
-        stop("s_decept trafo need a y.prime parameter!")
-    }
     if (funs[i] == "r_sum") {
       if (is.null(params[[i]]$w))
         stop("r_sum trafo need a w parameter!")
@@ -51,6 +47,7 @@ makeWFGTrafo = function(arg) {
   }
   
   ids = extractSubList(arg, "ids", simplify = FALSE)
+  y.prime.ids = extractSubList(arg, "y.prime.ids", simplify = FALSE)
   
   funs = sapply(funs, function(fun) switch(fun,
     #identity = identity,
@@ -68,17 +65,17 @@ makeWFGTrafo = function(arg) {
     do.call(funs[[i]], as.list(params[[i]])))
   
   trafoFun = function(x) {
-    drop(unlist(sapply(seq_along(trafoFuns), function (i)
-      do.call(trafoFuns[[i]], list(y = x[ids[[i]]])))))
+    drop(unlist(sapply(seq_along(trafoFuns), function (i) {
+      y.prime = x[y.prime.ids[[i]]]
+      if (length(y.prime) == 0L)
+        do.call(trafoFuns[[i]], list(y = x[ids[[i]]]))
+      else
+        do.call(trafoFuns[[i]], list(y = x[ids[[i]]], y.prime = y.prime))
+    }
+    )))
   }
   
+  rm(i, arg, params, funs)
   trafoFun = addClasses(trafoFun, "wfgTrafoFun")
   return(trafoFun)
 }
-
-#arg = list(list(name = "identity", ids = 1:5), 
-#   list(name = "b_poly", ids = 6:7, params = list(alpha = 0.001)),
-#   list(name = "b_flat", ids = 8:11, params = list(A = 0.8, B = 0.75, C = 0.85)))
-#f = makeWFGTrafo(arg)
-
-

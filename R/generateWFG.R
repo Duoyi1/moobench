@@ -28,8 +28,8 @@ generateWFG = function(id, in.dim, out.dim, k) {
   
   param.set = makeNumericParamSet(id = "x", len = in.dim, lower = 0, upper = 1)
   
-  fun = switch(id,
-    wfg1, 
+  f = switch(id,
+    makeWfg1(in.dim, out.dim = out.dim, k = k), 
     wfg2,
     wfg3,
     wfg4,
@@ -44,7 +44,7 @@ generateWFG = function(id, in.dim, out.dim, k) {
     name = sprintf("wfg%i", id),
     id = sprintf("wfg%i-%id-$id", id, in.dim, out.dim),
     # Note: fun.args is a list here
-    fun = function(x) fun(x, out.dim = out.dim, k = k),
+    fun = f,
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,
@@ -53,15 +53,15 @@ generateWFG = function(id, in.dim, out.dim, k) {
 }
 
 # definition of wfg1-9
-wfg1 = function(x, out.dim, k) {
+makeWfg1 = function(in.dim, out.dim, k) {
   S = 2 * 1:out.dim
   D = 1
   A = rep(1, out.dim - 1)
-  n = length(x)
+  n = in.dim
   z.max = 2 * 1:n
   
-  shapeTrafos = makeWFGShapeTrafo(arg = c(replicate(out.dim - 1, list(name = "convex"), simplify = FALSE), 
-    list(list(name = "mixed", params = list(alpha = 1, A = 5L)))), out.dim = out.dim)
+  shapeTrafos = makeWFGShapeTrafo(arg = c(replicate(out.dim - 1L, list(name = "convex"), simplify = FALSE), 
+    list(list(name = "mixed", params = list(alpha = 1, A = 5L)))))
   
   trafo1 = makeWFGTrafo(list(
     list(name = "identity", ids = 1:k),
@@ -75,7 +75,8 @@ wfg1 = function(x, out.dim, k) {
     list(name = "b_poly", ids = 1:n, params = list(alpha = 0.02))
   ))
   
-  rIds = lapply(1:(out.dim - 1), function(i) ((i - 1) * k / (out.dim -1) + 1):(i * k / (out.dim - 1)))
+  rIds = split(1:k, rep(1:(k / out.dim), each = out.dim))
+    #lapply(1:(out.dim - 1), function(i) ((i - 1) * k / (out.dim -1) + 1):(i * k / (out.dim - 1)))
   trafo4 = makeWFGTrafo(c(lapply(1:(out.dim - 1), function(i) {
     list(name = "r_sum", ids = rIds[[i]], params = list(w = 2 * rIds[[i]]))
     }),
@@ -104,7 +105,8 @@ wfg2 = function(x, out.dim, k) {
     list(name = "s_linear", ids = (k + 1):n, params = list(A = 0.35))
   ))
   
-  rIds1 = lapply((k + 1):(k + l/2), function(i) (k + 2 * (i - k) - 1):(k + 2 * (i - k)))
+  rIds1 = split((k + 1):in.dim, rep(1:(l / 2), each = 2L))
+    #lapply((k + 1):(k + l/2), function(i) (k + 2 * (i - k) - 1):(k + 2 * (i - k)))
   trafo2 = makeWFGTrafo(c(list(
     list(name = "identity", ids = 1:k)),
     lapply(1:(l/2), function(i) {
@@ -248,18 +250,15 @@ wfg7 = function(x, out.dim, k) {
   z.max = 2 * 1:n
   
   shapeTrafos = makeWFGShapeTrafo(arg = c(replicate(out.dim, list(name = "concave"), 
-    simplify = FALSE)), out.dim = out.dim)
+    simplify = FALSE)))
   
-  rIds1 = lapply(1:k, function(i) ((i + 1):n))
-  yPrime = makeWFGTrafo(lapply(1:k, function(i) {
-    list(name = "r_sum", ids = rIds1[[i]], params = list(w = rep(1, length(rIds1[[i]]))))
-  }))
+
+  trafo1 = lapply(1:k, function(i)
+    list(name = "b_param", ids = i, y.prime.ids = (i+1):in.dim, 
+      params = list(u = mean, A = 0.98 / 49.98, B = 0.02, C = 50)))
   
-  trafo1 = makeWFGTrafo(list(
-    # Fix me
-    list(name = "b_param", ids = 1:k, params = list(y.prime = yPrime, A = 0.98 / 49.98, B = 0.02, C = 50)),
-    list(name = "identity", ids = (k + 1):n)
-  ))
+  trafo1 = makeWFGTrafo(c(trafo1, list(list(name = "identity", ids = (k + 1):n))))
+  
   trafo2 = makeWFGTrafo(list(
     list(name = "identity", ids = 1:k),
     list(name = "s_linear", ids = (k + 1):n, params = list(A = 0.35))

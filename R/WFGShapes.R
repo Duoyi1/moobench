@@ -57,7 +57,7 @@ wfgShapeConvex = function(dim, out.dim) {
     shape.function = function(x) 1 - sin(x[1L] * pi / 2)
   else
     shape.function = function(x) prod(1 - cos(x[1:(out.dim - dim)] * pi / 2)) * 
-        (1 - sim(x[out.dim - dim + 1] * pi / 2))
+        (1 - sin(x[out.dim - dim + 1] * pi / 2))
 
   shape.function = addClasses(shape.function, "wfgShapeFunction")
   return(shape.function)  

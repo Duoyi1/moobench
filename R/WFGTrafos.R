@@ -62,13 +62,13 @@ wfgTrafoBFlat = function(A, B, C) {
 }
 
 #' @rdname WFGTrafos
-wfgTrafoBParam = function(y.prime, A, B, C) {
-  assertNumeric(y.prime)
+wfgTrafoBParam = function(u, A, B, C) {
   assertNumber(A, lower = 0, upper = 1)
   assertNumber(B, lower = A, upper = C)
   assertNumber(C, lower = B)
   
-  trafo.function = function(y) {
+  trafo.function = function(y, y.prime) {
+    y.prime = u(y.prime)
     tmp = A - (1 - 2 * y.prime) * abs(floor(0.5 - y.prime) + A)
     y^(B + (C - B) * tmp)   
   }
@@ -159,7 +159,7 @@ wfgTrafoRNonsep = function(A) {
 
 #' @rdname WFGTrafos
 wfgTrafoIdentity = function(platzhalter) {
-  trafo.function = function(y) {y}
+  trafo.function = function(y) y
   trafo.function = addClasses(trafo.function, "wfgTrafoFunction")
   return(trafo.function)
 }

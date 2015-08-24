@@ -1,18 +1,12 @@
 #' Make WFG Shapes
 #'
 #' @param arg [\code{list}] \cr
-#'   List with \code{list(names, params)}.
-#' @param names [\code{character(1)}] \cr
-#'   WFG shape names.
-#' @param params [\code{list}] \cr
-#'   List of parameters to this shape.
-#' @param out.dim [\code{integer(1)}] \cr
-#'   Size of target space.
+#'   List with \code{list(names, params)}. See examples.
 #' @return A [\code{list}] of WFG shapes.
 #' @export
-makeWFGShapeTrafo = function(arg, out.dim){
+makeWFGShapeTrafo = function(arg){
   
-  out.dim = out.dim
+  out.dim = length(arg)
   
   if (length(arg) == 1)
     arg = rep(arg, out.dim)
@@ -55,8 +49,3 @@ makeWFGShapeTrafo = function(arg, out.dim){
   lapply(seq_along(arg), function(i)
     do.call(funs[[i]], insert(unlist(params[i]), list(dim = i, out.dim = out.dim))))
 }
-
-
-#arg = list(list(name = "concave"), list(name = "concave"), 
-#   list(name = "mixed", params = list(alpha = 1, A = 2L)))
-#makeWFGShapeTrafo(arg, out.dim = 3)
