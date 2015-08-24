@@ -7,7 +7,7 @@ generateCustomWFG = function(x.max, S, D, A, trafos, shapeTrafos) {
   out.dim = length(shapeTrafos)
   
   custumWFG = function(x) {
-    #x = x / x.max
+    x = x / x.max
     for (i in seq_along(trafos))
       x = trafos[[i]](x)
     x = c(max(x[out.dim], A) * (x[-out.dim] - 0.5) + 0.5, x[out.dim])

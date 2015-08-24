@@ -15,7 +15,7 @@ makeWFGTrafo = function(arg) {
   funs = extractSubList(arg, "name")
   
   assertSubset(funs, c("identity", "b_poly", "b_flat", "b_param", "s_linear", 
-    "s_decept", "s_multi", "r_sum", "r_nonseq"))
+    "s_decept", "s_multi", "r_sum", "r_nonsep"))
   
   params = extractSubList(arg, "params", simplify = FALSE)
   
@@ -56,10 +56,10 @@ makeWFGTrafo = function(arg) {
     b_flat = wfgTrafoBFlat, 
     b_param = wfgTrafoBParam, 
     s_linear = wfgTrafoSLinear, 
-    s_decept = wfgTrafoBSDecept, 
+    s_decept = wfgTrafoSDecept, 
     s_multi = wfgTrafoSMulti, 
     r_sum = wfgTrafoRSum, 
-    r_nonseq = wfgTrafoRNonsep))
+    r_nonsep = wfgTrafoRNonsep))
   
   trafoFuns = lapply(seq_along(arg), function(i)
     do.call(funs[[i]], as.list(params[[i]])))

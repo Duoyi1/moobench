@@ -4,7 +4,7 @@
 #' wfgTrafoBFlat creates a region in search space in which all points have the same objective values.\cr
 #' wfgTrafoBParam is the parameter-dependent transformation.\cr
 #' wfgTrafoSLinear creates a linear shift of the true optimum.\cr
-#' wfgTrafoBSDecept creates regions in the search space that have a sub-optimal value but larger area.\cr
+#' wfgTrafoSDecept creates regions in the search space that have a sub-optimal value but larger area.\cr
 #' wfgTrafoSMulti creates many local optima.\cr
 #' wfgTrafoRSum creates a dependence between different search-space entries.\cr
 #' wfgTrafoRNonsep creates a dependence between objectives.\cr
@@ -94,8 +94,8 @@ wfgTrafoSDecept = function(A, B, C) {
   assertNumber(A, lower = 0, upper = 1)
   assertNumber(B, lower = 0, upper = 1)
   assertNumber(C, lower = 0, upper = 1)
-  if (A > B)
-    stop("A must be smaller than B.")
+  if (A < B)
+    stop("A must be greater than B.")
   if ((A + B) >= 1L)
     stop("A + B must be smaller than 1.")
   
