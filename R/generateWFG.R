@@ -75,7 +75,7 @@ makeWfg1 = function(in.dim, out.dim, k) {
     list(name = "b_poly", ids = 1:n, params = list(alpha = 0.02))
   ))
   
-  rIds = split(1:k, rep(1:(k / (out.dim - 1)), each = out.dim - 1))
+  rIds = split(1:k, rep(1:(out.dim - 1), each = k / (out.dim - 1)))
     #lapply(1:(out.dim - 1), function(i) ((i - 1) * k / (out.dim -1) + 1):(i * k / (out.dim - 1)))
   trafo4 = makeWFGTrafo(c(lapply(1:(out.dim - 1), function(i) {
     list(name = "r_sum", ids = rIds[[i]], params = list(w = 2 * rIds[[i]]))
