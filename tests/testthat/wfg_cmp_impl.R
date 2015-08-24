@@ -216,7 +216,7 @@ wfg7 = function(z, k=3){
   t1 = numeric(n)
   tmp = sum(z[(k+1):n])
   for(i in k:1){
-    t1[i] = bParam(z[i], tmp, 0.98/49.98, 0.02, 50)
+    t1[i] = bParam(z[i], tmp / length(z[(i+1):n]), 0.98/49.98, 0.02, 50)
     tmp = tmp + z[i]
   }   
   t1[(k+1):n] = z[(k+1):n]
@@ -243,10 +243,10 @@ wfg8 = function(z, k=3){
   t1[1:k] = z[1:k]
   tmp = sum(z[1:k])
   for(i in (k+1):n){
-    t1[i] = bParam(z[i], tmp, 0.98/49.98, 0.02, 50)
+    t1[i] = bParam(z[i], tmp / length(z[1:(i-1)]), 0.98/49.98, 0.02, 50)
     tmp = tmp + z[i]
   }   
-  t1[(k+1):n] = z[(k+1):n]
+  #t1[(k+1):n] = z[(k+1):n]
   t2 = numeric(n)
   t2[1:k] = t1[1:k]
   t2[(k+1):n] = sLinear(t1[(k+1):n], 0.35)
@@ -270,12 +270,12 @@ wfg9 = function(z, k=3){
   t1[n] = z[n]
   tmp = z[n]
   for(i in (n-1):1){
-    t1[i] = bParam(z[i], tmp, 0.98/49.98, 0.02, 50)
+    t1[i] = bParam(z[i], tmp / length(z[(i+1):n]), 0.98/49.98, 0.02, 50)
     tmp = tmp + z[i]
   }   
   t2 = numeric(n)
   t2[1:k] = sDecept(t1[1:k], 0.35, 0.001, 0.05)
-  t2[(k+1):n] = sMulti(t2[(k+1):n], 30, 95, 0.35)
+  t2[(k+1):n] = sMulti(t1[(k+1):n], 30, 95, 0.35)
   t3 = numeric(2)
   t3[1] = rNonsep(t2[1:k], k)
   t3[2] = rNonsep(t2[(k+1):n], n - k)
