@@ -1,6 +1,7 @@
 Package: moobench
 Title: Multi Objective Optimization Benchmark Functions
-Description: Includes the testsuites: None
+Description: Includes the testsuites: DTLZ, ZDT, LZ, UF, WFG. Also allows the 
+  construction of GOMOP functions out of any number of soobench-functions.
 Authors@R: c(person("Daniel", "Horn", email = "daniel.horn@tu-dortmund.de", role =
     c("aut", "cre")), person("Jonas", "Muench", email =
     "jonas.muench@tu-dortmund.de", role = "aut"))

@@ -15,7 +15,7 @@
 #' 
 #' @export
 #' 
-#' @example
+#' @examples
 #'  x = runif(30)
 #'  fun = generateZDT(id = 1, in.dim = 30L, out.dim = 2L) 
 #'  fun(x)

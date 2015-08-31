@@ -20,7 +20,7 @@
 generateGOMOP = function(in.dim = 30L, out.dim, soobench.funs = list()) {
   in.dim = asCount(in.dim)
   if (!missing(out.dim) && out.dim != length(soobench.funs))
-    warn("Overwriting the specified out.dim by length of soobench.funs.")
+    warning("Overwriting the specified out.dim by length of soobench.funs.")
   out.dim = length(soobench.funs)
   
   # Check all soobench.funs have in.dim in.dim
@@ -32,14 +32,14 @@ generateGOMOP = function(in.dim = 30L, out.dim, soobench.funs = list()) {
   
   param.set = makeNumericParamSet(id = "x", len = in.dim, lower = 0, upper = 1)
   
-  do.gomop.eval = function(x, out.dim)
+  do.gomop.eval = function(x)
     sapply(soobench.funs, function(f) f(x * (upper_bounds(f) - lower_bounds(f)) + lower_bounds(f)))
   
   mooFunction(
     name = "GOMOP",
     id = collapse(sapply(soobench.funs, function_id), sep = "_"),
     fun = function(x)
-      evalMooFunction(do.gomop.eval, x, in.dim, out.dim, param.set),
+      evalMooFunction(do.gomop.eval, param.set, x = x),
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,
