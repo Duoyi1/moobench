@@ -15,6 +15,11 @@
 #' Swiss Federal Institute of Technology (ETH). 2002.
 #' 
 #' @export
+#' 
+#' @example
+#'  x = runif(30)
+#'  fun = generateDTLZ(id = 1, in.dim = 30L, out.dim = 2L) 
+#'  fun(x)
 
 generateDTLZ = function(id, in.dim = 30L, out.dim = 2L) {
   in.dim = asCount(in.dim)

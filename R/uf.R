@@ -16,6 +16,11 @@
 #' 
 #' @export
 #' 
+#' @example
+#'  x = runif(30)
+#'  fun = generateUF(id = 1, in.dim = 30L, out.dim = 2L) 
+#'  fun(x)
+
 generateUF = function(id, in.dim = 30L, out.dim = 2L) {
   in.dim = asCount(in.dim)
   out.dim = asCount(out.dim)

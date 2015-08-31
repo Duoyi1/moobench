@@ -14,6 +14,11 @@
 #' Computation 8 (2000), pp. 173-195
 #' 
 #' @export
+#' 
+#' @example
+#'  x = runif(30)
+#'  fun = generateZDT(id = 1, in.dim = 30L, out.dim = 2L) 
+#'  fun(x)
  
 generateZDT = function(id, in.dim = 30L, out.dim = 2L) {
   in.dim = asCount(in.dim)

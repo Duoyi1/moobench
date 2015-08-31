@@ -15,7 +15,11 @@
 #' 
 #' @export
 #'
-#'  
+#' @example
+#'  x = runif(30)
+#'  fun = generateLZ(id = 1, in.dim = 30L, out.dim = 2L) 
+#'  fun(x)
+
 generateLZ = function(id, in.dim = 30L, out.dim = 2L) {
   in.dim = asCount(in.dim)
   out.dim = asCount(out.dim)
