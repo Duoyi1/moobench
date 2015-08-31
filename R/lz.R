@@ -70,7 +70,6 @@ lz1 = function(x, out.dim) {
   j = 2:length(x)
   j1 = j[j %% 2 == 1L]
   j2 = j[j %% 2 == 0L]
-  
   f1 = x[1L] + 2 / length(j1) * 
     sum((x[j1] - x[1L]^(0.5 * (1 + (3 * (j1 - 2)) / (length(x) - 2))))^2)
   f2 = 1 - sqrt(x[1L]) + 2 / length(j2) * 

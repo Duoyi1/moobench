@@ -40,7 +40,8 @@ generateMOO = function(name = "", ...) {
     uf7 = generateUF(id = 7, ...), 
     uf8 = generateUF(id = 8, ...), 
     uf9 = generateUF(id = 9, ...), 
-    uf10 = generateUF(id = 10, ...)
+    uf10 = generateUF(id = 10, ...),
+    stop("Unknown ID")
   )
   
 }

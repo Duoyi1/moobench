@@ -1,9 +1,14 @@
-- ParamHelper statt upper und lower lim benutzen
+- Example customWFG fertigstellen
 
-- Eine Funktion mit constraints ausprobieren
+- Eine Funktion mit constraints einbauen
+- Was passiert bei Constraint Verletzung? Error oder NA oder etwas anderes?
+  -> Benutzer definiert! Einen Benutzer-Definierten Wert zurueckgeben? Also auch z.B. Inf
 
 - S3 Print Funktion
+- Getter Funktioner
 - Fronts und Sets zu den S3 Objekten hinzufuegen
 - getFront, getSet Funktionen - minmax LHS Idee
-- plot Funktionen fuer Front und Test
+- plot Funktionen fuer Front und Set
 
+
+- Plot Funktion für 2 -> 2 Funktionen: Elkemann-Idee mit Rot und Blau Werten
