@@ -5,7 +5,7 @@
 #' @param in.dim [\code{integer(1)}] \cr
 #'   Size of parameter space.
 #' @param out.dim [\code{integer(1)}] \cr
-#'   Size of target space.
+#'   Size of target space. Must be two for all ZDT functions.
 #' @return A \code{mooFunction}.
 #' 
 #' @references 
@@ -26,9 +26,6 @@ generateZDT = function(id, in.dim = 30L, out.dim = 2L) {
   
   if (out.dim != 2L)
     stop("ZDT support only out.dim = 2.")
-  
-  if (out.dim < 2L)
-    stopf("You set your out.dim to %i. This is not multicrit! Set it at least to 2.", out.dim)
   
   if (in.dim < out.dim)
     stopf("YOu set out.dim = %i and in.dim = %i, but in.dim must be greater than out.dim!.",
@@ -53,7 +50,7 @@ generateZDT = function(id, in.dim = 30L, out.dim = 2L) {
   
   mooFunction(
     name = sprintf("zdt%i", id),
-    id = sprintf("zdt%i-%id-$id", id, in.dim, out.dim),
+    id = sprintf("zdt%i-%id-%id", id, in.dim, out.dim),
     # Note: fun.args is a list here
     fun = function(x) fun(x, out.dim = out.dim),
     in.dim = in.dim,

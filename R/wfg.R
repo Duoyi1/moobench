@@ -50,7 +50,7 @@ generateWFG = function(id, in.dim, out.dim, k) {
   
   mooFunction(
     name = sprintf("wfg%i", id),
-    id = sprintf("wfg%i-%id-$id", id, in.dim, out.dim),
+    id = sprintf("wfg%i-%id-%id", id, in.dim, out.dim),
     # Note: fun.args is a list here
     fun = f,
     in.dim = in.dim,

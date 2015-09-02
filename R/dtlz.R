@@ -46,7 +46,7 @@ generateDTLZ = function(id, in.dim = 30L, out.dim = 2L) {
   
   mooFunction(
     name = sprintf("dtlz%i", id),
-    id = sprintf("dtlz%i-%id-$id", id, in.dim, out.dim),
+    id = sprintf("dtlz%i-%id-%id", id, in.dim, out.dim),
     # Note: fun.args is a list here
     fun = function(x) fun(x, out.dim = out.dim),
     in.dim = in.dim,

@@ -1,7 +1,7 @@
 #' Genrate MOO functions
 #' 
 #' @param name [\code{character(1)}] \cr
-#'   Which MOO function? (DTLZ, ZDT, LZ, UF)
+#'   Which MOO function? (DTLZ, ZDT, LZ, UF, CF)
 #' @param ...  [\code{any}] \cr
 #'   Noch was schreiben
 #' @return A \code{mooFunction}.
@@ -41,6 +41,16 @@ generateMOO = function(name = "", ...) {
     uf8 = generateUF(id = 8, ...), 
     uf9 = generateUF(id = 9, ...), 
     uf10 = generateUF(id = 10, ...),
+    cf1 = generateCF(id = 1, ...), 
+    cf2 = generateCF(id = 2, ...), 
+    cf3 = generateCF(id = 3, ...), 
+    cf4 = generateCF(id = 4, ...), 
+    cf5 = generateCF(id = 5, ...), 
+    cf6 = generateCF(id = 6, ...), 
+    cf7 = generateCF(id = 7, ...), 
+    cf8 = generateCF(id = 8, ...), 
+    cf9 = generateCF(id = 9, ...), 
+    cf10 = generateCF(id = 10, ...),
     stop("Unknown ID")
   )
   

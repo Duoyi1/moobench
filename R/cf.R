@@ -1,14 +1,34 @@
-
-
+#' CF test function generator.
+#' 
+#' @param id [\code{integer(1)}] \cr
+#'   Which CF function? Valid values are 1, 2, ..., 10
+#' @param in.dim [\code{integer(1)}] \cr
+#'   Size of parameter space.
+#' @param out.dim [\code{integer(1)}] \cr
+#'   Size of target space. Must be two for CF 1-7 functions and three for CF 8-10 functions.
+#' @return A \code{mooFunction}.
+#' 
+#' @references
+#' Zhang, Qingfu ; Zhou, Aimin ; Zhaoy, Shizheng ; Suganthany, Ponnuthurai N. ; 
+#' Liu, Wudong ; Tiwari, Santosh: Multiobjective optimization Test Instances 
+#' for the CEC 2009 Special Session and Competition / University of Essex and 
+#' Nanyang Technological University. 2008. - Technical Report CES-487
+#' 
+#' @export
+#' 
+#' @examples
+#'  x = runif(30)
+#'  fun = generateCF(id = 1, in.dim = 30L, out.dim = 2L) 
+#'  fun(x)
 
 generateCF = function(id, in.dim = 30L, out.dim = 2L) {
   in.dim = asCount(in.dim)
   out.dim = asCount(out.dim)
   
   if (id %in% c(8:10) && out.dim != 3L)
-    stop("This UF support only out.dim = 3.")
+    stop("This CF support only out.dim = 3.")
   if (id %in% c(1:7) && out.dim != 2L)
-    stop("This UF support only out.dim = 2.")
+    stop("This CF support only out.dim = 2.")
   
   if (in.dim < out.dim)
     stopf("You set out.dim = %i and in.dim = %i, but in.dim must be greatar than out.dim!.",
@@ -16,9 +36,6 @@ generateCF = function(id, in.dim = 30L, out.dim = 2L) {
   
   assertChoice(id, 1:10)
   
-  if (id == 1L) {
-    
-  }
   param.set = makeCFParamset(id, in.dim)
   
   fun = switch(id,
@@ -27,12 +44,16 @@ generateCF = function(id, in.dim = 30L, out.dim = 2L) {
     cf3,
     cf4,
     cf5,
-    cf6
+    cf6,
+    cf7,
+    lz6,
+    lz6,
+    uf10
   )
   
   mooFunction(
     name = sprintf("cf%i", id),
-    id = sprintf("cf%i-%id-$id", id, in.dim, out.dim),
+    id = sprintf("cf%i-%id-%id", id, in.dim, out.dim),
     # Note: fun.args is a list here
     fun = function(x) fun(x, out.dim = out.dim),
     in.dim = in.dim,
@@ -95,15 +116,58 @@ makeCFParamset = function(id, in.dim) {
         #FIXME: Ask someone intelligent!! This is not good!!!
         if (is.list(x))
           x = x[[1L]]
+        #FIXME: 2 constraints?
         x[2L] - 0.8 * x[1L] * sin(6 * pi * x[1L] + 0.2 * pi) - sign(0.5 * (1 - x[1L]) - 
             (1 - x[1L])^2) * sqrt(abs(0.5 * (1 - x[1L]) - (1 - x[1L])^2)) >= 0 &
         x[4L] - 0.8 * x[1L] * sin(6 * pi * x[1L] + 0.4 * pi) - sign(0.25 * sqrt(1 - x[1L]) - 
             0.5 * (1 - x[1L])) * sqrt(abs(0.25 * sqrt(1 - x[1L]) - 0.5 * (1 - x[1L]))) >= 0
+      })),
+    makeParamSet(
+      makeNumericVectorParam(id = "x", len = in.dim, lower = 0, upper = 1),
+      forbidden = expression({
+        #FIXME: Ask someone intelligent!! This is not good!!!
+        if (is.list(x))
+          x = x[[1L]]
+        #FIXME: 2 constraints?
+        x[2L] - sin(6 * pi * x[1L] + 0.2 * pi) - sign(0.5 * (1 - x[1L]) - 
+            (1 - x[1L])^2) * sqrt(abs(0.5 * (1 - x[1L]) - (1 - x[1L])^2)) >= 0 &
+        x[4L] - sin(6 * pi * x[1L] + 0.4 * pi) - sign(0.25 * sqrt(1 - x[1L]) - 
+            0.5 * (1 - x[1L])) * sqrt(abs(0.25 * sqrt(1 - x[1L]) - 0.5 * (1 - x[1L]))) >= 0
+      })),
+    makeParamSet(
+      makeNumericVectorParam(id = "x", len = in.dim, lower = 0, upper = 1),
+      forbidden = expression({
+        #FIXME: Ask someone intelligent!! This is not good!!!
+        if (is.list(x))
+          x = x[[1L]]
+        f = lz6(x)
+        (f[1L]^2 + f[2L]^2) / (1 - f[3L]^2) - 
+          4 * abs(sin(2 * pi * ((f[1L]^2 - f[2L]^2) / (1 - f[3L]^2) + 1))) - 1 >= 0
+      })),
+    makeParamSet(
+      makeNumericVectorParam(id = "x", len = in.dim, lower = 0, upper = 1),
+      forbidden = expression({
+        #FIXME: Ask someone intelligent!! This is not good!!!
+        if (is.list(x))
+          x = x[[1L]]
+        f = lz6(x)
+        (f[1L]^2 + f[2L]^2) / (1 - f[3L]^2) - 
+          3 * sin(2 * pi * ((f[1L]^2 - f[2L]^2) / (1 - f[3L]^2) + 1)) - 1 >= 0
+      })),
+    makeParamSet(
+      makeNumericVectorParam(id = "x", len = in.dim, lower = 0, upper = 1),
+      forbidden = expression({
+        #FIXME: Ask someone intelligent!! This is not good!!!
+        if (is.list(x))
+          x = x[[1L]]
+        f = uf10(x)
+        (f[1L]^2 + f[2L]^2) / (1 - f[3L]^2) - 
+          sin(2 * pi * ((f[1L]^2 - f[2L]^2) / (1 - f[3L]^2) + 1)) - 1 >= 0
       }))
   )
 }
 
-# definition of cf3-5
+# definition of cf3-7
 cf3 = function(x, out.dim) {
   j = 2:length(x)
   j1 = j[j %% 2 == 1L]
@@ -143,8 +207,8 @@ cf5 = function(x, out.dim) {
   j1 = j[j %% 2 == 1L]
   j2 = j[j %% 2 == 0L]
   
-  y1 = x[j1] - 0.8 * cos(6 * pi * x[1L] + (j1 * pi) / length(x))
-  y2 = x[j2] - 0.8 * sin(6 * pi * x[1L] + (j2 * pi) / length(x))
+  y1 = x[j1] - 0.8 * x[1L] * cos(6 * pi * x[1L] + (j1 * pi) / length(x))
+  y2 = x[j2] - 0.8 * x[1L] * sin(6 * pi * x[1L] + (j2 * pi) / length(x))
   
   f1 = x[1L] + sum(2 * y1^2 - cos(4 * pi * y1) + 1)
   if (y2[1] < ((3 / 2) * (1 - sqrt(2) / 2))) {
@@ -152,5 +216,31 @@ cf5 = function(x, out.dim) {
   }
   else
     f2 = 1 - x[1L] + sum(c(0.125 + (y2[1L] - 1)^2, 2 * y2[-1L]^2 - cos(4 * pi * y2[-2L]) + 1))
+  return(c(f1, f2))
+}
+
+cf6 = function(x, out.dim) {
+  j = 2:length(x)
+  j1 = j[j %% 2 == 1L]
+  j2 = j[j %% 2 == 0L]
+  
+  y1 = x[j1] - 0.8 * x[1L] * cos(6 * pi * x[1L] + (j1 * pi) / length(x))
+  y2 = x[j2] - 0.8 * x[1L] * sin(6 * pi * x[1L] + (j2 * pi) / length(x))
+  
+  f1 = x[1L] + sum(y1^2)
+  f2 = (1 - x[1L])^2 + sum(y2^2)
+  return(c(f1, f2))
+}
+
+cf7 = function(x, out.dim) {
+  j = 2:length(x)
+  j1 = j[j %% 2 == 1L]
+  j2 = j[j %% 2 == 0L]
+  
+  y1 = x[j1] - cos(6 * pi * x[1L] + (j1 * pi) / length(x))
+  y2 = x[j2] - sin(6 * pi * x[1L] + (j2 * pi) / length(x))
+  
+  f1 = x[1L] + sum(2 * y1^2 - cos(4 * pi * y1) + 1)
+  f2 = (1 - x[1L])^2 + sum(c(y2[1:2]^2, 2 * y2[-(1:2)]^2 - cos(4 * pi * y2[-(1:2)]) + 1))
   return(c(f1, f2))
 }
