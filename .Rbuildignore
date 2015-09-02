@@ -15,3 +15,4 @@ todo-files
 ^.editorconfig$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+wfg.txt

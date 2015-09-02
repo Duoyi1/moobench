@@ -14,12 +14,14 @@
 #' for the CEC 2009 Special Session and Competition / University of Essex and 
 #' Nanyang Technological University. 2008. - Technical Report CES-487
 #' 
+#' @aliases cf CF
+#' 
 #' @export
 #' 
 #' @examples
-#'  x = runif(30)
-#'  fun = generateCF(id = 1, in.dim = 30L, out.dim = 2L) 
-#'  fun(x)
+#'  #x = runif(30)
+#'  #fun = generateCF(id = 1, in.dim = 30L, out.dim = 2L) 
+#'  #fun(x)
 
 generateCF = function(id, in.dim = 30L, out.dim = 2L) {
   in.dim = asCount(in.dim)

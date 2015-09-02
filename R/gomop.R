@@ -15,6 +15,8 @@
 #' 
 #' @references Reference Einfuegen
 #' 
+#' @aliases gomop GOMOP 
+#' 
 #' @export
 #' 
 generateGOMOP = function(in.dim = 30L, out.dim, soobench.funs = list()) {

@@ -1,10 +1,10 @@
 #' WFG Shapes
 #'
-#' wfgShapeLinear is the linear pareto front. \cr
-#' wfgShapeConvex is the convex pareto front. \cr
-#' wfgShapeConcave is the concave pareto front. \cr
-#' wfgShapeMixed is a shape of the pareto front that has some convex and concave parts. \cr
-#' wfgShapeDisconnected is a shape of the pareto front that is not continuous.\cr
+#' \code{wfgShapeLinear} is the linear pareto front. \cr
+#' \code{wfgShapeConvex} is the convex pareto front. \cr
+#' \code{wfgShapeConcave} is the concave pareto front. \cr
+#' \code{wfgShapeMixed} is a shape of the pareto front that has some convex and concave parts. \cr
+#' \code{wfgShapeDisconnected} is a shape of the pareto front that is not continuous. \cr
 #'
 #' @param dim [\code{integer(1)}] \cr 
 #'   Most shape function differ in the first (dim = 1), the last (dim = out.dim)
@@ -23,6 +23,10 @@
 #'   Where the discontinuities are. A larger value moves it to larger values of the first objective.
 #'   
 #' @return A \code{wfgShapeFunction}.
+#' 
+#' @name WFGShapes
+#' 
+#' @aliases wfgShape WFGShape
 
 #' @rdname WFGShapes
 wfgShapeLinear = function(dim, out.dim) {

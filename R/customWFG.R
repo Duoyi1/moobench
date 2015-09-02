@@ -20,6 +20,8 @@
 #' Toolkit. In: IEEE Trans. on Evolutionary Computation 10 (2006), 
 #' No. 5, pp. 477-506
 #' 
+#' @aliases custumWFG custumWfg
+#' 
 #' @export
 
 generateCustomWFG = function(x.max, S, D, A, trafos, shapeTrafos) {

@@ -1,10 +1,12 @@
 #' Genrate MOO functions
 #' 
 #' @param name [\code{character(1)}] \cr
-#'   Which MOO function? (DTLZ, ZDT, LZ, UF, CF)
+#'   Which MOO function? (DTLZ, ZDT, LZ, UF, CF) Small letters and number.
 #' @param ...  [\code{any}] \cr
 #'   Noch was schreiben
 #' @return A \code{mooFunction}.
+#' 
+#' @aliases MOO moo
 #' 
 #' @export
 #' 

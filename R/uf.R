@@ -14,6 +14,8 @@
 #' for the CEC 2009 Special Session and Competition / University of Essex and 
 #' Nanyang Technological University. 2008. - Technical Report CES-487
 #' 
+#' @aliases uf UF
+#' 
 #' @export
 #' 
 #' @examples

@@ -1,14 +1,14 @@
 #' WFG Transformations
 #'
-#' wfgTrafoIdentity is a transformation that changes nothing.\cr
-#' wfgTrafoBPoly is the polynomial bias transformation.\cr
-#' wfgTrafoBFlat creates a region in search space in which all points have the same objective values.\cr
-#' wfgTrafoBParam is the parameter-dependent transformation.\cr
-#' wfgTrafoSLinear creates a linear shift of the true optimum.\cr
-#' wfgTrafoSDecept creates regions in the search space that have a sub-optimal value but larger area.\cr
-#' wfgTrafoSMulti creates many local optima.\cr
-#' wfgTrafoRSum creates a dependence between different search-space entries.\cr
-#' wfgTrafoRNonsep creates a dependence between objectives.\cr
+#' \code{wfgTrafoIdentity} is a transformation that changes nothing. \cr
+#' \code{wfgTrafoBPoly} is the polynomial bias transformation. \cr
+#' \code{wfgTrafoBFlat} creates a region in search space in which all points have the same objective values. \cr
+#' \code{wfgTrafoBParam} is the parameter-dependent transformation. \cr
+#' \code{wfgTrafoSLinear} creates a linear shift of the true optimum. \cr
+#' \code{wfgTrafoSDecept} creates regions in the search space that have a sub-optimal value but larger area. \cr
+#' \code{wfgTrafoSMulti} creates many local optima. \cr
+#' \code{wfgTrafoRSum} creates a dependence between different search-space entries. \cr
+#' \code{wfgTrafoRNonsep} creates a dependence between objectives. \cr
 #'
 #' @param alpha [\code{numeric(1)}] \cr
 #'   wfgTrafoBPoly: alpha > 1 biases toward 0, alpha < 1 biases toward 1.
@@ -27,6 +27,10 @@
 #'  At wfgTrafoRSum
 #'  
 #' @return A \code{wfgTrafoFunction}.
+#' 
+#' @name WFGTrafos
+#' 
+#' @aliases wfgTrafo WFGTrafo
 
 #' @rdname WFGTrafos
 wfgTrafoIdentity = function(A) {

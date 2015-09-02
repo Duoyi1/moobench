@@ -16,6 +16,8 @@
 #' Toolkit. In: IEEE Trans. on Evolutionary Computation 10 (2006), 
 #' No. 5, pp. 477-506
 #' 
+#' @aliases wfg WFG
+#' 
 #' @export
 
 generateWFG = function(id, in.dim, out.dim, k) {

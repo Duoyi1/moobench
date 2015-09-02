@@ -13,6 +13,7 @@
 #' Complicated Pareto Sets, MOEA/D and NSGA-II. In: IEEE Trans.
 #' Evolutionary Computation 13 (2009), No. 2, pp. 284-302
 #' 
+#' @aliases lz LZ
 #' @export
 #'
 #' @examples

@@ -13,6 +13,8 @@
 #' Multiobjective Evolutionary Algorithms: Empirical Results. In: Evolutionary
 #' Computation 8 (2000), pp. 173-195
 #' 
+#' @aliases zdt ZDT
+#' 
 #' @export
 #' 
 #' @examples

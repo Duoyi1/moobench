@@ -14,6 +14,8 @@
 #' Computer Engineering and Networks Laboratory (TIK), 
 #' Swiss Federal Institute of Technology (ETH). 2002.
 #' 
+#' @aliases dtlz DTLZ
+#' 
 #' @examples
 #'  x = runif(30)
 #'  fun = generateDTLZ(id = 1, in.dim = 30L, out.dim = 2L) 
