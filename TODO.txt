@@ -9,6 +9,12 @@
 - getFront, getSet Funktionen - minmax LHS Idee
 - plot Funktionen fuer Front
 
+- wfg: checks fuer k, l, ...
+
+-mop
+
+-vllt wfg seite 26
+
 
 - Plot Funktion für 2 -> 2 Funktionen: Elkemann-Idee mit Rot und Blau Werten
   -> Pareto Set Plot gehört mit in diesen Plot
