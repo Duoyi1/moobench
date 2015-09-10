@@ -36,7 +36,7 @@ generateLZ7 = function(in.dim = 30L, out.dim = 2L) {
   mooFunction(
     name = "lz7",
     id = sprintf("lz7-%id-%id", in.dim, out.dim),
-    fun = function(x) lz7(x),
+    fun = lz7,
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,

@@ -8,8 +8,8 @@ getParetoSet = function(f, n) {
 }
 
 #' @export
-getParetoSet.mooFunction = function(f, n)
-  attributes(f)$paretoSet
+getParetoSet.mooFunction = function(f, n = 100 * getOutDim(f))
+  attributes(f)$paretoSet(n)
 
 
 #' @rdname get_pareto
@@ -19,7 +19,7 @@ getParetoFront = function(f, n) {
 }
 
 #' @export
-getParetoFront.mooFunction = function(f, n) {
+getParetoFront.mooFunction = function(f, n = 100 * getOutDim(f)) {
   set = getParetoSet(f, n)
   front = t(apply(set, 1, f))
   front = front[order(front[, 1L]), ]

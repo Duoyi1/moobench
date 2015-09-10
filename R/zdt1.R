@@ -24,7 +24,7 @@ generateZDT1 = function(in.dim = 30L, out.dim = 2L) {
   mooFunction(
     name = "zdt1",
     id = sprintf("zdt1-%id-%id", in.dim, out.dim),
-    fun = zdt1(x),
+    fun = zdt1,
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,
