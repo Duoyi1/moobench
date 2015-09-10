@@ -16,14 +16,14 @@
 #'   Dimnesion of the targer space.
 #' @param param.set [\code{\link[ParamHelpers]{ParamSet}}]\cr
 #'   Parameter set to describe (box) constraints for the function.
-#' @param pareto.set [\code{function} | NULL] \cr
+#' @param paretoSet [\code{function} | NULL] \cr
 #'   Function, that returns n points randomly distributed on the true pareto set.
 #' @return A \code{mooFunction} object.
 #'
 #' @export
 
 mooFunction = function(name, id, fun, in.dim, out.dim,
-  param.set, pareto.front, pareto.set) {
+  param.set, paretoSet) {
   
   assertCharacter(x = name, len = 1L, all.missing = FALSE)
   # FIXME: look at grepl patterns
@@ -34,8 +34,8 @@ mooFunction = function(name, id, fun, in.dim, out.dim,
   out.dim = asCount(out.dim)
   assertClass(param.set, "ParamSet")
   
-  if (!is.null(pareto.set))
-    assertFunction(pareto.set, args = "n")
+  if (!is.null(paretoSet))
+    assertFunction(paretoSet, args = "n")
   
   # check that fun fullfills in.dim and out.dim
   valid.point = sampleValue(param.set)
@@ -54,7 +54,6 @@ mooFunction = function(name, id, fun, in.dim, out.dim,
     out.dim = out.dim,
     class = c("mooFunction", class(fun)),
     param.set = param.set,
-    pareto.front = pareto.front,
-    pareto.set = pareto.set
+    paretoSet = paretoSet
     )
 }

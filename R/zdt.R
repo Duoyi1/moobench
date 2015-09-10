@@ -27,7 +27,7 @@ generateZDT = function(id, in.dim = 30L, out.dim = 2L) {
   out.dim = asCount(out.dim)
   
   if (out.dim != 2L)
-    stop("ZDT support only out.dim = 2.")
+    stop("ZDT supports only out.dim = 2.")
   
   if (in.dim < out.dim)
     stopf("YOu set out.dim = %i and in.dim = %i, but in.dim must be greater than out.dim!.",
@@ -35,84 +35,13 @@ generateZDT = function(id, in.dim = 30L, out.dim = 2L) {
   
   assertChoice(id, 1:6)
   
-  if (id == 4L)
-    param.set = makeNumericParamSet(id = "x", len = in.dim, lower = c(0, rep(-5, in.dim - 1)), 
-      upper = c(1, rep(5, in.dim - 1)))
-  else
-    param.set = makeNumericParamSet(id = "x", len = in.dim, lower = 0, upper = 1)
-  
-  fun = switch(id,
-    zdt1, 
-    zdt2,
-    zdt3,
-    zdt4,
+  switch(id,
+    generateZDT1(in.dim, out.dim), 
+    generateZDT2(in.dim, out.dim), 
+    generateZDT3(in.dim, out.dim), 
+    generateZDT4(in.dim, out.dim), 
     ,
-    zdt6
+    generateZDT6(in.dim, out.dim)
   )
-  
-  paretoSet = function(n = out.dim * 100L) {
-    des = generateDesign(par.set = param.set, n = n)
-    des = des[order(des[, 1L]), ]
-    rownames(des) = 1:nrow(des)
-    
-    mat = matrix(0, nrow = n, ncol = in.dim - 1L)
-    des[, -1L] = mat
-    des
-  }
-  
-  paretoFront = function(n = out.dim * 100L) {
-    set = paretoSet(n)
-    front = t(apply(set, 1, fun))
-    front = front[order(front[, 1L]), ]
-    front
-  }
-  
-  mooFunction(
-    name = sprintf("zdt%i", id),
-    id = sprintf("zdt%i-%id-%id", id, in.dim, out.dim),
-    # Note: fun.args is a list here
-    fun = function(x) fun(x, out.dim = out.dim),
-    in.dim = in.dim,
-    out.dim = out.dim,
-    param.set = param.set,
-    pareto.set = NULL,
-    pareto.front = NULL)
 }
 
-
-# definition of zdt1-6
-zdt1 = function(x, out.dim) {
-  f1 = x[1L]
-  g = 1 + 9 * mean(x[-1L])
-  f2 = g * (1 - sqrt(f1 / g))
-  return(c(f1, f2))
-}
-
-zdt2 = function(x, out.dim) {
-  f1 = x[1L]
-  g = 1 + 9 * mean(x[-1L])
-  f2 = g * (1 - (f1 / g)^2)
-  return(c(f1, f2))
-}
-
-zdt3 = function(x, out.dim) {
-  f1 = x[1L]
-  g = 1 + 9 * mean(x[-1L])
-  f2 = g * (1 - sqrt(f1 / g) - (f1 / g) * sin(10 * pi * f1))
-  return(c(f1, f2))
-}
-
-zdt4 = function(x, out.dim) {
-  f1 = x[1L]
-  m = length(x)
-  g = 1 + 10 * (m - 1) + sum(x[-1L]^2 - 10 * cos(4 * pi * x[-1L]))
-  f2 = g * (1 - sqrt(f1 / g))
-  return(c(f1, f2))
-}
-
-zdt6 = function(x, out.dim) {
-  f1 = 1 - exp(-4 * x[1L]) * sin(6 * pi * x[1L])^6
-  g = 1 + 9 * mean(x[-1L])^0.25
-  f2 = g * (1 - (f1 / g)^2)
-  return(c(f1, f2))
-}
