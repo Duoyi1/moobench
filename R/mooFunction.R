@@ -17,9 +17,7 @@
 #' @param param.set [\code{\link[ParamHelpers]{ParamSet}}]\cr
 #'   Parameter set to describe (box) constraints for the function.
 #' @param pareto.set [\code{function} | NULL] \cr
-#'   Function, that returns the true pareto set.
-#' @param pareto.front [\code{function} | NULL] \cr
-#'   Function, that returns the true pareto front.
+#'   Function, that returns n points randomly distributed on the true pareto set.
 #' @return A \code{mooFunction} object.
 #'
 #' @export
@@ -37,9 +35,7 @@ mooFunction = function(name, id, fun, in.dim, out.dim,
   assertClass(param.set, "ParamSet")
   
   if (!is.null(pareto.set))
-    assertFunction(pareto.set)
-  if (!is.null(pareto.front))
-    assertFunction(pareto.front)
+    assertFunction(pareto.set, args = "n")
   
   # check that fun fullfills in.dim and out.dim
   valid.point = sampleValue(param.set)
@@ -47,7 +43,7 @@ mooFunction = function(name, id, fun, in.dim, out.dim,
   if (length(value) != out.dim)
     stopf("Function has wrong out.dim, expect %d but got %d.", out.dim, length(value))
   
-  # FIXME: check for pareto.set and pareto.front have correct dim
+  # FIXME: generate 1 paretoFront and check for correct dim and only non-dom points
   
   structure(
     function(...)

@@ -1,14 +1,15 @@
 - Example customWFG fertigstellen
 
-- Eine Funktion mit constraints einbauen
 - Was passiert bei Constraint Verletzung? Error oder NA oder etwas anderes?
   -> Benutzer definiert! Einen Benutzer-Definierten Wert zurueckgeben? Also auch z.B. Inf
 
-- S3 Print Funktion
-- Getter Funktioner
+- DTLZ7 und ZDT5
+
 - Fronts und Sets zu den S3 Objekten hinzufuegen
 - getFront, getSet Funktionen - minmax LHS Idee
-- plot Funktionen fuer Front und Set
+- plot Funktionen fuer Front
 
 
 - Plot Funktion für 2 -> 2 Funktionen: Elkemann-Idee mit Rot und Blau Werten
+  -> Pareto Set Plot gehört mit in diesen Plot
+  -> Karin

@@ -50,6 +50,23 @@ generateZDT = function(id, in.dim = 30L, out.dim = 2L) {
     zdt6
   )
   
+  paretoSet = function(n = out.dim * 100L) {
+    des = generateDesign(par.set = param.set, n = n)
+    des = des[order(des[, 1L]), ]
+    rownames(des) = 1:nrow(des)
+    
+    mat = matrix(0, nrow = n, ncol = in.dim - 1L)
+    des[, -1L] = mat
+    des
+  }
+  
+  paretoFront = function(n = out.dim * 100L) {
+    set = paretoSet(n)
+    front = t(apply(set, 1, fun))
+    front = front[order(front[, 1L]), ]
+    front
+  }
+  
   mooFunction(
     name = sprintf("zdt%i", id),
     id = sprintf("zdt%i-%id-%id", id, in.dim, out.dim),
