@@ -15,6 +15,7 @@
 
 -vllt wfg seite 26
 
+- pareto set fuer uf5, uf6, 
 
 - Plot Funktion für 2 -> 2 Funktionen: Elkemann-Idee mit Rot und Blau Werten
   -> Pareto Set Plot gehört mit in diesen Plot
