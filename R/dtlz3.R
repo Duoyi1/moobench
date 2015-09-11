@@ -4,7 +4,15 @@ generateDTLZ3 = function(in.dim = 30L, out.dim = 2L) {
   
   param.set = makeNumericParamSet(id = "x", len = in.dim, lower = 0, upper = 1)
   
-  paretoSet = NULL
+  paretoSet = function(n = out.dim * 100L) {
+    des = generateDesign(par.set = param.set, n = n)
+    des = des[order(des[, 1L]), ]
+    rownames(des) = 1:nrow(des)
+    
+    des[, out.dim:in.dim] = 0.5
+    
+    des
+  }
   
   mooFunction(
     name = "dtlz3",
