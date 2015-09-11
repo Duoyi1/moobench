@@ -4,18 +4,6 @@ generateLZ2 = function(in.dim = 30L, out.dim = 2L) {
   
   param.set = makeNumericParamSet(id = "x", len = in.dim, lower = 0, upper = 1)
   
-  lz2 = function(x) {
-    j = 2:length(x)
-    j1 = j[j %% 2 == 1L]
-    j2 = j[j %% 2 == 0L]
-    
-    f1 = x[1L] + 2 / length(j1) * 
-      sum((x[j1] - sin(6 * pi * x[1L] + (j1 * pi) / length(x)))^2)
-    f2 = 1 - sqrt(x[1L]) + 2 / length(j2) * 
-      sum((x[j2] - sin(6 * pi * x[1L] + (j2 * pi) / length(x)))^2)
-    return(c(f1, f2))
-  }
-  
   paretoSet = function(n = out.dim * 100L) {
     des = generateDesign(par.set = param.set, n = n)
     des = des[order(des[, 1L]), ]
@@ -37,4 +25,17 @@ generateLZ2 = function(in.dim = 30L, out.dim = 2L) {
     out.dim = out.dim,
     param.set = param.set,
     paretoSet = paretoSet)
+}
+
+# Definiton of lz2
+lz2 = function(x) {
+  j = 2:length(x)
+  j1 = j[j %% 2 == 1L]
+  j2 = j[j %% 2 == 0L]
+  
+  f1 = x[1L] + 2 / length(j1) * 
+    sum((x[j1] - sin(6 * pi * x[1L] + (j1 * pi) / length(x)))^2)
+  f2 = 1 - sqrt(x[1L]) + 2 / length(j2) * 
+    sum((x[j2] - sin(6 * pi * x[1L] + (j2 * pi) / length(x)))^2)
+  return(c(f1, f2))
 }

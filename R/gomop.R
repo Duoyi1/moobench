@@ -45,6 +45,5 @@ generateGOMOP = function(in.dim = 30L, out.dim, soobench.funs = list()) {
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,
-    pareto.set = NULL,
-    pareto.front = NULL)
+    paretoSet = NULL)
 }

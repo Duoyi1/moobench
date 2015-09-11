@@ -4,13 +4,6 @@ generateZDT2 = function(in.dim = 30L, out.dim = 2L) {
   
   param.set = makeNumericParamSet(id = "x", len = in.dim, lower = 0, upper = 1)
   
-  zdt2 = function(x) {
-    f1 = x[1L]
-    g = 1 + 9 * mean(x[-1L])
-    f2 = g * (1 - (f1 / g)^2)
-    return(c(f1, f2))
-  }
-  
   paretoSet = function(n = out.dim * 100L) {
     des = generateDesign(par.set = param.set, n = n)
     des = des[order(des[, 1L]), ]
@@ -29,4 +22,12 @@ generateZDT2 = function(in.dim = 30L, out.dim = 2L) {
     out.dim = out.dim,
     param.set = param.set,
     paretoSet = paretoSet)
+}
+
+# Definiton of zdt2
+zdt2 = function(x) {
+  f1 = x[1L]
+  g = 1 + 9 * mean(x[-1L])
+  f2 = g * (1 - (f1 / g)^2)
+  return(c(f1, f2))
 }
