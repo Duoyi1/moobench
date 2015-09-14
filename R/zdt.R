@@ -1,7 +1,7 @@
 #' ZDT test function generator.
 #' 
 #' @param id [\code{integer(1)}] \cr
-#'   Which ZDT function? Valid values are 1, 2, 3, 4, 6
+#'   Which ZDT function? Valid values are 1, 2, ..., 6
 #' @param in.dim [\code{integer(1)}] \cr
 #'   Size of parameter space.
 #' @param out.dim [\code{integer(1)}] \cr
@@ -30,7 +30,7 @@ generateZDT = function(id, in.dim = 30L, out.dim = 2L) {
     stop("ZDT supports only out.dim = 2.")
   
   if (in.dim < out.dim)
-    stopf("YOu set out.dim = %i and in.dim = %i, but in.dim must be greater than out.dim!.",
+    stopf("You set out.dim = %i and in.dim = %i, but in.dim must be greater than out.dim!.",
       out.dim, in.dim)
   
   assertChoice(id, 1:6)
@@ -40,7 +40,7 @@ generateZDT = function(id, in.dim = 30L, out.dim = 2L) {
     generateZDT2(in.dim, out.dim), 
     generateZDT3(in.dim, out.dim), 
     generateZDT4(in.dim, out.dim), 
-    ,
+    generateZDT5(in.dim, out.dim),
     generateZDT6(in.dim, out.dim)
   )
 }

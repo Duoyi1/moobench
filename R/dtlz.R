@@ -1,7 +1,7 @@
 #' DTLZ test function generator.
 #' 
 #' @param id [\code{integer(1)}] \cr
-#'   Which DTLZ function? Valid values are 1, 2, ..., 6
+#'   Which DTLZ function? Valid values are 1, 2, ..., 7
 #' @param in.dim [\code{integer(1)}] \cr
 #'   Size of parameter space.
 #' @param out.dim [\code{integer(1)}] \cr
@@ -41,6 +41,7 @@ generateDTLZ = function(id, in.dim = 30L, out.dim = 2L) {
     generateDTLZ3(in.dim, out.dim), 
     generateDTLZ4(in.dim, out.dim), 
     generateDTLZ5(in.dim, out.dim), 
-    generateDTLZ6(in.dim, out.dim)
+    generateDTLZ6(in.dim, out.dim),
+    generateDTLZ7(in.dim, out.dim)
     )
 }

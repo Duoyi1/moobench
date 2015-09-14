@@ -26,7 +26,7 @@ generateZDT4 = function(in.dim = 30L, out.dim = 2L) {
 }
 
 # Definiton of zdt4
-zdt4 = function(x, out.dim) {
+zdt4 = function(x) {
   f1 = x[1L]
   m = length(x)
   g = 1 + 10 * (m - 1) + sum(x[-1L]^2 - 10 * cos(4 * pi * x[-1L]))

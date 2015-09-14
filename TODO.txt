@@ -3,8 +3,6 @@
 - Was passiert bei Constraint Verletzung? Error oder NA oder etwas anderes?
   -> Benutzer definiert! Einen Benutzer-Definierten Wert zurueckgeben? Also auch z.B. Inf
 
-- DTLZ7 und ZDT5
-
 - Fronts und Sets zu den S3 Objekten hinzufuegen
 - getFront, getSet Funktionen - minmax LHS Idee
 - plot Funktionen fuer Front
@@ -15,7 +13,7 @@
 
 -vllt wfg seite 26
 
-- pareto set fuer uf5, uf6, 
+- pareto set fuer uf5, uf6, cf1-10, zdt5, dtlz7
 
 - Plot Funktion für 2 -> 2 Funktionen: Elkemann-Idee mit Rot und Blau Werten
   -> Pareto Set Plot gehört mit in diesen Plot
