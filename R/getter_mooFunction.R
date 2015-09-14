@@ -7,7 +7,7 @@
 #' \code{getOutDim} Simple wrapper for \code{attributes(f)$out.dim}, returns a \code{integer(1)}. \cr
 #'
 #' @param f [\code{function}] \cr
-#'   A mooFunction.
+#'   A \code{\link{mooFunction}}.
 #' @name getter_mooFunction
 
 #' @rdname getter_mooFunction

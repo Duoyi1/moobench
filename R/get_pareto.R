@@ -1,5 +1,12 @@
-
-
+#' Wrappers to get pareto set and front from a mooFunction
+#'
+#' \code{getParetoSet} Simple wrapper for \code{attributes(f)$paretoSet(n)}, returns a \code{vector(n)}. \cr
+#' \code{getParetoFront} Simple wrapper for calculate the pareto front, returns a \code{vector(n)}. \cr
+#'
+#' @param f [\code{function}] \cr
+#'   A \code{\link{mooFunction}}.
+#' @param n [\code{integer(1)}] \cr.
+#'   Number of points.
 
 #' @rdname get_pareto
 #' @export
