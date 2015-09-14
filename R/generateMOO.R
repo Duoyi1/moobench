@@ -1,7 +1,7 @@
 #' Genrate MOO functions
 #' 
 #' @param name [\code{character(1)}] \cr
-#'   Which MOO function? (DTLZ, ZDT, LZ, UF, CF) Small letters and number.
+#'   Which MOO function? (DTLZ, ZDT, LZ, UF, CF, WFG, MOP) Small letters and number.
 #' @param ...  [\code{any}] \cr
 #'   Noch was schreiben
 #' @return A \code{mooFunction}.
@@ -64,6 +64,16 @@ generateMOO = function(name = "", ...) {
     wfg7 = generateWFG(id = 7, ...),
     wfg8 = generateWFG(id = 8, ...),
     wfg9 = generateWFG(id = 9, ...),
+    mop1 = generateMOP(id = 1, ...),
+    mop2 = generateMOP(id = 2, ...),
+    mop3 = generateMOP(id = 3, ...),
+    mop4 = generateMOP(id = 4, ...),
+    mop5 = generateMOP(id = 5, ...),
+    mop6 = generateMOP(id = 6, ...),
+    mop7 = generateMOP(id = 7, ...),
+    mop_c1 = generateMOP(id = 1, ...),
+    mop_c2 = generateMOP(id = 2, ...),
+    mop_c3 = generateMOP(id = 3, ...),
     stop("Unknown ID")
   )
   
