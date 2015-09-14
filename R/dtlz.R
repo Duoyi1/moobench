@@ -33,7 +33,7 @@ generateDTLZ = function(id, in.dim = 30L, out.dim = 2L) {
     stopf("You set out.dim = %i and in.dim = %i, but in.dim must be greatar than out.dim!.",
       out.dim, in.dim)
   
-  assertChoice(id, 1:6)
+  assertChoice(id, 1:7)
   
   switch(id,
     generateDTLZ1(in.dim, out.dim),

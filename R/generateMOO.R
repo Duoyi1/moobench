@@ -17,6 +17,7 @@ generateMOO = function(name = "", ...) {
     zdt2 = generateZDT(id = 2, ...),
     zdt3 = generateZDT(id = 3, ...),
     zdt4 = generateZDT(id = 4, ...),
+    zdt5 = generateZDT(id = 5, ...),
     zdt6 = generateZDT(id = 6, ...),
     dtlz1 = generateDTLZ(id = 1, ...), 
     dtlz2 = generateDTLZ(id = 2, ...), 
@@ -24,6 +25,7 @@ generateMOO = function(name = "", ...) {
     dtlz4 = generateDTLZ(id = 4, ...), 
     dtlz5 = generateDTLZ(id = 5, ...), 
     dtlz6 = generateDTLZ(id = 6, ...),
+    dtlz7 = generateDTLZ(id = 7, ...),
     lz1 = generateLZ(id = 1, ...),  
     lz2 = generateLZ(id = 2, ...), 
     lz3 = generateLZ(id = 3, ...), 
@@ -53,6 +55,15 @@ generateMOO = function(name = "", ...) {
     cf8 = generateCF(id = 8, ...), 
     cf9 = generateCF(id = 9, ...), 
     cf10 = generateCF(id = 10, ...),
+    wfg1 = generateWFG(id = 1, ...),
+    wfg2 = generateWFG(id = 2, ...),
+    wfg3 = generateWFG(id = 3, ...),
+    wfg4 = generateWFG(id = 4, ...),
+    wfg5 = generateWFG(id = 5, ...),
+    wfg6 = generateWFG(id = 6, ...),
+    wfg7 = generateWFG(id = 7, ...),
+    wfg8 = generateWFG(id = 8, ...),
+    wfg9 = generateWFG(id = 9, ...),
     stop("Unknown ID")
   )
   

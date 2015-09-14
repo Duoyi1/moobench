@@ -35,3 +35,9 @@ test_that("dtlz6", {
   value = f(c(1, 1))
   expect_equal(value, c(1, 21))
 })
+
+# test_that("dtlz7", {
+#   f = generateDTLZ(7, in.dim = 2L)
+#   value = f(c(1, 1))
+#   expect_equal(value, c(1, 21))
+# })

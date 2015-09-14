@@ -24,6 +24,12 @@ test_that("zdt4", {
   expect_equal(value, c(1, 2 * (1 - sqrt(0.5))))
 })
 
+test_that("zdt5", {
+  f = generateZDT(5, in.dim = 2L)
+  value = f(c(1, 1))
+  expect_equal(value, c(2, 1.5))
+})
+
 test_that("zdt6", {
   f = generateZDT(6, in.dim = 2L)
   value = f(c(1, 1))
