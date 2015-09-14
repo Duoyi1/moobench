@@ -1,4 +1,4 @@
-#' WFG6 test function generator.
+# WFG6 test function generator.
 
 generateWFG6 = function(in.dim, out.dim, k) {
   

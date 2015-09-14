@@ -1,4 +1,4 @@
-#' UF7 test function generator.
+# UF7 test function generator.
 
 generateUF7 = function(in.dim = 30L, out.dim = 2L) {
   

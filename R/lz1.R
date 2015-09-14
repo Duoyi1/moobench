@@ -1,4 +1,4 @@
-#' LZ1 test function generator.
+# LZ1 test function generator.
 
 generateLZ1 = function(in.dim = 30L, out.dim = 2L) {
   

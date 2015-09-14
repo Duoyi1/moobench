@@ -1,4 +1,4 @@
-#' CF6 test function generator.
+# CF6 test function generator.
 
 generateCF6 = function(in.dim = 30L, out.dim = 2L) {
   

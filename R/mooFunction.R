@@ -39,6 +39,7 @@ mooFunction = function(name, id, fun, in.dim, out.dim,
   
   # check that fun fullfills in.dim and out.dim
   valid.point = sampleValue(param.set)
+  
   value = do.call(fun, valid.point)
   if (length(value) != out.dim)
     stopf("Function has wrong out.dim, expect %d but got %d.", out.dim, length(value))

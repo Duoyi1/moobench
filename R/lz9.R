@@ -1,4 +1,4 @@
-#' LZ9 test function generator.
+# LZ9 test function generator.
 
 generateLZ9 = function(in.dim = 30L, out.dim = 2L) {
   

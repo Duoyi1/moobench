@@ -1,4 +1,4 @@
-#' ZDT6 test function generator.
+# ZDT6 test function generator.
 
 generateZDT6 = function(in.dim = 30L, out.dim = 2L) {
   

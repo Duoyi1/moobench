@@ -1,4 +1,4 @@
-#' UF10 test function generator.
+# UF10 test function generator.
 
 generateUF10 = function(in.dim = 30L, out.dim = 2L) {
   

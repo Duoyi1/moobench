@@ -1,4 +1,4 @@
-#' DTLZ4 test function generator.
+# DTLZ4 test function generator.
 
 generateDTLZ4 = function(in.dim = 30L, out.dim = 2L) {
   
@@ -17,7 +17,7 @@ generateDTLZ4 = function(in.dim = 30L, out.dim = 2L) {
   mooFunction(
     name = "dtlz4",
     id = sprintf("dtlz4-%id-%id", in.dim, out.dim),
-    fun = dtlz4,
+    fun = function(x) dtlz4(x, out.dim),
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,

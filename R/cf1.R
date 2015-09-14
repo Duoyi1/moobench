@@ -1,4 +1,4 @@
-#' CF1 test function generator.
+# CF1 test function generator.
 
 generateCF1 = function(in.dim = 30L, out.dim = 2L) {
   

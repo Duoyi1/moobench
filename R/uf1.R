@@ -1,4 +1,4 @@
-#' UF1 test function generator.
+# UF1 test function generator.
 
 generateUF1 = function(in.dim = 30L, out.dim = 2L) {
   

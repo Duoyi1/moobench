@@ -1,4 +1,4 @@
-#' CF4 test function generator.
+# CF4 test function generator.
 
 generateCF4 = function(in.dim = 30L, out.dim = 2L) {
   

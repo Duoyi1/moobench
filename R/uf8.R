@@ -1,4 +1,4 @@
-#' UF8 test function generator.
+# UF8 test function generator.
 
 generateUF8 = function(in.dim = 30L, out.dim = 2L) {
   

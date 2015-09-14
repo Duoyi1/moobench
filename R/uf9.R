@@ -1,4 +1,4 @@
-#' UF9 test function generator.
+# UF9 test function generator.
 
 generateUF9 = function(in.dim = 30L, out.dim = 2L) {
   

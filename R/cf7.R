@@ -1,4 +1,4 @@
-#' CF7 test function generator.
+# CF7 test function generator.
 
 generateCF7 = function(in.dim = 30L, out.dim = 2L) {
   

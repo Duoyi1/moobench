@@ -1,7 +1,7 @@
 context("dtlz")
 
 test_that("dtlz1", {
-  f = generateDTLZ(1, in.dim = 2L)
+  f = generateDTLZ(1, in.dim = 2L, out.dim = 2L)
   value = f(c(1, 1))
   expect_equal(value, c(13, 0))
 })

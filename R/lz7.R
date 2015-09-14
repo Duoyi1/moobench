@@ -1,4 +1,4 @@
-#' LZ7 test function generator.
+# LZ7 test function generator.
 
 generateLZ7 = function(in.dim = 30L, out.dim = 2L) {
   

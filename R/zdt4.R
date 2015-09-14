@@ -1,4 +1,4 @@
-#' ZDT4 test function generator.
+# ZDT4 test function generator.
 
 generateZDT4 = function(in.dim = 30L, out.dim = 2L) {
   

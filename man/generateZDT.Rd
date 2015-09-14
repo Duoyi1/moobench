@@ -10,7 +10,7 @@ generateZDT(id, in.dim = 30L, out.dim = 2L)
 }
 \arguments{
 \item{id}{[\code{integer(1)}] \cr
-Which ZDT function? Valid values are 1, 2, 3, 4, 6}
+Which ZDT function? Valid values are 1, 2, ..., 6}
 
 \item{in.dim}{[\code{integer(1)}] \cr
 Size of parameter space.}

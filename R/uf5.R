@@ -1,4 +1,4 @@
-#' UF5 test function generator.
+# UF5 test function generator.
 
 generateUF5 = function(in.dim = 30L, out.dim = 2L) {
   

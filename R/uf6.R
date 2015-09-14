@@ -1,4 +1,4 @@
-#' UF6 test function generator.
+# UF6 test function generator.
 
 generateUF6 = function(in.dim = 30L, out.dim = 2L) {
   

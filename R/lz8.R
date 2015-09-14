@@ -1,4 +1,4 @@
-#' LZ8 test function generator.
+# LZ8 test function generator.
 
 generateLZ8 = function(in.dim = 30L, out.dim = 2L) {
   

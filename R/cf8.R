@@ -1,4 +1,4 @@
-#' CF8 test function generator.
+# CF8 test function generator.
 
 generateCF8 = function(in.dim = 30L, out.dim = 2L) {
   

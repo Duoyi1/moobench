@@ -1,4 +1,4 @@
-#' WFG8 test function generator.
+# WFG8 test function generator.
 
 generateWFG8 = function(in.dim, out.dim, k) {
   

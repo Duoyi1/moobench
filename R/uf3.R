@@ -1,4 +1,4 @@
-#' UF3 test function generator.
+# UF3 test function generator.
 
 generateUF3 = function(in.dim = 30L, out.dim = 2L) {
   

@@ -1,4 +1,4 @@
-#' UF4 test function generator.
+# UF4 test function generator.
 
 generateUF4 = function(in.dim = 30L, out.dim = 2L) {
   

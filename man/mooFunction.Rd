@@ -4,7 +4,7 @@
 \alias{mooFunction}
 \title{Multi Objective Optimization Function}
 \usage{
-mooFunction(name, id, fun, in.dim, out.dim, param.set, pareto.front, pareto.set)
+mooFunction(name, id, fun, in.dim, out.dim, param.set, paretoSet)
 }
 \arguments{
 \item{name}{[\code{character(1)}] \cr
@@ -27,11 +27,8 @@ Dimnesion of the targer space.}
 \item{param.set}{[\code{\link[ParamHelpers]{ParamSet}}]\cr
 Parameter set to describe (box) constraints for the function.}
 
-\item{pareto.front}{[\code{function} | NULL] \cr
-Function, that returns the true pareto front.}
-
-\item{pareto.set}{[\code{function} | NULL] \cr
-Function, that returns the true pareto set.}
+\item{paretoSet}{[\code{function} | NULL] \cr
+Function, that returns n points randomly distributed on the true pareto set.}
 }
 \value{
 A \code{mooFunction} object.

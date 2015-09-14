@@ -1,4 +1,4 @@
-#' CF10 test function generator.
+# CF10 test function generator.
 
 generateCF10= function(in.dim = 30L, out.dim = 2L) {
   

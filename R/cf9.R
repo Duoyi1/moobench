@@ -1,4 +1,4 @@
-#' CF9 test function generator.
+# CF9 test function generator.
 
 generateCF9 = function(in.dim = 30L, out.dim = 2L) {
   

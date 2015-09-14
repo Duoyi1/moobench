@@ -1,4 +1,4 @@
-#' LZ4 test function generator.
+# LZ4 test function generator.
 
 generateLZ4 = function(in.dim = 30L, out.dim = 2L) {
   

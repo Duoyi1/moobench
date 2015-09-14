@@ -1,4 +1,4 @@
-#' LZ6 test function generator.
+# LZ6 test function generator.
 
 generateLZ6 = function(in.dim = 30L, out.dim = 2L) {
   

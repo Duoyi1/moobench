@@ -1,5 +1,4 @@
-#' CF5
-#' test function generator.
+# CF5 test function generator.
 
 generateCF5 = function(in.dim = 30L, out.dim = 2L) {
   
