@@ -34,7 +34,7 @@ generateJOS2 = function(in.dim = 30L, out.dim = 2L) {
 # Definiton of jos2
 jos2 = function(x) {
   f1 = x[1L]
-  g = 1 + 9 * sum(x[-1L] / (length(x) - 1))
+  g = 1 + 9 * sum(x[-1L]) / (length(x) - 1)
   f2 = g * (1 - (f1 / g)^0.25 - (f1 / g)^4)
   return(c(f1, f2))
 }

@@ -16,8 +16,8 @@ generateJOS1 = function(in.dim = 30L, out.dim = 2L) {
   
   if (out.dim != 2L)
     stop("JOS1 supports only out.dim = 2.")
-  
-  param.set = makeNumericParamSet(id = "x", len = in.dim)
+
+  param.set = makeNumericParamSet(id = "x", len = in.dim, lower = 0, upper = 1)
   
   paretoSet = NULL
   
@@ -34,7 +34,7 @@ generateJOS1 = function(in.dim = 30L, out.dim = 2L) {
 # Definiton of jos1
 jos1 = function(x) {
   n = length(x)
-  f1 = sum(x^2 / n)
-  f2 = sum((x - 2)^2 / n)
+  f1 = sum(x^2) / n
+  f2 = sum((x - 2)^2) / n
   return(c(f1, f2))
 }

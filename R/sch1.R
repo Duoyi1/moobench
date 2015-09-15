@@ -19,7 +19,8 @@ generateSch1 = function(in.dim = 1L, out.dim = 2L) {
   if (out.dim != 2L)
     stop("Sch1 supports only out.dim = 2.")
   
-  param.set = makeNumericParamSet(id = "x", len = in.dim)
+  # FIXME unknown parameter domains
+  param.set = makeNumericParamSet(id = "x", len = in.dim, lower = -6, upper = 6)
   
   paretoSet = NULL
   
@@ -37,9 +38,9 @@ generateSch1 = function(in.dim = 1L, out.dim = 2L) {
 sch1 = function(x) {
   if (x <= 1)
     f1 = -x
-  if (1 < x <= 3)
+  if (1 < x && x <= 3)
     f1 = -2 + x
-  if (3 < x <= 4)
+  if (3 < x && x <= 4)
     f1 = 4 - x
   if (4 < x)
     f1 = -4 + x

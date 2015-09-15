@@ -19,7 +19,8 @@ generateMLF2 = function(in.dim = 2L, out.dim = 2L) {
   if (out.dim != 2L)
     stop("MLF2 supports only out.dim = 2.")
   
-  param.set = makeNumericParamSet(id = "x", len = in.dim)
+  # FIXME unknown parameter domains
+  param.set = makeNumericParamSet(id = "x", len = in.dim, lower = -4, upper = 4)
   
   paretoSet = NULL
   

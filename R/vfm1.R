@@ -10,7 +10,7 @@
 #' wfg [38]
 #' 
 #' @aliases vfm1 VFM1
-generateVU1 = function(in.dim = 2L, out.dim = 3L) {
+generateVFM1 = function(in.dim = 2L, out.dim = 3L) {
   in.dim = asCount(in.dim)
   out.dim = asCount(out.dim)
   

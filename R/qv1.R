@@ -9,8 +9,8 @@
 #' @references 
 #' wfg [59]
 #' 
-#' @aliases fes2 FES2
-generateFES2 = function(in.dim = 30L, out.dim = 2L) {
+#' @aliases qv1 QV1
+generateQV1 = function(in.dim = 30L, out.dim = 2L) {
   in.dim = asCount(in.dim)
   out.dim = asCount(out.dim)
   
@@ -34,7 +34,7 @@ generateFES2 = function(in.dim = 30L, out.dim = 2L) {
 # Definiton of qv1
 qv1 = function(x) {
   n = length(x)
-  f1 = sum((x^2 - 10 * cos(2 * pi * x) + 10) / n)^0.25
-  f2 = sum(((x - 1.5)^2 - 10 * cos(2 * pi * (x - 1.5)) + 10) / n)^0.25
+  f1 = (sum(x^2 - 10 * cos(2 * pi * x) + 10) / n)^0.25
+  f2 = (sum((x - 1.5)^2 - 10 * cos(2 * pi * (x - 1.5)) + 10) / n)^0.25
   return(c(f1, f2))
 }

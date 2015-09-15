@@ -10,7 +10,7 @@
 #' wfg [61]
 #' 
 #' @aliases ssfyy1 SSFYY1
-generateSFFYY1 = function(in.dim = 2L, out.dim = 2L) {
+generateSSFYY1 = function(in.dim = 2L, out.dim = 2L) {
   in.dim = asCount(in.dim)
   out.dim = asCount(out.dim)
   

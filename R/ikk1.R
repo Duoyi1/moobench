@@ -36,7 +36,7 @@ generateIKK1 = function(in.dim = 2L, out.dim = 3L) {
 # Definiton of ikk1
 ikk1 = function(x) {
   f1 = x[1L]^2
-  f2 = (x[1L] - 20)^3
+  f2 = (x[1L] - 20)^2
   f3 = x[2L]^2
   return(c(f1, f2, f3))
 }

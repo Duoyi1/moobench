@@ -19,8 +19,8 @@ generateTKLY1 = function(in.dim = 4L, out.dim = 2L) {
   if (out.dim != 2L)
     stop("TKLY1 supports only out.dim = 2.")
   
-  param.set = makeNumericParamSet(id = "x", len = in.dim, upper = c(0.1, 0, 0, 0),
-    lower = rep(1, in.dim))
+  param.set = makeNumericParamSet(id = "x", len = in.dim, lower = c(0.1, 0, 0, 0),
+    upper = rep(1, in.dim))
   
   paretoSet = NULL
   

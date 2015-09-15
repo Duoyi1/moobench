@@ -19,7 +19,8 @@ generateSP1 = function(in.dim = 2L, out.dim = 2L) {
   if (out.dim != 2L)
     stop("SP1 supports only out.dim = 2.")
   
-  param.set = makeNumericParamSet(id = "x", len = in.dim)
+  # FIXME unknown parameter domains
+  param.set = makeNumericParamSet(id = "x", len = in.dim, lower = 0, upper = 1)
   
   paretoSet = NULL
   
