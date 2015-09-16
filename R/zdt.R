@@ -27,7 +27,7 @@ generateZDT = function(id, in.dim = 30L, out.dim = 2L) {
   out.dim = asCount(out.dim)
   
   if (out.dim != 2L)
-    stop("ZDT supports only out.dim = 2.")
+    stopf("ZDT%i supports only out.dim = 2.", id)
   
   if (in.dim < out.dim)
     stopf("You set out.dim = %i and in.dim = %i, but in.dim must be greater than out.dim!.",

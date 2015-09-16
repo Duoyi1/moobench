@@ -25,8 +25,9 @@ generateWFG = function(id, in.dim, out.dim, k) {
   out.dim = asCount(out.dim)
   k = asCount(k)
   
-  if(k %% (out.dim - 1) != 0)
+  if(k %in% which(1:(in.dim - 1) %% (out.dim - 1) != 0))
     stopf("You set your out.dim to %i and k = %i. ", out.dim, k)
+  
   if (out.dim < 2L)
     stopf("You set your out.dim to %i. This is not multicrit! Set it at least to 2.", out.dim)
   
