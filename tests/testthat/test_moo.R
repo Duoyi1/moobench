@@ -109,8 +109,8 @@ test_that("lz5", {
 })
 
 test_that("lz6", {
-  f = generateLZ(6)
-  g = generateMOO("lz6")
+  f = generateLZ(6, out.dim = 3L)
+  g = generateMOO("lz6", out.dim = 3L)
   expect_equal(f, g)
 })
 
@@ -175,20 +175,20 @@ test_that("uf7", {
 })
 
 test_that("uf8", {
-  f = generateUF(8)
-  g = generateMOO("uf8")
+  f = generateUF(8, out.dim = 3L)
+  g = generateMOO("uf8", out.dim = 3L)
   expect_equal(f, g)
 })
 
 test_that("uf9", {
-  f = generateUF(9)
-  g = generateMOO("uf9")
+  f = generateUF(9, out.dim = 3L)
+  g = generateMOO("uf9", out.dim = 3L)
   expect_equal(f, g)
 })
 
 test_that("uf10", {
-  f = generateUF(10)
-  g = generateMOO("uf10")
+  f = generateUF(10, out.dim = 3L)
+  g = generateMOO("uf10", out.dim = 3L)
   expect_equal(f, g)
 })
 
@@ -235,20 +235,20 @@ test_that("cf7", {
 })
 
 test_that("cf8", {
-  f = generateCF(8)
-  g = generateMOO("cf8")
+  f = generateCF(8, out.dim = 3L)
+  g = generateMOO("cf8", out.dim = 3L)
   expect_equal(f, g)
 })
 
 test_that("cf9", {
-  f = generateCF(9)
-  g = generateMOO("cf9")
+  f = generateCF(9, out.dim = 3L)
+  g = generateMOO("cf9", out.dim = 3L)
   expect_equal(f, g)
 })
 
 test_that("cf10", {
-  f = generateCF(10)
-  g = generateMOO("cf10")
+  f = generateCF(10, out.dim = 3L)
+  g = generateMOO("cf10", out.dim = 3L)
   expect_equal(f, g)
 })
 
@@ -279,7 +279,8 @@ test_that("wfg4", {
 test_that("wfg5", {
   f = generateWFG(5, in.dim = 5L, out.dim = 2L, k = 3L)
   g = generateMOO("wfg5", in.dim = 5L, out.dim = 2L, k = 3L)
-  expect_equal(f, g)})
+  expect_equal(f, g)
+})
 
 test_that("wfg6", {
   f = generateWFG(6, in.dim = 5L, out.dim = 2L, k = 3L)
