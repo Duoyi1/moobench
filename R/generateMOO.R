@@ -1,4 +1,4 @@
-#' Genrate MOO functions
+#' Generate MOO functions
 #' 
 #' @param name [\code{character(1)}] \cr
 #'   Which MOO function? (DTLZ, ZDT, LZ, UF, CF, WFG, MOP) Small letters and number.
@@ -71,9 +71,42 @@ generateMOO = function(name = "", ...) {
     mop5 = generateMOP(id = 5, ...),
     mop6 = generateMOP(id = 6, ...),
     mop7 = generateMOP(id = 7, ...),
-    mop_c1 = generateMOP(id = 1, ...),
-    mop_c2 = generateMOP(id = 2, ...),
-    mop_c3 = generateMOP(id = 3, ...),
+    mop_c1 = generateMOP_C(id = 1, ...),
+    mop_c2 = generateMOP_C(id = 2, ...),
+    mop_c3 = generateMOP_C(id = 3, ...),
+    bk1 = generateBK1(...),
+    dgo1 = generateDGO1(...),
+    dgo2 = generateDGO2(...),
+    fa1 = generateFA1(...),
+    far1 = generateFar1(...),
+    fes1 = generateFES1(...),
+    fes2 = generateFES2(...),
+    fes3 = generateFES3(...),
+    ff1 = generateFF1(...),
+    ikk1 = generateIKK1(...),
+    im1 = generateIM1(...),
+    jos1 = generateJOS1(...),
+    jos2 = generateJOS2(...),
+    kur1 = generateKur1(...),
+    lrs1 = generateLRS1(...),
+    ltdz1 = generateLTDZ1(...),
+    le1 = generateLE1(...),
+    mhhm1 = generateMHHM1(...),
+    mhhm2 = generateMHHM2(...),
+    mlf1 = generateMLF1(...),
+    mlf2 = generateMLF2(...),
+    qv1 = generateQV1(...),
+    sch1 = generateSch1(...),
+    sp1 = generateSP1(...),
+    ssfyy1 = generateSSFYY1(...),
+    ssfyy2 = generateSSFYY2(...),
+    sk1 = generateSK1(...),
+    sk2 = generateSK2(...),
+    tkly1 = generateTKLY1(...),
+    vu1 = generateVU1(...),
+    vu2 = generateVU2(...),
+    vfm1 = generateVFM1(...),
+    zlt1 = generateZLT1(...),
     stop("Unknown ID")
   )
   

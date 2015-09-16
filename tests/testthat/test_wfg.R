@@ -3,7 +3,6 @@ context("wfg")
 #source("tests/testthat/wfg_cmp_impl.R")
 source("wfg_cmp_impl.R")
 
-
 test_that("wfg1", {
   x = runif(5)
   f = generateWFG(1, in.dim = 5L, out.dim = 2L, k = 3L)

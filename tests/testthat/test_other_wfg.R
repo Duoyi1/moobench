@@ -36,12 +36,6 @@ test_that("fes1", {
   expect_equal(value, c(1.062742, 1), tolerance = 1e-6)
 })
 
-test_that("fes1", {
-  f = generateFES1(in.dim = 2L, out.dim = 2L)
-  value = f(c(1, 1))
-  expect_equal(value, c(1.062742, 1), tolerance = 1e-6)
-})
-
 test_that("fes2", {
   f = generateFES2(in.dim = 2L, out.dim = 3L)
   value = f(c(1, 1))
