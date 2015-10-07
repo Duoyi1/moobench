@@ -27,9 +27,9 @@ generateDTLZ5 = function(in.dim = 30L, out.dim = 2L) {
 # Definiton of dtlz5
 dtlz5 = function(x, out.dim) {
   x.head = x[seq_len(out.dim - 1L)]
-  x.tail = x[out.dim:length(x)] - 0.5
+  x.tail = x[out.dim:length(x)]
   
-  g = sum(x.tail)^0.1
+  g = sum(x.tail^0.1)
   theta = numeric(out.dim - 1L)
   if (out.dim > 1L) 
     theta[1L] = x.head[1L] * 0.5 * pi
