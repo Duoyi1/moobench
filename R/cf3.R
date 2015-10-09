@@ -18,8 +18,7 @@ generateCF3 = function(in.dim = 30L, out.dim = 2L) {
     if (n %% 2 == 1) {
       pts1 = runif(n = floor(n / 2), min = 0.5, max = sqrt(0.5))
       pts2 = runif(n = floor(n / 2), min = sqrt(0.75), max = 1)
-    }
-    else {
+    } else {
       pts1 = runif(n = n / 2, min = 0.5, max = sqrt(0.5))
       pts2 = runif(n = n / 2 - 1, min = sqrt(0.75), max = 1)
     }

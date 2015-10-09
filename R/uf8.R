@@ -19,7 +19,17 @@ generateUF8 = function(in.dim = 30L, out.dim = 2L) {
     des
   }
   
-  paretoFront = NULL
+  paretoFront = function(n = out.dim * 100L) {
+    des = matrix(runif(3 * n), nrow = n, ncol = 3L)
+    des = des / rowSums(des)
+    des[, 1L] = sqrt(des[, 1L])
+    des[, 2L] = sqrt(des[, 2L])
+    des[, 3L] = (des[, 3L])^(1 / 3)
+    des = des[order(des[, 1L]), ]
+    rownames(des) = 1:nrow(des)
+    
+    des
+  }
   
   mooFunction(
     name = "uf8",

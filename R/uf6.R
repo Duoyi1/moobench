@@ -6,7 +6,20 @@ generateUF6 = function(in.dim = 30L, out.dim = 2L) {
   
   paretoSet = NULL
   
-  paretoFront = NULL
+  paretoFront = function(n = out.dim * 100L) {
+    if (n %% 2 == 1) {
+      pts1 = runif(n = floor(n / 2), min = 0.25, max = 0.5)
+      pts2 = runif(n = floor(n / 2), min = 0.75, max = 1)
+    } else {
+      pts1 = runif(n = n / 2, min = 0.25, max = 0.5)
+      pts2 = runif(n = n / 2 - 1, min = 0.75, max = 1)
+    }
+    
+    des = cbind(c(0, pts1, pts2), 1 - c(0, pts1, pts2))
+    des = des[order(des[, 1L]), ]
+    rownames(des) = 1:nrow(des)
+    des
+  }
   
   mooFunction(
     name = "uf6",

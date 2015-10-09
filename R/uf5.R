@@ -6,7 +6,10 @@ generateUF5 = function(in.dim = 30L, out.dim = 2L) {
   
   paretoSet = NULL
   
-  paretoFront = NULL
+  paretoFront = function(n) {
+    message("UF5 has discret Pareto front. Ignoring n and return all Pareto Optimal points.")
+    cbind((0:20) / 20, 1 - (0:20) / 20)
+  }
   
   mooFunction(
     name = "uf5",

@@ -19,7 +19,33 @@ generateUF9 = function(in.dim = 30L, out.dim = 2L) {
     des
   }
   
-  paretoFront = NULL
+  paretoFront = function(n = out.dim * 100L) {
+    if (n %% 2 == 1) {
+      f3 = runif(floor(n / 2))
+      f1 = runif(floor(n / 2), min = 0, max = 0.25 * (1 - f3))
+      f2 = 1 - f1 - f3
+      
+      ff3 = runif(ceiling(n / 2))
+      ff1 = runif(ceiling(n / 2), min = 0.75 * (1 - ff3), max = 1)
+      ff2 = 1 - ff1 - ff3
+    } else {
+      pts1 = runif(n = n / 2, min = 0.25, max = 0.5)
+      pts2 = runif(n = n / 2, min = 0.75, max = 1)
+      f3 = runif(n / 2)
+      f1 = runif(n / 2, min = 0, max = 0.25 * (1 - f3))
+      f2 = 1 - f1 - f3
+      
+      ff3 = runif(n / 2)
+      ff1 = runif(n / 2, min = 0.75 * (1 - ff3), max = 1)
+      ff2 = 1 - ff1 - ff3
+    }
+    
+    des = cbind(c(f1, ff1), c(f2, ff2), c(f3, ff3))
+    des = des[order(des[, 1L]), ]
+    rownames(des) = 1:nrow(des)
+    
+    des
+  }
   
   mooFunction(
     name = "uf9",
