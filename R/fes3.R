@@ -21,6 +21,8 @@ generateFES3 = function(in.dim = 30L, out.dim = 4L) {
   
   paretoSet = NULL
   
+  paretoFront = NULL
+  
   mooFunction(
     name = "fes3",
     id = sprintf("fes3-%id-%id", in.dim, out.dim),
@@ -28,7 +30,8 @@ generateFES3 = function(in.dim = 30L, out.dim = 4L) {
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,
-    paretoSet = paretoSet)
+    paretoSet = paretoSet,
+    paretoFront = paretoFront)
 }
 
 # Definiton of fes3

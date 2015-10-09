@@ -20,6 +20,8 @@ generateLZ4 = function(in.dim = 30L, out.dim = 2L) {
     des
   }
   
+  paretoFront = NULL
+  
   mooFunction(
     name = "lz4",
     id = sprintf("lz4-%id-%id", in.dim, out.dim),
@@ -27,7 +29,8 @@ generateLZ4 = function(in.dim = 30L, out.dim = 2L) {
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,
-    paretoSet = paretoSet)
+    paretoSet = paretoSet,
+    paretoFront = paretoFront)
 }
 
 # Definiton of lz4

@@ -24,6 +24,8 @@ generateTKLY1 = function(in.dim = 4L, out.dim = 2L) {
   
   paretoSet = NULL
   
+  paretoFront = NULL
+  
   mooFunction(
     name = "tkly1",
     id = sprintf("tkly1-%id-%id", in.dim, out.dim),
@@ -31,7 +33,8 @@ generateTKLY1 = function(in.dim = 4L, out.dim = 2L) {
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,
-    paretoSet = paretoSet)
+    paretoSet = paretoSet,
+    paretoFront = paretoFront)
 }
 
 # Definiton of tkly1

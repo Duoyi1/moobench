@@ -23,6 +23,8 @@ generateDGO2 = function(in.dim = 1L, out.dim = 2L) {
   
   paretoSet = NULL
   
+  paretoFront = NULL
+  
   mooFunction(
     name = "dgo2",
     id = sprintf("dgo2-%id-%id", in.dim, out.dim),
@@ -30,7 +32,8 @@ generateDGO2 = function(in.dim = 1L, out.dim = 2L) {
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,
-    paretoSet = paretoSet)
+    paretoSet = paretoSet,
+    paretoFront = paretoFront)
 }
 
 # Definiton of dgo2

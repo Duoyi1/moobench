@@ -15,6 +15,8 @@ generateZDT4 = function(in.dim = 30L, out.dim = 2L) {
     des
   }
   
+  paretoFront = NULL
+  
   mooFunction(
     name = "zdt4",
     id = sprintf("zdt4-%id-%id", in.dim, out.dim),
@@ -22,7 +24,8 @@ generateZDT4 = function(in.dim = 30L, out.dim = 2L) {
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,
-    paretoSet = paretoSet)
+    paretoSet = paretoSet,
+    paretoFront = paretoFront)
 }
 
 # Definiton of zdt4

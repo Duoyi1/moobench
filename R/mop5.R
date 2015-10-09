@@ -6,6 +6,8 @@ generateMOP5 = function(in.dim = 2L, out.dim = 3L) {
   
   paretoSet = NULL
   
+  paretoFront = NULL
+  
   mooFunction(
     name = "mop5",
     id = sprintf("mop5-%id-%id", in.dim, out.dim),
@@ -13,7 +15,8 @@ generateMOP5 = function(in.dim = 2L, out.dim = 3L) {
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,
-    paretoSet = paretoSet)
+    paretoSet = paretoSet,
+    paretoFront = paretoFront)
 }
 
 # Definiton of mop5

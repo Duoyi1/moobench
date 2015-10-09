@@ -6,6 +6,8 @@ generateMOP4 = function(in.dim = 3L, out.dim = 2L) {
   
   paretoSet = NULL
   
+  paretoFront = NULL
+  
   mooFunction(
     name = "mop4",
     id = sprintf("mop4-%id-%id", in.dim, out.dim),
@@ -13,7 +15,8 @@ generateMOP4 = function(in.dim = 3L, out.dim = 2L) {
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,
-    paretoSet = paretoSet)
+    paretoSet = paretoSet,
+    paretoFront = paretoFront)
 }
 
 # Definiton of mop4

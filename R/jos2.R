@@ -21,6 +21,8 @@ generateJOS2 = function(in.dim = 30L, out.dim = 2L) {
   
   paretoSet = NULL
   
+  paretoFront = NULL
+  
   mooFunction(
     name = "jos2",
     id = sprintf("jos2-%id-%id", in.dim, out.dim),
@@ -28,7 +30,8 @@ generateJOS2 = function(in.dim = 30L, out.dim = 2L) {
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,
-    paretoSet = paretoSet)
+    paretoSet = paretoSet,
+    paretoFront = paretoFront)
 }
 
 # Definiton of jos2

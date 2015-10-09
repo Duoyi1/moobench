@@ -23,6 +23,8 @@ generateFA1 = function(in.dim = 3L, out.dim = 3L) {
   
   paretoSet = NULL
   
+  paretoFront = NULL
+  
   mooFunction(
     name = "fa1",
     id = sprintf("fa1-%id-%id", in.dim, out.dim),
@@ -30,7 +32,8 @@ generateFA1 = function(in.dim = 3L, out.dim = 3L) {
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,
-    paretoSet = paretoSet)
+    paretoSet = paretoSet,
+    paretoFront = paretoFront)
 }
 
 # Definiton of fa1

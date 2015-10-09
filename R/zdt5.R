@@ -8,6 +8,8 @@ generateZDT5 = function(in.dim = 30L, out.dim = 2L) {
   
   paretoSet = NULL
   
+  paretoFront = NULL
+  
   mooFunction(
     name = "zdt5",
     id = sprintf("zdt5-%id-%id", in.dim, out.dim),
@@ -15,7 +17,8 @@ generateZDT5 = function(in.dim = 30L, out.dim = 2L) {
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,
-    paretoSet = paretoSet)
+    paretoSet = paretoSet,
+    paretoFront = paretoFront)
 }
 
 # Definiton of zdt5

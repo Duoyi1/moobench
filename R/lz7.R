@@ -17,6 +17,8 @@ generateLZ7 = function(in.dim = 30L, out.dim = 2L) {
     des
   }
   
+  paretoFront = NULL
+  
   mooFunction(
     name = "lz7",
     id = sprintf("lz7-%id-%id", in.dim, out.dim),
@@ -24,7 +26,8 @@ generateLZ7 = function(in.dim = 30L, out.dim = 2L) {
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,
-    paretoSet = paretoSet)
+    paretoSet = paretoSet,
+    paretoFront = paretoFront)
 }
 
 # Definiton of lz7

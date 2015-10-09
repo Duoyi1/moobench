@@ -6,6 +6,8 @@ generateUF6 = function(in.dim = 30L, out.dim = 2L) {
   
   paretoSet = NULL
   
+  paretoFront = NULL
+  
   mooFunction(
     name = "uf6",
     id = sprintf("uf6-%id-%id", in.dim, out.dim),
@@ -13,7 +15,8 @@ generateUF6 = function(in.dim = 30L, out.dim = 2L) {
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,
-    paretoSet = paretoSet)
+    paretoSet = paretoSet,
+    paretoFront = paretoFront)
 }
 
 # Definiton of uf6

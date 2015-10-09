@@ -25,6 +25,8 @@ generateZLT1 = function(in.dim = 20L, out.dim = 2L) {
   
   paretoSet = NULL
   
+  paretoFront = NULL
+  
   mooFunction(
     name = "zlt1",
     id = sprintf("zlt1-%id-%id", in.dim, out.dim),
@@ -32,7 +34,8 @@ generateZLT1 = function(in.dim = 20L, out.dim = 2L) {
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,
-    paretoSet = paretoSet)
+    paretoSet = paretoSet,
+    paretoFront = paretoFront)
 }
 
 # Definiton of zlt1

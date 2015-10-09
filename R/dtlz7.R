@@ -24,6 +24,8 @@ generateDTLZ7 = function(in.dim = 30L, out.dim = 2L) {
   
   paretoSet = NULL
   
+  paretoFront = NULL
+  
   mooFunction(
     name = "dtlz7",
     id = sprintf("dtlz7-%id-%id", in.dim, out.dim),
@@ -31,7 +33,8 @@ generateDTLZ7 = function(in.dim = 30L, out.dim = 2L) {
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,
-    paretoSet = paretoSet)
+    paretoSet = paretoSet,
+    paretoFront = paretoFront)
 }
 
 # Definiton of dtlz7

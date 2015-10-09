@@ -23,6 +23,8 @@ generateFar1 = function(in.dim = 2L, out.dim = 2L) {
   
   paretoSet = NULL
   
+  paretoFront = NULL
+  
   mooFunction(
     name = "far1",
     id = sprintf("far1-%id-%id", in.dim, out.dim),
@@ -30,7 +32,8 @@ generateFar1 = function(in.dim = 2L, out.dim = 2L) {
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,
-    paretoSet = paretoSet)
+    paretoSet = paretoSet,
+    paretoFront = paretoFront)
 }
 
 # Definiton of far1

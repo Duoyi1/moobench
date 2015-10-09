@@ -24,6 +24,8 @@ generateSch1 = function(in.dim = 1L, out.dim = 2L) {
   
   paretoSet = NULL
   
+  paretoFront = NULL
+  
   mooFunction(
     name = "sch1",
     id = sprintf("sch1-%id-%id", in.dim, out.dim),
@@ -31,7 +33,8 @@ generateSch1 = function(in.dim = 1L, out.dim = 2L) {
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,
-    paretoSet = paretoSet)
+    paretoSet = paretoSet,
+    paretoFront = paretoFront)
 }
 
 # Definiton of sch1

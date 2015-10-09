@@ -17,6 +17,8 @@ generateUF3 = function(in.dim = 30L, out.dim = 2L) {
     des
   }
   
+  paretoFront = NULL
+  
   mooFunction(
     name = "uf3",
     id = sprintf("uf3-%id-%id", in.dim, out.dim),
@@ -24,5 +26,6 @@ generateUF3 = function(in.dim = 30L, out.dim = 2L) {
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,
-    paretoSet = paretoSet)
+    paretoSet = paretoSet,
+    paretoFront = paretoFront)
 }

@@ -24,6 +24,8 @@ generateMLF2 = function(in.dim = 2L, out.dim = 2L) {
   
   paretoSet = NULL
   
+  paretoFront = NULL
+  
   mooFunction(
     name = "mlf2",
     id = sprintf("mlf2-%id-%id", in.dim, out.dim),
@@ -31,7 +33,8 @@ generateMLF2 = function(in.dim = 2L, out.dim = 2L) {
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,
-    paretoSet = paretoSet)
+    paretoSet = paretoSet,
+    paretoFront = paretoFront)
 }
 
 # Definiton of mlf2

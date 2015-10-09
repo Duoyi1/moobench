@@ -23,6 +23,8 @@ generateMHHM1 = function(in.dim = 1L, out.dim = 3L) {
   
   paretoSet = NULL
   
+  paretoFront = NULL
+  
   mooFunction(
     name = "mhhm1",
     id = sprintf("mhhm1-%id-%id", in.dim, out.dim),
@@ -30,7 +32,8 @@ generateMHHM1 = function(in.dim = 1L, out.dim = 3L) {
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,
-    paretoSet = paretoSet)
+    paretoSet = paretoSet,
+    paretoFront = paretoFront)
 }
 
 # Definiton of mhhm1

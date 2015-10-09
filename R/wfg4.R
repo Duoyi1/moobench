@@ -15,6 +15,8 @@ generateWFG4 = function(in.dim, out.dim, k) {
     des
   }
   
+  paretoFront = NULL
+  
   mooFunction(
     name = "wfg4",
     id = sprintf("wfg4-%id-%id", in.dim, out.dim),
@@ -22,7 +24,8 @@ generateWFG4 = function(in.dim, out.dim, k) {
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,
-    paretoSet = paretoSet)
+    paretoSet = paretoSet,
+    paretoFront = paretoFront)
 }
 
 # definition of makewfg4

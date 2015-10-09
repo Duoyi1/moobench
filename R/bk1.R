@@ -23,6 +23,8 @@ generateBK1 = function(in.dim = 2L, out.dim = 2L) {
   
   paretoSet = NULL
   
+  paretoFront = NULL
+  
   mooFunction(
     name = "bk1",
     id = sprintf("bk1-%id-%id", in.dim, out.dim),
@@ -30,7 +32,8 @@ generateBK1 = function(in.dim = 2L, out.dim = 2L) {
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,
-    paretoSet = paretoSet)
+    paretoSet = paretoSet,
+    paretoFront = paretoFront)
 }
 
 # Definiton of bk1

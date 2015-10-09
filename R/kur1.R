@@ -22,6 +22,8 @@ generateKur1 = function(in.dim = 30L, out.dim = 2L) {
   
   paretoSet = NULL
   
+  paretoFront = NULL
+  
   mooFunction(
     name = "kur1",
     id = sprintf("kur1-%id-%id", in.dim, out.dim),
@@ -29,7 +31,8 @@ generateKur1 = function(in.dim = 30L, out.dim = 2L) {
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,
-    paretoSet = paretoSet)
+    paretoSet = paretoSet,
+    paretoFront = paretoFront)
 }
 
 # Definiton of kur1

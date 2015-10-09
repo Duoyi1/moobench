@@ -23,6 +23,8 @@ generateLTDZ1 = function(in.dim = 3L, out.dim = 3L) {
   
   paretoSet = NULL
   
+  paretoFront = NULL
+  
   mooFunction(
     name = "ltdz1",
     id = sprintf("ltdz1-%id-%id", in.dim, out.dim),
@@ -30,7 +32,8 @@ generateLTDZ1 = function(in.dim = 3L, out.dim = 3L) {
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,
-    paretoSet = paretoSet)
+    paretoSet = paretoSet,
+    paretoFront = paretoFront)
 }
 
 # Definiton of ltdz1

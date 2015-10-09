@@ -21,6 +21,8 @@ generateMOP_C2 = function(in.dim = 6L, out.dim = 2L) {
   
   paretoSet = NULL
   
+  paretoFront = NULL
+  
   mooFunction(
     name = "mop_c2",
     id = sprintf("mop_c2-%id-%id", in.dim, out.dim),
@@ -28,7 +30,8 @@ generateMOP_C2 = function(in.dim = 6L, out.dim = 2L) {
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,
-    paretoSet = paretoSet)
+    paretoSet = paretoSet,
+    paretoFront = paretoFront)
 }
 
 # Definiton of mop_c2

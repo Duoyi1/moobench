@@ -24,6 +24,8 @@ generateSK2 = function(in.dim = 4L, out.dim = 2L) {
   
   paretoSet = NULL
   
+  paretoFront = NULL
+  
   mooFunction(
     name = "sk2",
     id = sprintf("sk2-%id-%id", in.dim, out.dim),
@@ -31,7 +33,8 @@ generateSK2 = function(in.dim = 4L, out.dim = 2L) {
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,
-    paretoSet = paretoSet)
+    paretoSet = paretoSet,
+    paretoFront = paretoFront)
 }
 
 # Definiton of sk2

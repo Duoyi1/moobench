@@ -16,6 +16,8 @@ generateWFG8 = function(in.dim, out.dim, k) {
     des
   }
   
+  paretoFront = NULL
+  
   mooFunction(
     name = "wfg8",
     id = sprintf("wfg8-%id-%id", in.dim, out.dim),
@@ -23,7 +25,8 @@ generateWFG8 = function(in.dim, out.dim, k) {
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,
-    paretoSet = paretoSet)
+    paretoSet = paretoSet,
+    paretoFront = paretoFront)
 }
 
 # definition of makewfg8
