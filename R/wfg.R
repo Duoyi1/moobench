@@ -26,7 +26,7 @@ generateWFG = function(id, in.dim, out.dim, k) {
   k = asCount(k)
   
   if(k %in% which(1:(in.dim - 1) %% (out.dim - 1) != 0))
-    stopf("You set your out.dim to %i and k = %i. ", out.dim, k)
+    stop("k must be between 1 and (in.dim - 1) and divisble by (out.dim - 1). Your k violates this constraints.")
   
   if (out.dim < 2L)
     stopf("You set your out.dim to %i. This is not multicrit! Set it at least to 2.", out.dim)
@@ -36,7 +36,7 @@ generateWFG = function(id, in.dim, out.dim, k) {
       out.dim, in.dim)
   
   if(id %in% c(2, 3) && (in.dim - k) %% 2 != 0L)
-    stopf("Number of distance-related parameters must be divisible by 2 for WFG%i. But is not in your case", id)
+    stopf("Number of distance-related parameters must be divisible by 2 for WFG%i. But it is not in your case", id)
     
   
   assertChoice(id, 1:9)

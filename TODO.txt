@@ -7,12 +7,16 @@
 - getFront, getSet Funktionen - minmax LHS Idee
 - plot Funktionen fuer Front
 
-- wfg: checks fuer k, l, ...
-
 - pareto set fuer uf5, uf6, cf1-10, zdt5, dtlz7, mop
 
--dtlz7 outdim 2 anders
+- dtlz7 outdim 2 anders
 
 - Plot Funktion für 2 -> 2 Funktionen: Elkemann-Idee mit Rot und Blau Werten
   -> Pareto Set Plot gehört mit in diesen Plot
   -> Karin
+  
+- Unit Tests muessen ordentlich werden
+
+- Check muss ordentlich durchlaufen
+
+- Travis aufsetzen

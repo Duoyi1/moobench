@@ -5,12 +5,18 @@ generateZDT3 = function(in.dim = 30L, out.dim = 2L) {
   param.set = makeNumericParamSet(id = "x", len = in.dim, lower = 0, upper = 1)
   
   paretoSet = function(n = out.dim * 100L) {
-    des = generateDesign(par.set = param.set, n = n)
+    # Sample some more. We have a disconnected front an have to remove some
+    # dominated points later
+    des = generateDesign(par.set = param.set, n = 10 * n)
+    des = des[order(des[, 1L]), ]
+    
+    mat = matrix(0, nrow = 10 * n, ncol = in.dim - 1L)
+    des[, -1L] = mat
+    
+    des = des[!is_dominated(apply(des, 1, zdt3)), ]
+    des = des[sample(nrow(des), n), ]
     des = des[order(des[, 1L]), ]
     rownames(des) = 1:nrow(des)
-    
-    mat = matrix(0, nrow = n, ncol = in.dim - 1L)
-    des[, -1L] = mat
     des
   }
   
