@@ -5,13 +5,19 @@ generateWFG8 = function(in.dim, out.dim, k) {
   param.set = makeNumericParamSet(id = "x", len = in.dim, lower = 0, upper = 2 * 1:in.dim)
   
   paretoSet = function(n = out.dim * 100L) {
-    des = generateDesign(par.set = param.set, n = n)
+    # Since we have to remove infeasible values, sample some more here
+    des = generateDesign(par.set = param.set, n = 10 * n)
     des = des[order(des[, 1L]), ]
     rownames(des) = 1:nrow(des)
     
     for(i in (k + 1):in.dim)
       des[, i] = 2 * i * 0.35^(0.02 + 49.98 *((0.98 / 49.98) * (1 - 2 * rowMeans(des[, 1:(i - 1), drop = FALSE])) * 
           abs(floor(0.5 - rowMeans(des[, 1:(i - 1), drop = FALSE])) + (0.98 / 49.98))))^-1
+    
+    is.feas = sapply(1:nrow(des), function(i) isFeasible(param.set, list(x = as.vector(as.matrix(des[i, ])))))
+    des = des[is.feas, ]
+    
+    des = des[sample(nrow(des), n), ]
     
     des
   }

@@ -35,7 +35,7 @@ generateWFG = function(id, in.dim, out.dim, k) {
     stopf("You set out.dim = %i and in.dim = %i, but in.dim must be greater than out.dim!.",
       out.dim, in.dim)
   
-  if(id %in% c(2, 3) && (in.dim - k) %% 2 == 0L)
+  if(id %in% c(2, 3) && (in.dim - k) %% 2 != 0L)
     stopf("Number of distance-related parameters must be divisible by 2 for WFG%i. But is not in your case", id)
     
   
