@@ -17,13 +17,15 @@
 #' @param param.set [\code{\link[ParamHelpers]{ParamSet}}]\cr
 #'   Parameter set to describe (box) constraints for the function.
 #' @param paretoSet [\code{function} | NULL] \cr
-#'   Function, that returns n points randomly distributed on the true pareto set.
+#'   Function, that returns n points randomly distributed on the true Pareto set.
+#' @param paretoFront [\code{function} | NULL] \cr
+#'   Function, that returns n points randomly distributed on the true Pareto front.
 #' @return A \code{mooFunction} object.
 #'
 #' @export
 
 mooFunction = function(name, id, fun, in.dim, out.dim,
-  param.set, paretoSet) {
+  param.set, paretoSet, paretoFront) {
   
   assertCharacter(x = name, len = 1L, all.missing = FALSE)
   # FIXME: look at grepl patterns
@@ -55,6 +57,7 @@ mooFunction = function(name, id, fun, in.dim, out.dim,
     out.dim = out.dim,
     class = c("mooFunction", class(fun)),
     param.set = param.set,
-    paretoSet = paretoSet
+    paretoSet = paretoSet,
+    paretoFront = paretoFront
     )
 }

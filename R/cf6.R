@@ -17,6 +17,21 @@ generateCF6 = function(in.dim = 30L, out.dim = 2L) {
   
   paretoSet = NULL
   
+  paretoFront = function(n = out.dim * 100L) {
+    pts1 = runif(n)
+    pts2 = numeric(n)
+    
+    pts2[0 <= pts1 & pts1 <= 0.5] = (1 -  pts1[0 <= pts1 & pts1 <= 0.5])^2
+    pts2[0.5 < pts1 & pts1 <= 0.75] = 0.5 * (1 - pts1[0.5 < pts1 & pts1 <= 0.75])
+    pts2[0.75 < pts1 & pts1 <= 1] = 0.25 * sqrt(1 -  pts1[0.75 < pts1 & pts1 <= 1])
+    
+    des = cbind(pts1, pts2)
+    des = des[order(des[, 1L]), ]
+    rownames(des) = 1:nrow(des)
+    des
+    
+  }
+  
   mooFunction(
     name = "cf6",
     id = sprintf("cf6-%id-%id", in.dim, out.dim),
@@ -24,7 +39,8 @@ generateCF6 = function(in.dim = 30L, out.dim = 2L) {
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,
-    paretoSet = paretoSet)
+    paretoSet = paretoSet,
+    paretoFront = paretoFront)
 }
 
 

@@ -15,6 +15,23 @@ generateCF2 = function(in.dim = 30L, out.dim = 2L) {
   
   paretoSet = NULL
   
+  paretoFront = function(n = out.dim * 100L) {
+    if (n %% 2 == 1) {
+      pts1 = runif(n = floor(n / 2), min = 1 / 16, max = 4 / 16)
+      pts2 = runif(n = floor(n / 2), min = 9 / 16, max = 1)
+    }
+    else {
+      pts1 = runif(n = n / 2, min = 1 / 16, max = 4 / 16)
+      pts2 = runif(n = n / 2 - 1, min = 9 / 16, max = 1)
+    }
+
+    des = cbind(c(0, pts1, pts2), 1 - sqrt(c(0, pts1, pts2)))
+    des = des[order(des[, 1L]), ]
+    rownames(des) = 1:nrow(des)
+    des
+    
+  }
+  
   mooFunction(
     name = "cf2",
     id = sprintf("cf2-%id-%id", in.dim, out.dim),
@@ -22,5 +39,6 @@ generateCF2 = function(in.dim = 30L, out.dim = 2L) {
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,
-    paretoSet = paretoSet)
+    paretoSet = paretoSet,
+    paretoFront = paretoFront)
 }

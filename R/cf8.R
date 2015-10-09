@@ -15,6 +15,19 @@ generateCF8 = function(in.dim = 30L, out.dim = 2L) {
   
   paretoSet = NULL
   
+  paretoFront = function(n  = out.dim * 100L) {
+    f3 = rep(runif(n / 5), each = 5)
+    f1 = (rep(0:4, n / 5) / 4 * (1 - f3^2))^0.5
+    f2 = (1 - f1^2 - f3^2)^0.5
+    ## Was mit NaN?
+    
+    des = cbind(f1, f2, f3)
+    des = des[order(des[, 1L]), ]
+    rownames(des) = 1:nrow(des)
+    des
+    
+  }
+  
   mooFunction(
     name = "cf8",
     id = sprintf("cf8-%id-%id", in.dim, out.dim),
@@ -22,7 +35,8 @@ generateCF8 = function(in.dim = 30L, out.dim = 2L) {
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,
-    paretoSet = paretoSet)
+    paretoSet = paretoSet,
+    paretoFront = paretoFront)
 }
 
 

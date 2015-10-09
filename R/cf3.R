@@ -14,6 +14,23 @@ generateCF3 = function(in.dim = 30L, out.dim = 2L) {
   
   paretoSet = NULL
   
+  paretoFront = function(n = out.dim * 100L) {
+    if (n %% 2 == 1) {
+      pts1 = runif(n = floor(n / 2), min = 0.5, max = sqrt(0.5))
+      pts2 = runif(n = floor(n / 2), min = sqrt(0.75), max = 1)
+    }
+    else {
+      pts1 = runif(n = n / 2, min = 0.5, max = sqrt(0.5))
+      pts2 = runif(n = n / 2 - 1, min = sqrt(0.75), max = 1)
+    }
+    
+    des = cbind(c(0, pts1, pts2), 1 - c(0, pts1, pts2)^2)
+    des = des[order(des[, 1L]), ]
+    rownames(des) = 1:nrow(des)
+    des
+    
+  }
+  
   mooFunction(
     name = "cf3",
     id = sprintf("cf3-%id-%id", in.dim, out.dim),
@@ -21,7 +38,8 @@ generateCF3 = function(in.dim = 30L, out.dim = 2L) {
     in.dim = in.dim,
     out.dim = out.dim,
     param.set = param.set,
-    paretoSet = paretoSet)
+    paretoSet = paretoSet,
+    paretoFront = paretoFront)
 }
 
 # Definition of cf3
