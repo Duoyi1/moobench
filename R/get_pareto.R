@@ -15,8 +15,15 @@ getParetoSet = function(f, n) {
 }
 
 #' @export
-getParetoSet.mooFunction = function(f, n = 100 * getOutDim(f))
-  attributes(f)$paretoSet(n)
+getParetoSet.mooFunction = function(f, n = 100 * getOutDim(f)) {
+  fun = attributes(f)$paretoSet
+  if (is.null(fun)) {
+    warning("No Pareto set definition for f available.")
+    return(matrix(NA, ncol = getInDim(f), nrow = 0L))
+  }
+  else
+    return(fun(n))
+}
 
 
 #' @rdname get_pareto
