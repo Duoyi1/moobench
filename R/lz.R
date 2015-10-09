@@ -27,8 +27,12 @@ generateLZ = function(id, in.dim = 30L, out.dim = 2L) {
   
   if (id == 6 && out.dim != 3L)
       stop("LZ6 supports only out.dim = 3.")
+  if (id == 6 && out.dim < 5L)
+    stop("LZ6 supports only in.dim >= 5.")
   if (id != 6 && out.dim != 2L)
     stopf("LZ%i supports only out.dim = 2.", id)
+  if (id != 6 && in.dim < 3L)
+    stopf("LZ%i supports only in.dim >= 3.", id)
   
   if (in.dim < out.dim)
     stopf("You set out.dim = %i and in.dim = %i, but in.dim must be greatar than out.dim!.",

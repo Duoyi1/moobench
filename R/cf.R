@@ -29,8 +29,14 @@ generateCF = function(id, in.dim = 30L, out.dim = 2L) {
   
   if (id %in% c(8:10) && out.dim != 3L)
     stopf("CF%i supports only out.dim = 3.", id)
+  if (id %in% c(8:10) && in.dim < 5L)
+    stopf("CF%i supports only in.dim >= 5.", id)
+  
   if (id %in% c(1:7) && out.dim != 2L)
     stopf("CF%i supports only out.dim = 2.", id)
+  if (id %in% c(1:7) && in.dim < 3L)
+    stopf("CF%i supports only in.dim >= 3.", id)
+  
   
   if (in.dim < out.dim)
     stopf("You set out.dim = %i and in.dim = %i, but in.dim must be greatar than out.dim!.",
