@@ -14,7 +14,8 @@ Imports:
     checkmate,
     BBmisc,
     ParamHelpers,
-    soobench
+    soobench,
+    ggplot2
 Suggests:
     testthat
 LazyData: yes

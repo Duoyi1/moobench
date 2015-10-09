@@ -12,9 +12,12 @@ generateDTLZ7 = function(in.dim = 30L, out.dim = 2L) {
       
       gj = all(sapply(1:(out.dim - 1), function(j) f[out.dim] + 4 * f[j] - 1) >= 0)
       
-      combos = combn(1:(out.dim - 1), 2)
-      fmin = sapply(1:ncol(combos), function(i) f[combos[1, i]] + f[combos[2, i]])
-      gm = 2 * f[out.dim] + min(fmin) - 1 >= 0
+      if(out.dim > 2L) {
+        combos = combn(1:(out.dim - 1), 2)
+        fmin = sapply(1:ncol(combos), function(i) f[combos[1, i]] + f[combos[2, i]])
+        gm = 2 * f[out.dim] + min(fmin) - 1 >= 0
+      }
+      else gm = TRUE
       
       gj && gm
     }))
