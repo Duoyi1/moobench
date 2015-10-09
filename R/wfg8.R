@@ -10,8 +10,8 @@ generateWFG8 = function(in.dim, out.dim, k) {
     rownames(des) = 1:nrow(des)
     
     for(i in (k + 1):in.dim)
-      des[, i] = 2 * i * 0.35^(0.02 + 49.98 *((0.98 / 49.98) * (1 - 2 * rowMeans(des[, 1:(i - 1)])) * 
-          abs(floor(0.5 - rowMeans(des[, 1:(i - 1)])) + (0.98 / 49.98))))^-1
+      des[, i] = 2 * i * 0.35^(0.02 + 49.98 *((0.98 / 49.98) * (1 - 2 * rowMeans(des[, 1:(i - 1), drop = FALSE])) * 
+          abs(floor(0.5 - rowMeans(des[, 1:(i - 1), drop = FALSE])) + (0.98 / 49.98))))^-1
     
     des
   }
