@@ -15,7 +15,19 @@ generateWFG4 = function(in.dim, out.dim, k) {
     des
   }
   
-  paretoFront = NULL
+  paretoFront = function(n = out.dim * 100L) {
+    x = matrix(runif(n * (out.dim - 1)), nrow = n, ncol = out.dim - 1) 
+    
+    shapeTrafos = makeWFGShapeTrafo(arg = c(replicate(out.dim, list(name = "concave"), 
+      simplify = FALSE)))
+    
+    des = sapply(seq_along(shapeTrafos), function(i) 2 * i * apply(x, 1, shapeTrafos[[i]]))
+    
+    des = des[order(des[, 1L]), ]
+    rownames(des) = 1:nrow(des)
+    
+    des
+  }
   
   mooFunction(
     name = "wfg4",

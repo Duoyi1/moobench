@@ -34,8 +34,11 @@ getParetoFront = function(f, n) {
 
 #' @export
 getParetoFront.mooFunction = function(f, n = 100 * getOutDim(f)) {
-  set = getParetoSet(f, n)
-  front = t(apply(set, 1, f))
-  front = front[order(front[, 1L]), ]
-  front
+  fun = attributes(f)$paretoFront
+  if (is.null(fun)) {
+    warning("No Pareto front definition for f available.")
+    return(matrix(NA, ncol = getInDim(f), nrow = 0L))
+  }
+  else
+    return(fun(n))
 }
