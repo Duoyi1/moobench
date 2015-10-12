@@ -15,7 +15,8 @@ Imports:
     BBmisc,
     ParamHelpers,
     soobench,
-    ggplot2
+    ggplot2,
+    emoa
 Suggests:
     testthat
 LazyData: yes

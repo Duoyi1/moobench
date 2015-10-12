@@ -14,7 +14,16 @@ generateZDT6 = function(in.dim = 30L, out.dim = 2L) {
     des
   }
   
-  paretoFront = NULL
+  paretoFront = function(n = out.dim * 100L) {
+    f1 = runif(n, min = 0.2807753191, max = 1)
+    f2 = 1 - f1^2
+    
+    des = cbind(f1, f2)
+    des = des[order(des[, 1L]), ]
+    rownames(des) = 1:nrow(des)
+    
+    des
+  }
   
   mooFunction(
     name = "zdt6",

@@ -3,5 +3,6 @@
 #' @import ParamHelpers
 #' @import soobench
 #' @import ggplot2
+#' @import emoa
 
 NULL
