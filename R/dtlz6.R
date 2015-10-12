@@ -5,16 +5,26 @@ generateDTLZ6 = function(in.dim = 30L, out.dim = 2L) {
   param.set = makeNumericParamSet(id = "x", len = in.dim, lower = 0, upper = 1)
   
   paretoSet = function(n = out.dim * 100L) {
-    des = generateDesign(par.set = param.set, n = n)
+    des = generateDesign(par.set = param.set, n = 10 * n)
+    des[, out.dim:in.dim] = 0
+    
+    des = des[!is_dominated(apply(des, 1, dtlz6, out.dim = out.dim)), ]
+    des = des[sample(nrow(des), n), ]
+    
     des = des[order(des[, 1L]), ]
     rownames(des) = 1:nrow(des)
-    
-    des[, out.dim:in.dim] = 0.5
     
     des
   }
   
-  paretoFront = NULL
+  paretoFront = function(n = out.dim * 100L) {
+    ps = paretoSet(n)
+    des = t(apply(ps, 1, dtlz6, out.dim = out.dim))
+    des = des[order(des[, 1L]), ]
+    rownames(des) = 1:nrow(des)
+    
+    des
+  }
   
   mooFunction(
     name = "dtlz6",

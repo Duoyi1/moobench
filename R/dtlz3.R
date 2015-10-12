@@ -14,7 +14,16 @@ generateDTLZ3 = function(in.dim = 30L, out.dim = 2L) {
     des
   }
   
-  paretoFront = NULL
+  paretoFront = function(n = out.dim * 100L) {
+    des = matrix(runif(out.dim * n), nrow = n, ncol = out.dim)
+    des = des / rowSums(des)
+    des = sqrt(des)
+    
+    des = des[order(des[, 1L]), ]
+    rownames(des) = 1:nrow(des)
+    
+    des
+  }
   
   mooFunction(
     name = "dtlz3",

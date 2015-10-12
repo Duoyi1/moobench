@@ -14,7 +14,14 @@ generateDTLZ5 = function(in.dim = 30L, out.dim = 2L) {
     des
   }
   
-  paretoFront = NULL
+  paretoFront = function(n = out.dim * 100L) {
+    ps = paretoSet(n)
+    des = t(apply(ps, 1, dtlz5, out.dim = out.dim))
+    des = des[order(des[, 1L]), ]
+    rownames(des) = 1:nrow(des)
+    
+    des
+  }
   
   mooFunction(
     name = "dtlz5",
