@@ -20,7 +20,16 @@ generateLZ3 = function(in.dim = 30L, out.dim = 2L) {
     des
   }
   
-  paretoFront = NULL
+  paretoFront = function(n = out.dim * 100L) {
+    f1 = runif(n)
+    f2 = 1 - sqrt(f1)
+    
+    des = cbind(f1, f2)
+    des = des[order(des[, 1L]), ]
+    rownames(des) = 1:nrow(des)
+    
+    des
+  }
   
   mooFunction(
     name = "lz3",
