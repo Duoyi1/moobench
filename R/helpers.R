@@ -1,10 +1,12 @@
 
 # assert input and eval fun
 # Note: fun.args is a list here!
-evalMooFunction = function(fun, param.set, ...) {
-  # FIXME: Return NA if constraints are not satisfied? And so we can support
-  # test functions with constraints? Think about it ...
+evalMooFunction = function(fun, param.set, out.dim, on.infeasible, ...) {
   if (!isFeasible(param.set, list(...)))
-    stop("Input not feasible.")
-  fun(...)
+    switch(on.infeasible,
+      `stop` = stop("Input not feasible."),
+      `NA` = rep(NA_real_, out.dim)
+    )
+  else
+    fun(...)
 }

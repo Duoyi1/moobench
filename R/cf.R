@@ -6,6 +6,9 @@
 #'   Size of parameter space.
 #' @param out.dim [\code{integer(1)}] \cr
 #'   Size of target space. Must be two for CF 1-7 functions and three for CF 8-10 functions.
+#' @param on.infeasible [\code{character}] \cr
+#'   What should happen if infeasible values are evaluated? Possible values are
+#'   stop (code stops with error message) and NA (NA value is returned).
 #' @return A \code{mooFunction}.
 #' 
 #' @references
@@ -23,7 +26,7 @@
 #'  #fun = generateCF(id = 1, in.dim = 30L, out.dim = 2L) 
 #'  #fun(x)
 
-generateCF = function(id, in.dim = 30L, out.dim = 2L) {
+generateCF = function(id, in.dim = 30L, out.dim = 2L, on.infeasible = "stop") {
   in.dim = asCount(in.dim)
   out.dim = asCount(out.dim)
   
@@ -45,15 +48,15 @@ generateCF = function(id, in.dim = 30L, out.dim = 2L) {
   assertChoice(id, 1:10)
   
   switch(id,
-    generateCF1(in.dim, out.dim), 
-    generateCF2(in.dim, out.dim), 
-    generateCF3(in.dim, out.dim), 
-    generateCF4(in.dim, out.dim), 
-    generateCF5(in.dim, out.dim), 
-    generateCF6(in.dim, out.dim), 
-    generateCF7(in.dim, out.dim), 
-    generateCF8(in.dim, out.dim), 
-    generateCF9(in.dim, out.dim), 
-    generateCF10(in.dim, out.dim)
+    generateCF1(in.dim, out.dim, on.infeasible), 
+    generateCF2(in.dim, out.dim, on.infeasible), 
+    generateCF3(in.dim, out.dim, on.infeasible), 
+    generateCF4(in.dim, out.dim, on.infeasible), 
+    generateCF5(in.dim, out.dim, on.infeasible), 
+    generateCF6(in.dim, out.dim, on.infeasible), 
+    generateCF7(in.dim, out.dim, on.infeasible), 
+    generateCF8(in.dim, out.dim, on.infeasible), 
+    generateCF9(in.dim, out.dim, on.infeasible), 
+    generateCF10(in.dim, out.dim, on.infeasible)
   )
 }

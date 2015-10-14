@@ -1,6 +1,6 @@
 # CF10 test function generator.
 
-generateCF10= function(in.dim = 30L, out.dim = 2L) {
+generateCF10= function(in.dim = 30L, out.dim = 2L, on.infeasible) {
   
   param.set = makeParamSet(
     makeNumericVectorParam(id = "x", len = in.dim, lower = 0, upper = 1),
@@ -46,6 +46,7 @@ generateCF10= function(in.dim = 30L, out.dim = 2L) {
     out.dim = out.dim,
     param.set = param.set,
     paretoSet = paretoSet,
-    paretoFront = paretoFront)
+    paretoFront = paretoFront, 
+    on.infeasible  =on.infeasible)
 }
 

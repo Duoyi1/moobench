@@ -20,12 +20,15 @@
 #'   Function, that returns n points randomly distributed on the true Pareto set.
 #' @param paretoFront [\code{function} | NULL] \cr
 #'   Function, that returns n points randomly distributed on the true Pareto front.
+#' @param on.infeasible [\code{character}] \cr
+#'   What should happen if infeasible values are evaluated? Possible values are
+#'   stop (code stops with error message) and NA (NA value is returned).
 #' @return A \code{mooFunction} object.
 #'
 #' @export
 
 mooFunction = function(name, id, fun, in.dim, out.dim,
-  param.set, paretoSet, paretoFront) {
+  param.set, paretoSet, paretoFront, on.infeasible = "stop") {
   
   assertCharacter(x = name, len = 1L, all.missing = FALSE)
   # FIXME: look at grepl patterns
@@ -50,7 +53,7 @@ mooFunction = function(name, id, fun, in.dim, out.dim,
   
   structure(
     function(...)
-      evalMooFunction(fun, param.set, ...),
+      evalMooFunction(fun, param.set, out.dim, on.infeasible, ...),
     name = name,
     id = id,
     in.dim = in.dim,
@@ -58,6 +61,7 @@ mooFunction = function(name, id, fun, in.dim, out.dim,
     class = c("mooFunction", class(fun)),
     param.set = param.set,
     paretoSet = paretoSet,
-    paretoFront = paretoFront
+    paretoFront = paretoFront,
+    on.infeasible = on.infeasible
     )
 }

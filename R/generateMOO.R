@@ -12,7 +12,7 @@
 #' 
 generateMOO = function(name = "", ...) {
   
-  fun = switch(name,
+  switch(name,
     zdt1 = generateZDT(id = 1, ...),
     zdt2 = generateZDT(id = 2, ...),
     zdt3 = generateZDT(id = 3, ...),
@@ -109,5 +109,4 @@ generateMOO = function(name = "", ...) {
     zlt1 = generateZLT1(...),
     stop("Unknown ID")
   )
-  
 }

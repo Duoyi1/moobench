@@ -28,7 +28,8 @@ renderPlotMooFunction = function(x, resolution = 33L, plot.vars = 1:2, const.val
   
   assertIntegerish(resolution, lower = 2L, len = 1L)
   assertIntegerish(plot.vars, lower = 1L, upper = in.dim, len = 2L)
-  if (!is.null(const.values))  assertNumeric(const.values, len = in.dim - 2L)
+  if (!is.null(const.values))
+    assertNumeric(const.values, len = in.dim - 2L)
   
   
   renderBasicPlot = function(dat, title, legend = FALSE, ...) {
@@ -38,21 +39,33 @@ renderPlotMooFunction = function(x, resolution = 33L, plot.vars = 1:2, const.val
     dat = reshape(dat, direction = "long", varying = list(c("f1", "f2")), timevar = "fill")
     dat$fill = as.factor(dat$fill)
     levels(dat$fill) = c("f1", "f2")
+    dat[is.na(dat$f1), "fill"] = NA
     #dat[is.na(dat$z1), ]$fill = rep("NA", sum(is.na(dat)))
 
+
+    p = ggplot(aes = aes(x = x1, y = x2))
+    
     dat1 = dat[dat$fill == "f1", ]
-    dat2 = dat[dat$fill == "f2", ]
-    p = ggplot(data = dat1, aes = aes(x = x1, y = x2))
     p = p + geom_tile(data = dat1, aes(x = x1, y = x2, fill = fill, alpha = f1))
+    
+    dat2 = dat[dat$fill == "f2", ]
     p = p + geom_tile(data = dat2, aes(x = x1, y = x2, fill = fill, alpha = f1 - 0.25))
+    
+    dat3 = dat[is.na(dat$fill), ]
+    if (nrow(dat3) > 0L) {
+      dat3$f1 = 0.05
+      p = p + geom_tile(data = dat3, aes(x = x1, y = x2, fill = fill, alpha = f1))
+    }
+    
     p = p + scale_alpha_continuous(range = c(0, 0.75), guide = FALSE, na.value = 0.5)
     p = p + scale_fill_manual(values = c("blue", "red"), name = "variable", 
-      guide = FALSE, na.value = "orange")
+      guide = FALSE, na.value = "green")
     p = p + scale_x_continuous(expand = c(0, 0))
     p = p + scale_y_continuous(expand = c(0, 0))
     p = p + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), 
       panel.background = element_blank(), axis.line = element_blank())
     p = p + ggtitle(title)
+    p
     
     if(legend == TRUE) {
       p = p + xlab("f1") + ylab("f2")
