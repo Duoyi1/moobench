@@ -94,14 +94,14 @@ renderPlotMooFunction = function(x, resolution = 33L, plot.vars = 1:2, const.val
   p = renderBasicPlot(dat, title = name, ...) 
   
   # add pareto set
-  pareto = as.data.frame(getParetoSet(fun))
+  pareto = as.data.frame(getParetoSet(fun, n = 500L))
   if (nrow(pareto) > 0) {
     names(pareto) = c("x1", "x2")
-    p = p + geom_line(data = pareto, aes(x = x1, y = x2, linetype = "pareto set"))
+    p = p + geom_point(data = pareto, aes(x = x1, y = x2, shape = "pareto set"))
     # extract legend from plot
-    p.tmp = p + scale_linetype_manual(name = "", values = c(1))
+    p.tmp = p + scale_shape_manual(name = "", values = c(16))
     p.legend2 = g_legend(p.tmp)
-    p = p + scale_linetype_manual(guide = FALSE, values = c(1))
+    p = p + scale_shape_manual(guide = FALSE, values = c(16))
   } else {
     p.legend2 = NULL
   }
