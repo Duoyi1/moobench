@@ -18,35 +18,46 @@ plot.mooFunction = function(x, ...) {
 }
 
 
-renderPlotMooFunction = function(x, resolution = 33L, ...) {
+renderPlotMooFunction = function(x, resolution = 33L, plot.vars = 1:2, const.values = NULL, ...) {
   
-  if (getInDim(x) != 2 || getOutDim(x) != 2) {
-    stop("Only functions with InDim = 2 and OutDim = 2 can be plotted!")
+  in.dim = getInDim(x)
+  
+  if (in.dim < 2 || getOutDim(x) != 2) {
+    stop("Only functions with InDim >= 2 and OutDim = 2 can be plotted!")
   }
   
+  assertIntegerish(resolution, lower = 2L, len = 1L)
+  assertIntegerish(plot.vars, lower = 1L, upper = in.dim, len = 2L)
+  if (!is.null(const.values))  assertNumeric(const.values, len = in.dim - 2L)
+  
+  
   renderBasicPlot = function(dat, title, legend = FALSE, ...) {
-    dat$z1 = BBmisc::normalize(dat$z1, method = "range", range = c(0, 1))
-    dat$z2 = BBmisc::normalize(dat$z2, method = "range", range = c(0, 1))
+    dat$f1 = BBmisc::normalize(dat$f1, method = "range", range = c(0, 1))
+    dat$f2 = BBmisc::normalize(dat$f2, method = "range", range = c(0, 1))
     
-    dat = reshape(dat, direction = "long", varying = list(c("z1", "z2")), timevar = "fill")
+    dat = reshape(dat, direction = "long", varying = list(c("f1", "f2")), timevar = "fill")
     dat$fill = as.factor(dat$fill)
-    levels(dat$fill) = c("z1", "z2")
+    levels(dat$fill) = c("f1", "f2")
+    #dat[is.na(dat$z1), ]$fill = rep("NA", sum(is.na(dat)))
 
-    dat1 = dat[dat$fill == "z1", ]
-    dat2 = dat[dat$fill == "z2", ]
-    p = ggplot(data = dat1, aes = aes(x = x, y = y))
-    p = p + geom_tile(data = dat1, aes(x = x, y = y, fill = fill, alpha = z1))
-    p = p + geom_tile(data = dat2, aes(x = x, y = y, fill = fill, alpha = z1 - 0.25))
-    p = p + scale_alpha_continuous(range = c(0, 0.75), guide = FALSE)
-    p = p + scale_fill_manual(values = c("blue", "red"), name = "variable", guide = FALSE)
-    p = p + scale_x_continuous(expand = c(0, 0)) 
+    dat1 = dat[dat$fill == "f1", ]
+    dat2 = dat[dat$fill == "f2", ]
+    p = ggplot(data = dat1, aes = aes(x = x1, y = x2))
+    p = p + geom_tile(data = dat1, aes(x = x1, y = x2, fill = fill, alpha = f1))
+    p = p + geom_tile(data = dat2, aes(x = x1, y = x2, fill = fill, alpha = f1 - 0.25))
+    p = p + scale_alpha_continuous(range = c(0, 0.75), guide = FALSE, na.value = 0.5)
+    p = p + scale_fill_manual(values = c("blue", "red"), name = "variable", 
+      guide = FALSE, na.value = "orange")
+    p = p + scale_x_continuous(expand = c(0, 0))
     p = p + scale_y_continuous(expand = c(0, 0))
     p = p + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), 
       panel.background = element_blank(), axis.line = element_blank())
     p = p + ggtitle(title)
     
     if(legend == TRUE) {
-      p = p + xlab("z1") + ylab("z2")
+      p = p + xlab("f1") + ylab("f2")
+    } else {
+      p = p + xlab(paste("x", plot.vars[1L], sep = "")) + ylab(paste("x", plot.vars[2L], sep = ""))
     }
     
     return(p)
@@ -59,24 +70,34 @@ renderPlotMooFunction = function(x, resolution = 33L, ...) {
     return(legend)
   } 
   
-  par.set = getParamSet(x)
+  fun = x
+  par.set = getParamSet(fun)
   lower = getLower(par.set)
   upper = getUpper(par.set)
-  name = getName(x)
+  name = getName(fun)
   
-  grid = expand.grid(seq(lower[1L], upper[1L], length.out = resolution), 
-    seq(lower[2L], upper[2L], length.out = resolution))
-  z = apply(grid, 1, x)
-  dat = cbind(grid[, 1:2], t(z))
-  names(dat) = c("x", "y", "z1", "z2")  
+  if (is.null(const.values)) {
+    const.values = lower[-plot.vars]
+  }
+  
+  grid = expand.grid(seq(lower[plot.vars[1L]], upper[plot.vars[1L]], length.out = resolution), 
+    seq(lower[plot.vars[2L]], upper[plot.vars[2L]], length.out = resolution))
+  grid2 = matrix(nrow = resolution ^ 2, ncol = getInDim(fun))
+  grid2[, plot.vars] = as.matrix(grid)
+  grid2[, -plot.vars] = matrix(const.values, nrow = resolution ^ 2, ncol = in.dim - 2L)
+  
+  z = apply(grid2, 1, fun)
+  
+  dat = cbind(grid, t(z))
+  names(dat) = c("x1", "x2", "f1", "f2")  
 
   p = renderBasicPlot(dat, title = name, ...) 
   
   # add pareto set
-  pareto = as.data.frame(getParetoSet(x))
+  pareto = as.data.frame(getParetoSet(fun))
   if (nrow(pareto) > 0) {
-    names(pareto) = c("x", "y")
-    p = p + geom_line(data = pareto, aes(x = x, y = y, linetype = "pareto set"))
+    names(pareto) = c("x1", "x2")
+    p = p + geom_line(data = pareto, aes(x = x1, y = x2, linetype = "pareto set"))
     # extract legend from plot
     p.tmp = p + scale_linetype_manual(name = "", values = c(1))
     p.legend2 = g_legend(p.tmp)
@@ -86,12 +107,12 @@ renderPlotMooFunction = function(x, resolution = 33L, ...) {
   }
 
   # legend
-  lower.legend = c(min(dat$z1), min(dat$z2))
-  upper.legend = c(max(dat$z1), max(dat$z2))
-  grid.legend = expand.grid(seq(lower.legend[1L], upper.legend[1L], length.out = resolution), 
-    seq(lower.legend[2L], upper.legend[2L], length.out = resolution))
+  lower.legend = c(min(dat$f1, na.rm = TRUE), min(dat$f2, na.rm = TRUE))
+  upper.legend = c(max(dat$f1, na.rm = TRUE), max(dat$f2, na.rm = TRUE))
+  grid.legend = expand.grid(seq(lower.legend[1L], upper.legend[1L], length.out = 50L), 
+    seq(lower.legend[2L], upper.legend[2L], length.out = 50L))
   dat.legend = cbind(grid.legend, grid.legend)
-  names(dat.legend) = c("x", "y", "z1", "z2")  
+  names(dat.legend) = c("x1", "x2", "f1", "f2")  
   p.legend1 = renderBasicPlot(dat.legend, title = "legend", legend = TRUE, ...)
   
   return(list(p = p, p.legend1 = p.legend1, p.legend2 = p.legend2))
