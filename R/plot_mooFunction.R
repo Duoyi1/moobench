@@ -29,7 +29,7 @@ plot.mooFunction = function(x, ...) {
 }
 
 
-renderPlotMooFunction = function(x, resolution = 33L, plot.vars = 1:2, const.values = NULL, ...) {
+renderPlotMooFunction = function(x, resolution = 64L, plot.vars = 1:2, const.values = NULL, ...) {
   
   in.dim = getInDim(x)
   
@@ -44,7 +44,7 @@ renderPlotMooFunction = function(x, resolution = 33L, plot.vars = 1:2, const.val
   
   
   # function to render the main and the legend plot
-  renderBasicPlot = function(dat, title, legend = FALSE, res = resolution, ...) {
+  renderBasicPlot = function(dat, title, legend = FALSE, ...) {
     dat$f1 = BBmisc::normalize(dat$f1, method = "range", range = c(0, 1))
     dat$f2 = BBmisc::normalize(dat$f2, method = "range", range = c(0, 1))
     
@@ -103,7 +103,10 @@ renderPlotMooFunction = function(x, resolution = 33L, plot.vars = 1:2, const.val
   grid2[, plot.vars] = as.matrix(grid)
   grid2[, -plot.vars] = matrix(const.values, nrow = resolution ^ 2, ncol = in.dim - 2L)
   
-  z = apply(grid2, 1, fun)
+  z = try(apply(grid2, 1, fun), silent = TRUE)
+  if (inherits(z, "try-error")) {
+    stop("Please create function f with on.infeasible = 'NA'.")
+  }
   
   dat = cbind(grid, t(z))
   names(dat) = c("x1", "x2", "f1", "f2")  
