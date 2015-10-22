@@ -18,8 +18,8 @@ getParetoSet = function(f, n) {
 getParetoSet.mooFunction = function(f, n = 100 * getOutDim(f)) {
   fun = attributes(f)$paretoSet
   if (is.null(fun)) {
-    warning("No Pareto set definition for f available.")
-    return(matrix(NA, ncol = getInDim(f), nrow = 0L))
+    #warning("No Pareto set definition for f available.")
+    return(matrix(NA_real_, ncol = getInDim(f), nrow = 0L))
   }
   else
     return(fun(n))
@@ -36,8 +36,8 @@ getParetoFront = function(f, n) {
 getParetoFront.mooFunction = function(f, n = 100 * getOutDim(f)) {
   fun = attributes(f)$paretoFront
   if (is.null(fun)) {
-    warning("No Pareto front definition for f available.")
-    return(matrix(NA, ncol = getInDim(f), nrow = 0L))
+    #warning("No Pareto front definition for f available.")
+    return(matrix(NA_real_, ncol = getInDim(f), nrow = 0L))
   }
   else
     return(fun(n))
