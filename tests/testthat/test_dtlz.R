@@ -27,7 +27,7 @@ test_that("dtlz4", {
 test_that("dtlz5", {
   f = generateDTLZ(5, in.dim = 2L)
   value = f(c(1, 1))
-  expect_equal(value, c(0, 1.933033))
+  expect_equal(value, c(0, 2))
 })
 
 test_that("dtlz6", {

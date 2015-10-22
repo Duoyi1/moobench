@@ -11,6 +11,8 @@
 
 - dtlz7 outdim 2 anders
 
+- cf6 indim 3 geht nicht, cf7 indim 3 und 4
+
 - Plot Funktion für 2 -> 2 Funktionen: Elkemann-Idee mit Rot und Blau Werten
   -> Pareto Set Plot gehört mit in diesen Plot
   -> Karin

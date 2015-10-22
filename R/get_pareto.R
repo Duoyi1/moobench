@@ -37,7 +37,7 @@ getParetoFront.mooFunction = function(f, n = 100 * getOutDim(f)) {
   fun = attributes(f)$paretoFront
   if (is.null(fun)) {
     #warning("No Pareto front definition for f available.")
-    return(matrix(NA_real_, ncol = getInDim(f), nrow = 0L))
+    return(matrix(NA_real_, ncol = getOutDim(f), nrow = 0L))
   }
   else
     return(fun(n))

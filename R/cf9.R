@@ -16,26 +16,38 @@ generateCF9 = function(in.dim = 30L, out.dim = 2L, on.infeasible) {
   paretoSet = NULL
   
   paretoFront = function(n = out.dim * 100L) {
-    n = floor(n / 3)
+    N = floor(n / 3)
     
-    f1 = rep(0, n)
-    f2 = runif(n)
-    f3 = (1 - f2^2)^0.5
-    
-    
-    ff3 = runif(n)
-    ff1 = runif(n, min = (0.25 * (1 - ff3^2))^0.5, max = (0.5 * (1 - ff3^2))^0.5)
-    ff2 = (1 - ff1^2 - ff3^2)^0.5
-    
-    fff3 = runif(n)
-    fff1 = runif(n, min = (0.75 * (1 - fff3^2))^0.5, max = (1 - fff3^2)^0.5)
-    fff2 = (1 - fff1^2 - fff3^2)^0.5
+    if (N * 3 == n) {
+      f1 = rep(0, N)
+      f2 = runif(N)
+      f3 = (1 - f2^2)^0.5
+      
+      ff3 = runif(N)
+      ff1 = runif(N, min = (0.25 * (1 - ff3^2))^0.5, max = (0.5 * (1 - ff3^2))^0.5)
+      ff2 = (1 - ff1^2 - ff3^2)^0.5
+      
+      fff3 = runif(N)
+      fff1 = runif(N, min = (0.75 * (1 - fff3^2))^0.5, max = (1 - fff3^2)^0.5)
+      fff2 = (1 - fff1^2 - fff3^2)^0.5
+    } else {
+      f1 = rep(0, n - N * 2)
+      f2 = runif(n - N * 2)
+      f3 = (1 - f2^2)^0.5
+      
+      ff3 = runif(N)
+      ff1 = runif(N, min = (0.25 * (1 - ff3^2))^0.5, max = (0.5 * (1 - ff3^2))^0.5)
+      ff2 = (1 - ff1^2 - ff3^2)^0.5
+      
+      fff3 = runif(N)
+      fff1 = runif(N, min = (0.75 * (1 - fff3^2))^0.5, max = (1 - fff3^2)^0.5)
+      fff2 = (1 - fff1^2 - fff3^2)^0.5
+    }
     
     des = cbind(c(f1, ff1, fff1), c(f2, ff2, fff2), c(f3, ff3, fff3))
     des = des[order(des[, 1L]), ]
     rownames(des) = 1:nrow(des)
     des
-    
   }
   
   mooFunction(
