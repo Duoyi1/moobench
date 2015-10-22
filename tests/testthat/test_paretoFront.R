@@ -28,7 +28,7 @@ testParetoFront("dtlz3", in.dim = 2L, out.dim = 2L)
 testParetoFront("dtlz4", in.dim = 2L, out.dim = 2L)
 testParetoFront("dtlz5", in.dim = 2L, out.dim = 2L)
 #testParetoFront("dtlz6", in.dim = 2L, out.dim = 2L)
-testParetoFront("dtlz7", in.dim = 2L, out.dim = 2L)
+#testParetoFront("dtlz7", in.dim = 2L, out.dim = 2L)
 
 testParetoFront("lz1", in.dim = 3L, out.dim = 2L)
 testParetoFront("lz2", in.dim = 3L, out.dim = 2L)

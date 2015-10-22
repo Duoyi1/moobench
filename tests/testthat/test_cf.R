@@ -20,7 +20,7 @@ test_that("cf2", {
 })
 
 test_that("cf3", {
-  f = generateCF(3, in.dim = 3L, on.infeasible = "NA")
+  f = generateCF(3, in.dim = 3L, on.infeasible = "stop")
   expect_error(f(c(1, 1, 1)))
   g = generateCF(3, in.dim = 3L, on.infeasible = "NA")
   value = g(c(1, 1, 1))
