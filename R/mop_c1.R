@@ -1,6 +1,6 @@
 # MOP_C1 test function generator.
 
-generateMOP_C1 = function(in.dim = 2L, out.dim = 2L) {
+generateMOP_C1 = function(in.dim = 2L, out.dim = 2L, on.infeasible = "stop") {
   
   param.set = makeParamSet(
     makeNumericVectorParam(id = "x", len = in.dim, lower = c(0, 0), upper = c(5, 3)),
@@ -26,7 +26,8 @@ generateMOP_C1 = function(in.dim = 2L, out.dim = 2L) {
     out.dim = out.dim,
     param.set = param.set,
     paretoSet = paretoSet,
-    paretoFront = paretoFront)
+    paretoFront = paretoFront,
+    on.infeasible = on.infeasible)
 }
 
 # Definiton of mop_c1

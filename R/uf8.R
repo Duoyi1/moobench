@@ -2,7 +2,8 @@
 
 generateUF8 = function(in.dim = 30L, out.dim = 2L) {
   
-  param.set = makeNumericParamSet(id = "x", len = in.dim, lower = 0, upper = 1)
+  param.set = makeNumericParamSet(id = "x", len = in.dim,
+    lower = c(0, 0, rep(-2, in.dim - 2)), upper = c(1, 1, rep(2, in.dim - 2)))
   
   paretoSet = function(n = out.dim * 100L) {
     des = generateDesign(par.set = param.set, n = n)
@@ -13,8 +14,13 @@ generateUF8 = function(in.dim = 30L, out.dim = 2L) {
     x2 = des[, 2L]
     j = 3:in.dim
     
-    des[, -(1:2)] = t(sapply(seq_along(x1), function(i) 
-      2 * x2[i] * sin(2 * pi * x1[i] + (j * pi) / in.dim)))
+    tmp1 = sapply(seq_along(x1), function(i) 
+      2 * x2[i] * sin(2 * pi * x1[i] + (j * pi) / in.dim))
+    
+    if (is.vector(tmp1))
+      des[, -(1:2)] = tmp1
+    else
+      des[, -(1:2)] = t(tmp1)
     
     des
   }

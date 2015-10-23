@@ -3,12 +3,13 @@
 generateCF7 = function(in.dim = 30L, out.dim = 2L, on.infeasible) {
   
   param.set = makeParamSet(
-    makeNumericVectorParam(id = "x", len = in.dim, lower = 0, upper = 1),
+    makeNumericVectorParam(id = "x", len = in.dim,
+      lower = c(0, rep(-2, in.dim - 1)), upper = c(1, rep(2, in.dim - 1))),
     forbidden = expression({
       #FIXME: Ask someone intelligent!! This is not good!!!
       if (is.list(x))
         x = x[[1L]]
-      f = lz6(x)
+      f = cf7(x)
       (f[1L]^2 + f[2L]^2) / (1 - f[3L]^2) - 
         4 * abs(sin(2 * pi * ((f[1L]^2 - f[2L]^2) / (1 - f[3L]^2) + 1))) - 1 >= 0
     }))

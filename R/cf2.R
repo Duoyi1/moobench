@@ -2,8 +2,10 @@
 
 generateCF2 = function(in.dim = 30L, out.dim = 2L, on.infeasible) {
   
+  
   param.set = makeParamSet(
-    makeNumericVectorParam(id = "x", len = in.dim, lower = 0, upper = 1),
+    makeNumericVectorParam(id = "x", len = in.dim,
+      lower = c(0, rep(-1, in.dim - 1)), upper = 1),
     forbidden = expression({
       #FIXME: Ask someone intelligent!! This is not good!!!
       if (is.list(x))

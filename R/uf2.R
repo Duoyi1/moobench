@@ -2,7 +2,8 @@
 
 generateUF2 = function(in.dim = 30L, out.dim = 2L) {
   
-  param.set = makeNumericParamSet(id = "x", len = in.dim, lower = 0, upper = 1)
+  param.set = makeNumericParamSet(id = "x", len = in.dim,
+    lower = c(0, rep(-1, in.dim - 1)), upper = 1)
   
   paretoSet = function(n = out.dim * 100L) {
     des = generateDesign(par.set = param.set, n = n)
@@ -14,10 +15,20 @@ generateUF2 = function(in.dim = 30L, out.dim = 2L) {
     j1 = j[j %% 2 == 1L]
     j2 = j[j %% 2 == 0L]
     
-    des[, j1] = t(sapply(x1, function(x) 0.3 * x^2 * cos(24 * pi * x + (4 * j1 * pi) / 
-        in.dim + 0.6 * x) * cos(6 * pi * x + (j1 * pi) / in.dim)))
-    des[, j2] = t(sapply(x1, function(x) 0.3 * x^2 * cos(24 * pi * x + (4 * j2 * pi) / 
-        in.dim + 0.6 * x) * sin(6 * pi * x + (j2 * pi) / in.dim)))
+    tmp1 = sapply(x1, function(x) (0.3 * x^2 * cos(24 * pi * x + (4 * j1 * pi) / in.dim)
+      + 0.6 * x) * cos(6 * pi * x + (j1 * pi) / in.dim))
+    tmp2 = sapply(x1, function(x) (0.3 * x^2 * cos(24 * pi * x + (4 * j2 * pi) / in.dim)
+      + 0.6 * x) * sin(6 * pi * x + (j2 * pi) / in.dim))
+    
+    if (is.vector(tmp1))
+      des[, j1] = tmp1
+    else
+      des[, j1] = t(tmp1)
+    
+    if (is.vector(tmp2))
+      des[, j2] = tmp2
+    else
+      des[, j2] = t(tmp2)
     
     des
   }

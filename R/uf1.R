@@ -2,7 +2,8 @@
 
 generateUF1 = function(in.dim = 30L, out.dim = 2L) {
   
-  param.set = makeNumericParamSet(id = "x", len = in.dim, lower = 0, upper = 1)
+  param.set = makeNumericParamSet(id = "x", len = in.dim,
+    lower = c(0, rep(-1, in.dim - 1)), upper = 1)
   
   paretoSet = function(n = out.dim * 100L) {
     des = generateDesign(par.set = param.set, n = n)

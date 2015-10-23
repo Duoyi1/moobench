@@ -40,6 +40,9 @@ generateCF = function(id, in.dim = 30L, out.dim = 2L, on.infeasible = "stop") {
   if (id %in% c(1:7) && in.dim < 3L)
     stopf("CF%i supports only in.dim >= 3.", id)
   
+  if (id %in% 6 && in.dim < 4L)
+    stopf("CF%i supports only in.dim >= 4.", id)
+  
   
   if (in.dim < out.dim)
     stopf("You set out.dim = %i and in.dim = %i, but in.dim must be greatar than out.dim!.",

@@ -44,8 +44,8 @@ test_that("mop7", {
 
 test_that("mop_c1", {
   f = generateMOP_C(1, in.dim = 2L)
-  #value = f(c(1, 1))
-  #expect_equal(value, c(8, 32))
+  value = f(c(0, 1))
+  expect_equal(value, c(4, 41))
 })
 
 test_that("mop_c2", {

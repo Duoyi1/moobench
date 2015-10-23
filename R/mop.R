@@ -7,6 +7,9 @@
 #'   Size of parameter space. Specified  for each MOP function.
 #' @param out.dim [\code{integer(1)}] \cr
 #'   Size of target space. Specified  for each MOP function.
+#' @param on.infeasible [\code{character}] \cr
+#'   What should happen if infeasible values are evaluated? Possible values are
+#'   stop (code stops with error message) and NA (NA value is returned).
 #' @return A \code{mooFunction}.
 #' 
 #' @references 
@@ -48,7 +51,7 @@ generateMOP = function(id, in.dim = 30L, out.dim = 2L) {
 
 #' @rdname generateMOP
 #' @export
-generateMOP_C = function(id, in.dim = 30L, out.dim = 2L) {
+generateMOP_C = function(id, in.dim = 30L, out.dim = 2L, on.infeasible = "stop") {
   in.dim = asCount(in.dim)
   out.dim = asCount(out.dim)
   
@@ -65,8 +68,8 @@ generateMOP_C = function(id, in.dim = 30L, out.dim = 2L) {
   assertChoice(id, 1:3)
   
   switch(id,
-    generateMOP_C1(in.dim, out.dim), 
-    generateMOP_C2(in.dim, out.dim), 
-    generateMOP_C3(in.dim, out.dim)
+    generateMOP_C1(in.dim, out.dim, on.infeasible = on.infeasible), 
+    generateMOP_C2(in.dim, out.dim, on.infeasible = on.infeasible), 
+    generateMOP_C3(in.dim, out.dim, on.infeasible = on.infeasible)
   )
 }

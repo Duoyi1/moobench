@@ -1,4 +1,4 @@
-context("other wfg")
+context("simple test function")
 
 test_that("bk1", {
   f = generateBK1(in.dim = 2L, out.dim = 2L)
