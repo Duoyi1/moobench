@@ -11,6 +11,7 @@
 #' @export
 #' 
 generateMOO = function(name = "", ...) {
+  assertCharacter(name)
   
   switch(name,
     zdt1 = generateZDT(id = 1, ...),

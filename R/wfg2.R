@@ -7,9 +7,7 @@ generateWFG2 = function(in.dim, out.dim, k) {
   paretoSet = function(n = out.dim * 100L) {
     # sample 10 times points and remove dominated ones - we have a disconnected front
     des = generateDesign(par.set = param.set, n = 10 * n)
-    des = des[order(des[, 1L]), ]
-    rownames(des) = 1:nrow(des)
-    
+  
     i = (k + 1):in.dim
     des[, (k + 1):in.dim] = matrix(2 * i * 0.35, nrow = nrow(des), ncol = in.dim - k,
       byrow = TRUE)
@@ -17,16 +15,22 @@ generateWFG2 = function(in.dim, out.dim, k) {
     des = des[!is_dominated(apply(des, 1, makeWfg2(in.dim, out.dim, k))), ]
     des = des[sample(nrow(des), n), ]
     
+    des = des[order(des[, 1L]), ]
+    rownames(des) = 1:nrow(des)
+    
     des
   }
   
   paretoFront = function(n = out.dim * 100L) {
-    x = matrix(runif(n * (out.dim - 1)), nrow = n, ncol = out.dim - 1) 
+    x = matrix(runif(10 * n * (out.dim - 1)), nrow = 10 * n, ncol = out.dim - 1) 
     
     shapeTrafos = makeWFGShapeTrafo(arg = c(replicate(out.dim - 1L, list(name = "convex"), simplify = FALSE), 
       list(list(name = "disconnected", params = list(alpha = 1, beta = 1, A = 5L)))))
     
     des = sapply(seq_along(shapeTrafos), function(i) 2 * i * apply(x, 1, shapeTrafos[[i]]))
+    
+    des = des[!is_dominated(t(des)), ]
+    des = des[sample(nrow(des), n), ]
     
     des = des[order(des[, 1L]), ]
     rownames(des) = 1:nrow(des)

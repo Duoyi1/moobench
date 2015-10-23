@@ -25,9 +25,10 @@ generateWFG = function(id, in.dim, out.dim, k) {
   out.dim = asCount(out.dim)
   k = asCount(k)
   
-  if(k %in% which(1:(in.dim - 1) %% (out.dim - 1) != 0))
-    stop("k must be between 1 and (in.dim - 1) and divisble by (out.dim - 1). Your k violates this constraints.")
-  
+  if(!(k %in% 1:(in.dim - 1)))
+    stop("k must be between 1 and (in.dim - 1). Your k violates this constraint.")
+  if(k %% (out.dim - 1) != 0) 
+    stop("k must be divisble by (out.dim - 1). Your k violates this constraint.")  
   if (out.dim < 2L)
     stopf("You set your out.dim to %i. This is not multicrit! Set it at least to 2.", out.dim)
   

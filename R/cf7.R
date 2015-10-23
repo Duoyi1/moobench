@@ -9,9 +9,11 @@ generateCF7 = function(in.dim = 30L, out.dim = 2L, on.infeasible) {
       #FIXME: Ask someone intelligent!! This is not good!!!
       if (is.list(x))
         x = x[[1L]]
-      f = cf7(x)
-      (f[1L]^2 + f[2L]^2) / (1 - f[3L]^2) - 
-        4 * abs(sin(2 * pi * ((f[1L]^2 - f[2L]^2) / (1 - f[3L]^2) + 1))) - 1 >= 0
+      const1 = x[2L] - sin(6 * pi * x[1L] + 0.2 * pi) - sign(0.5 * (1 - x[1L]) - 
+          (1 - x[1L])^2) * sqrt(abs(0.5 * (1 - x[1L]) - (1 - x[1L])^2)) >= 0 
+      const2 = x[4L] - sin(6 * pi * x[1L] + 0.4 * pi) - sign(0.25 * sqrt(1 - x[1L]) - 
+          0.5 * (1 - x[1L])) * sqrt(abs(0.25 * sqrt(1 - x[1L]) - 0.5 * (1 - x[1L]))) >= 0
+      const1 && const2
     }))
   
   paretoSet = NULL

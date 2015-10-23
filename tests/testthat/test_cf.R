@@ -52,13 +52,10 @@ test_that("cf6", {
 })
 
 test_that("cf7", {
-  e = generateCF(7, in.dim = 5L)
-  value = e(c(1, 1, 1, 1, 1))
-  expect_equal(value, c(14.1644199, 0.1723165))
-  f = generateCF(7, in.dim = 5L, on.infeasible = "stop")
-  expect_error(f(c(1, 1, 1, 1, 10)))
-  g = generateCF(7, in.dim = 5L, on.infeasible = "NA")
-  value = g(c(1, 1, 1, 1, 10))
+  f = generateCF(7, in.dim = 4L, on.infeasible = "stop")
+  expect_error(f(c(1, 1, 1, 1)))
+  g = generateCF(7, in.dim = 4L, on.infeasible = "NA")
+  value = g(c(1, 1, 1, 1))
   expect_equal(value, c(NA_real_, NA_real_))
 })
 
