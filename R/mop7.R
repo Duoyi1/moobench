@@ -2,7 +2,7 @@
 
 generateMOP7 = function(in.dim = 2L, out.dim = 3L) {
   
-  param.set = makeNumericParamSet(id = "x", len = in.dim, lower = -30, upper = 30)
+  param.set = makeNumericParamSet(id = "x", len = in.dim, lower = -400, upper = 400)
   
   paretoSet = NULL
   
