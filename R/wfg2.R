@@ -5,13 +5,18 @@ generateWFG2 = function(in.dim, out.dim, k) {
   param.set = makeNumericParamSet(id = "x", len = in.dim, lower = 0, upper = 2 * 1:in.dim)
   
   paretoSet = function(n = out.dim * 100L) {
-    des = generateDesign(par.set = param.set, n = n)
+    # sample 10 times points and remove dominated ones - we have a disconnected front
+    des = generateDesign(par.set = param.set, n = 10 * n)
     des = des[order(des[, 1L]), ]
     rownames(des) = 1:nrow(des)
     
     i = (k + 1):in.dim
     des[, (k + 1):in.dim] = matrix(2 * i * 0.35, nrow = nrow(des), ncol = in.dim - k,
       byrow = TRUE)
+    
+    des = des[!is_dominated(apply(des, 1, makeWfg2(in.dim, out.dim, k))), ]
+    des = des[sample(nrow(des), n), ]
+    
     des
   }
   

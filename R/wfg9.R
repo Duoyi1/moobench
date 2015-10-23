@@ -9,10 +9,12 @@ generateWFG9 = function(in.dim, out.dim, k) {
     des = des[order(des[, 1L]), ]
     rownames(des) = 1:nrow(des)
     
-    for(i in (k + 1):(in.dim - 1))
-      des[, i] = 2 * i * 0.35^(0.02 + 1.96 * rowMeans(des[, 1:(i - 1), drop = FALSE]))^-1 
     
     des[, in.dim] = 2 * in.dim * 0.35
+    
+    for(i in (in.dim - 1): (k + 1))
+      des[, i] = 2 * i * 0.35^(0.02 + 1.96 * rowMeans(des[, (i + 1):in.dim, drop = FALSE]))^-1 
+    
     
     des
   }
