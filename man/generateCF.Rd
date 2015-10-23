@@ -6,7 +6,7 @@
 \alias{generateCF}
 \title{CF test function generator.}
 \usage{
-generateCF(id, in.dim = 30L, out.dim = 2L)
+generateCF(id, in.dim = 30L, out.dim = 2L, on.infeasible = "stop")
 }
 \arguments{
 \item{id}{[\code{integer(1)}] \cr
@@ -17,6 +17,10 @@ Size of parameter space.}
 
 \item{out.dim}{[\code{integer(1)}] \cr
 Size of target space. Must be two for CF 1-7 functions and three for CF 8-10 functions.}
+
+\item{on.infeasible}{[\code{character}] \cr
+What should happen if infeasible values are evaluated? Possible values are
+stop (code stops with error message) and NA (NA value is returned).}
 }
 \value{
 A \code{mooFunction}.

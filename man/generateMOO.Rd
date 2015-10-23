@@ -4,13 +4,13 @@
 \alias{MOO}
 \alias{generateMOO}
 \alias{moo}
-\title{Genrate MOO functions}
+\title{Generate MOO functions}
 \usage{
 generateMOO(name = "", ...)
 }
 \arguments{
 \item{name}{[\code{character(1)}] \cr
-Which MOO function? (DTLZ, ZDT, LZ, UF, CF) Small letters and number.}
+Which MOO function? (DTLZ, ZDT, LZ, UF, CF, WFG, MOP) Small letters and number.}
 
 \item{...}{[\code{any}] \cr
 Noch was schreiben}
@@ -19,6 +19,6 @@ Noch was schreiben}
 A \code{mooFunction}.
 }
 \description{
-Genrate MOO functions
+Generate MOO functions
 }
 

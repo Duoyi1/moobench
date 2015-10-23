@@ -4,7 +4,8 @@
 \alias{mooFunction}
 \title{Multi Objective Optimization Function}
 \usage{
-mooFunction(name, id, fun, in.dim, out.dim, param.set, paretoSet)
+mooFunction(name, id, fun, in.dim, out.dim, param.set, paretoSet, paretoFront,
+  on.infeasible = "stop")
 }
 \arguments{
 \item{name}{[\code{character(1)}] \cr
@@ -28,7 +29,14 @@ Dimnesion of the targer space.}
 Parameter set to describe (box) constraints for the function.}
 
 \item{paretoSet}{[\code{function} | NULL] \cr
-Function, that returns n points randomly distributed on the true pareto set.}
+Function, that returns n points randomly distributed on the true Pareto set.}
+
+\item{paretoFront}{[\code{function} | NULL] \cr
+Function, that returns n points randomly distributed on the true Pareto front.}
+
+\item{on.infeasible}{[\code{character}] \cr
+What should happen if infeasible values are evaluated? Possible values are
+stop (code stops with error message) and NA (NA value is returned).}
 }
 \value{
 A \code{mooFunction} object.
