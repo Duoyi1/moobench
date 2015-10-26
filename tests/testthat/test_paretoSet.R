@@ -10,6 +10,13 @@ testParetoSet = function(name, in.dim, out.dim, ...) {
     } else {
       expect_equal(dim(ps), c(100, in.dim))
       vals = apply(ps, 1, f)
+      
+      # if our points are numerical identical dominance is random - so exclude
+      # points to near to each other
+      to.small = as.matrix(dist(t(vals), diag = FALSE, upper = TRUE)) < 1e-6
+      diag(to.small) = FALSE
+      vals = vals[, !apply(to.small, 2, any)]
+      
       expect_true(all(!is_dominated(vals)))
     }
     
@@ -26,7 +33,7 @@ testParetoSet("zdt6", in.dim = 2L, out.dim = 2L)
 testParetoSet("dtlz1", in.dim = 2L, out.dim = 2L)
 testParetoSet("dtlz2", in.dim = 2L, out.dim = 2L)
 testParetoSet("dtlz3", in.dim = 2L, out.dim = 2L)
-#testParetoSet("dtlz4", in.dim = 2L, out.dim = 2L)
+testParetoSet("dtlz4", in.dim = 2L, out.dim = 2L)
 testParetoSet("dtlz5", in.dim = 2L, out.dim = 2L)
 testParetoSet("dtlz6", in.dim = 2L, out.dim = 2L)
 #testParetoSet("dtlz7", in.dim = 2L, out.dim = 2L)

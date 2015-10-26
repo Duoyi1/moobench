@@ -16,7 +16,8 @@ Imports:
     ParamHelpers,
     soobench,
     ggplot2,
-    emoa
+    emoa,
+    gridExtra
 Suggests:
     testthat
 LazyData: yes

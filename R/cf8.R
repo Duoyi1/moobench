@@ -20,7 +20,8 @@ generateCF8 = function(in.dim = 30L, out.dim = 2L, on.infeasible) {
     f3 = rep(runif(n / 5), each = 5)
     f1 = (rep(0:4, n / 5) / 4 * (1 - f3^2))^0.5
     f2 = (1 - f1^2 - f3^2)^0.5
-    ## Was mit NaN?
+    # Due to bad numeric we have calc some roots of values like -1e-17.
+    f2[is.na(f2)] = 0
     
     des = cbind(f1, f2, f3)
     des = des[order(des[, 1L]), ]

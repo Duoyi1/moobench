@@ -8,7 +8,11 @@ testParetoFront = function(name, in.dim, out.dim, ...) {
     if (is.null(attributes(f)$paretoFront)) {
       expect_equal(pf, matrix(NA_real_, ncol = getOutDim(f), nrow = 0L))
     } else {
-      expect_equal(dim(pf), c(100, out.dim))
+      if (name %in% c("uf5", "cf1")) {
+        expect_message(getParetoFront(f, 100), "has discret")
+      } else {
+        expect_equal(dim(pf), c(100, out.dim))
+      }
       expect_true(all(!is_dominated(t(pf))))
     }
     
@@ -44,24 +48,21 @@ testParetoFront("uf1", in.dim = 3L, out.dim = 2L)
 testParetoFront("uf2", in.dim = 3L, out.dim = 2L)
 testParetoFront("uf3", in.dim = 3L, out.dim = 2L)
 testParetoFront("uf4", in.dim = 3L, out.dim = 2L)
-# Fix me. feste Pareto front 
-#testParetoFront("uf5", in.dim = 3L, out.dim = 2L)
+testParetoFront("uf5", in.dim = 3L, out.dim = 2L)
 testParetoFront("uf6", in.dim = 3L, out.dim = 2L)
 testParetoFront("uf7", in.dim = 3L, out.dim = 2L)
 testParetoFront("uf8", in.dim = 5L, out.dim = 3L)
 testParetoFront("uf9", in.dim = 5L, out.dim = 3L)
 testParetoFront("uf10", in.dim = 5L, out.dim = 3L)
 
-# Fix me. feste Pareto front
-#testParetoFront("cf1", in.dim = 3L, out.dim = 2L)
+testParetoFront("cf1", in.dim = 3L, out.dim = 2L)
 testParetoFront("cf2", in.dim = 3L, out.dim = 2L)
 testParetoFront("cf3", in.dim = 3L, out.dim = 2L)
 testParetoFront("cf4", in.dim = 3L, out.dim = 2L)
 testParetoFront("cf5", in.dim = 3L, out.dim = 2L)
 testParetoFront("cf6", in.dim = 4L, out.dim = 2L)
 testParetoFront("cf7", in.dim = 4L, out.dim = 2L)
-# Fix me. NaS werden erzeugt
-#testParetoFront("cf8", in.dim = 5L, out.dim = 3L)
+testParetoFront("cf8", in.dim = 5L, out.dim = 3L)
 testParetoFront("cf9", in.dim = 5L, out.dim = 3L)
 testParetoFront("cf10", in.dim = 5L, out.dim = 3L)
 

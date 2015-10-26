@@ -17,7 +17,7 @@
 #' @export
 
 
-plot.mooFunction = function(x, ...) {
+plot.mooFunction = function(x, resolution = 64L, plot.vars = 1:2, const.values = NULL, ...) {
   plots = renderPlotMooFunction(x, ...)
   if (!is.null(plots$p.legend2)) {
     p.legend = gridExtra::arrangeGrob(plots$p.legend1, plots$p.legend2, nrow = 2, 
@@ -53,18 +53,18 @@ renderPlotMooFunction = function(x, resolution = 64L, plot.vars = 1:2, const.val
     levels(dat$fill) = c("f1", "f2")
     dat[is.na(dat$f1), "fill"] = NA
 
-    p = ggplot(aes = aes(x = x1, y = x2))
+    p = ggplot(aes = aes_string(x = "x1", y = "x2"))
     
     dat1 = dat[dat$fill == "f1", ]
-    p = p + geom_tile(data = dat1, aes(x = x1, y = x2, fill = fill, alpha = f1))
+    p = p + geom_tile(data = dat1, aes_string(x = "x1", y = "x2", fill = "fill", alpha = "f1"))
     
     dat2 = dat[dat$fill == "f2", ]
-    p = p + geom_tile(data = dat2, aes(x = x1, y = x2, fill = fill, alpha = f1 - 0.25))
+    p = p + geom_tile(data = dat2, aes_string(x = "x1", y = "x2", fill = "fill", alpha = "f1" - 0.25))
     
     dat3 = dat[is.na(dat$fill), ]
     if (nrow(dat3) > 0L) {
       dat3$f1 = 0.05
-      p = p + geom_tile(data = dat3, aes(x = x1, y = x2, fill = fill, alpha = f1))
+      p = p + geom_tile(data = dat3, aes_string(x = "x1", y = "x2", fill = "fill", alpha = "f1"))
     }
     
     p = p + scale_alpha_continuous(range = c(0, 0.75), guide = FALSE, na.value = 0.5)
@@ -118,7 +118,7 @@ renderPlotMooFunction = function(x, resolution = 64L, plot.vars = 1:2, const.val
   pareto = as.data.frame(getParetoSet(fun, n = 500L))
   if (nrow(pareto) > 0) {
     names(pareto) = c("x1", "x2")
-    p = p + geom_point(data = pareto, aes(x = x1, y = x2, shape = "pareto set"))
+    p = p + geom_point(data = pareto, aes_string(x = "x1", y = "x2", shape = "pareto set"))
     p = p + scale_shape_manual(guide = FALSE, values = c(16))
   }
 
@@ -132,7 +132,7 @@ renderPlotMooFunction = function(x, resolution = 64L, plot.vars = 1:2, const.val
   
   # generate small extra plot which is only used to extract the legend
   dat.tmp = data.frame(x = c(1,2), y = c(1,1), fill = as.factor(c(1,1)))
-  p.tmp = ggplot(data = dat.tmp, aes(x = x, y = y, fill = fill, shape = fill)) + 
+  p.tmp = ggplot(data = dat.tmp, aes_string(x = "x", y = "y", fill = "fill", shape = "fill")) + 
     geom_tile(alpha = 0.25) + 
     geom_point(colour = "black")
   p.tmp = p.tmp + scale_fill_manual(name = "", values = c("green"), labels = "infeasible value") + 

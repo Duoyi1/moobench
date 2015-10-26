@@ -4,13 +4,12 @@
 \alias{plot.mooFunction}
 \title{Plot a mooFunction.}
 \usage{
-\method{plot}{mooFunction}(x, ...)
+\method{plot}{mooFunction}(x, resolution = 64L, plot.vars = 1:2,
+  const.values = NULL, ...)
 }
 \arguments{
 \item{x}{[\code{function}] \cr
 A \code{\link{mooFunction}}.}
-
-\item{...}{Ignored.}
 
 \item{resolution}{[\code{integer(1)}] \cr
 Resolution for the plots. Default is 33.}
@@ -24,6 +23,8 @@ Numeric vector with length "in.dim - 2" (one entry for each variable that is
 not plotted). All variables which are not mentioned in \code{plot.vars} will
 be set to a constant value given by \code{const.values}. By default the lower
 bounds of the variables are used.}
+
+\item{...}{Ignored.}
 }
 \description{
 Plot a mooFunction.

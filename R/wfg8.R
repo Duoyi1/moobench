@@ -12,7 +12,7 @@ generateWFG8 = function(in.dim, out.dim, k) {
     for(i in (k + 1):in.dim) {
       u = rowMeans(des[, 1:(i - 1), drop = FALSE])
       value = 0.02 + 49.98 * (0.98 / 49.98 - (1 - 2 * u) * abs(floor(0.5 - u) + 0.98 / 49.98))
-      des[, i] =  2 * i * 0.35^value^-1
+      des[, i] =  2 * i * 0.35^(value^-1)
     }
     
     des
