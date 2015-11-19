@@ -26,7 +26,7 @@ generateWFG6 = function(in.dim, out.dim, k) {
     des = des[order(des[, 1L]), ]
     rownames(des) = 1:nrow(des)
     
-    des
+    as.data.frame(des)
   }
   
   mooFunction(

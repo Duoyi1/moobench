@@ -27,7 +27,7 @@ generateCF3 = function(in.dim = 30L, out.dim = 2L, on.infeasible) {
     des = cbind(c(0, pts1, pts2), 1 - c(0, pts1, pts2)^2)
     des = des[order(des[, 1L]), ]
     rownames(des) = 1:nrow(des)
-    des
+    as.data.frame(des)
     
   }
   

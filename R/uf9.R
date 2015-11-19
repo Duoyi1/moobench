@@ -53,7 +53,7 @@ generateUF9 = function(in.dim = 30L, out.dim = 2L) {
     des = des[order(des[, 1L]), ]
     rownames(des) = 1:nrow(des)
     
-    des
+    as.data.frame(des)
   }
   
   mooFunction(

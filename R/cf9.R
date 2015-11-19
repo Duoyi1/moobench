@@ -48,7 +48,7 @@ generateCF9 = function(in.dim = 30L, out.dim = 2L, on.infeasible) {
     des = cbind(c(f1, ff1, fff1), c(f2, ff2, fff2), c(f3, ff3, fff3))
     des = des[order(des[, 1L]), ]
     rownames(des) = 1:nrow(des)
-    des
+    as.data.frame(des)
   }
   
   mooFunction(
